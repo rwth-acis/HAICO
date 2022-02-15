@@ -1,0 +1,364 @@
+# this file contains an example description of some stations and some executions
+@prefix pht: <https://github.com/LaurenzNeumann/PHTMetadata#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix ex: <http://www.example.org/pht_examples#> .
+
+# People
+ex:u1 a foaf:Person ;
+    foaf:name "Jane" ;
+    foaf:mbox "jane@example.org" .
+
+ex:u2 a foaf:Person ;
+    foaf:name "John" ;
+    foaf:mbox "john@example.org" .
+
+ex:u3 a foaf:Person ;
+    foaf:name "Jodie" ;
+    foaf:mbox "jodie@example.org" .
+
+ex:u4 a foaf:Person ;
+    foaf:name "Jane1" ;
+    foaf:mbox "jane1@example.org" .   
+
+ex:u5 a foaf:Person ;
+    foaf:name "John1" ;
+    foaf:mbox "john1@example.org" .
+
+ex:u6 a foaf:Person ;
+    foaf:name "Jodie1" ;
+    foaf:mbox "jodie1@example.org" . 
+
+ex:u7 a foaf:Person ;
+    foaf:name "Jane2" ;
+    foaf:mbox "jane2@example.org" .
+
+ex:u8 a foaf:Person ;
+    foaf:name "John2" ;
+    foaf:mbox "john2@example.org" .
+
+ex:u9 a foaf:Person ;
+    foaf:name "Jodie2" ;
+    foaf:mbox "jodie2@example.org" .
+
+ex:u10 a foaf:Person ;
+    foaf:name "Jane3" ;
+    foaf:mbox "jane3@example.org" .   
+
+ex:u11 a foaf:Person ;
+    foaf:name "John3" ;
+    foaf:mbox "john3@example.org" .
+
+ex:u12 a foaf:Person ;
+    foaf:name "Jodie3" ;
+    foaf:mbox "jodie3@example.org" . 
+
+#stations
+ex:station1 a pht:Station ;
+    pht:stationOwner ex:u1 ;
+    pht:responsibleForStation ex:u1 ;
+    pht:description "This station is a test station running on my locale machine." ;
+    pht:title "Aachenbeeck" ;
+    pht:right "Everybody who uses the architecture may use this station, since no important data is stored there" ;
+    pht:computationalEnvironment [
+        a pht:ExecutionEnvironment ;
+        pht:supportsOCI true ;
+        pht:hasCUDASupport false ;
+        pht:maximumNumberOfModelsSupported 5 ;
+        pht:maximumModelSizeKilobytesSupported 1000000 
+    ] ;
+    pht:dataSet [
+        a pht:TabularDataSet ;
+        pht:description "A non-existing data set for sake of giving an example" ;
+        pht:pid "notanacutalpid" ;
+        pht:right "This is not an actual dataset, therefore you don't have to respect any legal regulations" ;
+        pht:accessURL "sql://127.0.0.1:1234" ;
+        pht:usedDifferentialPrivacy [
+            a pht:DifferentialPrivacyKAnonymity ;
+            pht:parameter "10"^^xsd:float ;
+        ] ;
+        pht:attribute [
+            pht:key "id" ;
+            pht:description "An identifier identifying nothing" 
+        ] ;
+        pht:attribute [
+            pht:key "name" ;
+            pht:description "A name" 
+        ] ;
+    ] .
+
+ex:station2 a pht:Station ;
+    pht:stationOwner ex:u2 ;
+    pht:responsibleForStation ex:u2 ;
+    pht:description "This station is a test station running on my locale machine." ;
+    pht:title "Aachenbeeck" ;
+    pht:right "Everybody who uses the architecture may use this station, since no important data is stored there" ;
+    pht:computationalEnvironment [
+        a pht:ExecutionEnvironment ;
+        pht:supportsOCI true ;
+        pht:hasCUDASupport false ;
+        pht:maximumNumberOfModelsSupported 5 ;
+        pht:maximumModelSizeKilobytesSupported 1000000 
+    ] ;
+    pht:dataSet [
+        a pht:TabularDataSet ;
+        pht:description "A non-existing data set for sake of giving an example" ;
+        pht:pid "notanacutalpid" ;
+        pht:right "This is not an actual dataset, therefore you don't have to respect any legal regulations" ;
+        pht:accessURL "sql://127.0.0.1:1234" ;
+        pht:usedDifferentialPrivacy [
+            a pht:DifferentialPrivacyKAnonymity ;
+            pht:parameter "10"^^xsd:float ;
+        ] ;
+        pht:attribute [
+            pht:key "id" ;
+            pht:description "An identifier identifying nothing" 
+        ] ;
+        pht:attribute [
+            pht:key "name" ;
+            pht:description "A name" 
+        ] ;
+    ] .
+
+ex:station3 a pht:Station ;
+    pht:stationOwner ex:u3 ;
+    pht:responsibleForStation ex:u3 ;
+    pht:description "This station is a test station running on my locale machine." ;
+    pht:title "Aachenbeeck" ;
+    pht:right "Everybody who uses the architecture may use this station, since no important data is stored there" ;
+    pht:computationalEnvironment [
+        a pht:ExecutionEnvironment ;
+        pht:supportsOCI true ;
+        pht:hasCUDASupport false ;
+        pht:maximumNumberOfModelsSupported 5 ;
+        pht:maximumModelSizeKilobytesSupported 1000000 
+    ] ;
+    pht:dataSet [
+        a pht:TabularDataSet ;
+        pht:description "A non-existing data set for sake of giving an example" ;
+        pht:pid "notanacutalpid" ;
+        pht:right "This is not an actual dataset, therefore you don't have to respect any legal regulations" ;
+        pht:accessURL "sql://127.0.0.1:1234" ;
+        pht:usedDifferentialPrivacy [
+            a pht:DifferentialPrivacyKAnonymity ;
+            pht:parameter "10"^^xsd:float ;
+        ] ;
+        pht:attribute [
+            pht:key "id" ;
+            pht:description "An identifier identifying nothing" 
+        ] ;
+        pht:attribute [
+            pht:key "name" ;
+            pht:description "A name" 
+        ] ;
+    ] .
+
+
+# a sample train with an execution visiting the station just described
+ex:train1 a pht:Train ;
+    pht:creator ex:u1 ;
+    pht:identifier "Here could be an additional identifier" ;
+    pht:description "This train is a toy example." ;
+    pht:title "Test train" ;
+    pht:version "1.0" ;
+    pht:publicationDate "2021-12-09" ;
+    pht:model [
+        pht:creator ex:u1 ;
+        pht:right "This model can be used by everybody" ;
+        pht:description "An example model. Normally the model attribute would point to an URL which would needs to be accessed for info" ;
+        pht:size "1000"^^xsd:integer ;
+        pht:dataInteractionRead true ;
+        pht:dataInteractionDelete false ;
+        pht:dataInteractionWrite false ;
+        pht:minimumEstimatedGFLOPS "1";
+        pht:needCUDASupport false ;
+    ] .
+
+ex:train2 a pht:Train ;
+    pht:creator ex:u4 ;
+    pht:identifier "Here could be an additional identifier" ;
+    pht:description "This train is a toy example." ;
+    pht:title "Test train" ;
+    pht:version "1.0" ;
+    pht:publicationDate "2021-12-09" ;
+    pht:model [
+        pht:creator ex:u1 ;
+        pht:right "This model can be used by everybody" ;
+        pht:description "An example model. Normally the model attribute would point to an URL which would needs to be accessed for info" ;
+        pht:size "1000"^^xsd:integer ;
+        pht:dataInteractionRead true ;
+        pht:dataInteractionDelete false ;
+        pht:dataInteractionWrite false ;
+        pht:minimumEstimatedGFLOPS "1";
+        pht:needCUDASupport false ;
+    ] .
+
+
+ex:train3 a pht:Train ;
+    pht:creator ex:u2 ;
+    pht:identifier "Here could be an additional identifier" ;
+    pht:description "This train is a toy example." ;
+    pht:title "Test train" ;
+    pht:version "1.0" ;
+    pht:publicationDate "2021-12-09" ;
+    pht:model [
+        pht:creator ex:u1 ;
+        pht:right "This model can be used by everybody" ;
+        pht:description "An example model. Normally the model attribute would point to an URL which would needs to be accessed for info" ;
+        pht:size "1000"^^xsd:integer ;
+        pht:dataInteractionRead true ;
+        pht:dataInteractionDelete false ;
+        pht:dataInteractionWrite false ;
+        pht:minimumEstimatedGFLOPS "1";
+        pht:needCUDASupport false ;
+    ] .
+
+ex:train4 a pht:Train ;
+    pht:creator ex:u7 ;
+    pht:identifier "Here could be an additional identifier" ;
+    pht:description "This train is a toy example." ;
+    pht:title "Test train" ;
+    pht:version "1.0" ;
+    pht:publicationDate "2021-12-09" ;
+    pht:model [
+        pht:creator ex:u1 ;
+        pht:right "This model can be used by everybody" ;
+        pht:description "An example model. Normally the model attribute would point to an URL which would needs to be accessed for info" ;
+        pht:size "1000"^^xsd:integer ;
+        pht:dataInteractionRead true ;
+        pht:dataInteractionDelete false ;
+        pht:dataInteractionWrite false ;
+        pht:minimumEstimatedGFLOPS "1";
+        pht:needCUDASupport false ;
+    ] .
+
+ex:execution1 a pht:TrainExecution ;
+    pht:description "A sample execution" ;
+    pht:trainId ex:train1 ;
+    pht:creator ex:u1 ;
+    pht:enableEvent pht:TrainInstantiatedEvent ;
+    pht:enableEvent pht:StartedRunningStationEvent ;
+    pht:enableEvent pht:StartedTransmissionEvent ;
+    pht:event [
+        a pht:TrainIstantiatedEvent ;
+        pht:timestamp "2021-12-0912:00:00Z" 
+    ] ;
+    pht:event [
+        a pht:StartedTransmissionEvent ;
+        pht:station ex:station1 ;
+        pht:timestamp "2021-12-0912:10:00Z" 
+    ] ;
+    pht:event [
+        a pht:StartedRunningAtStationEvent ;
+        pht:station ex:station1 ;
+        pht:timestamp "2021-12-0912:15:00Z" 
+    ] .
+
+ex:train1 pht:execution ex:execution1 .
+
+ex:execution2 a pht:TrainExecution ;
+    pht:description "A sample execution" ;
+    pht:trainId ex:train2 ;
+    pht:creator ex:u4 ;
+    pht:enableEvent pht:TrainInstantiatedEvent ;
+    pht:enableEvent pht:StartedRunningStationEvent ;
+    pht:enableEvent pht:StartedTransmissionEvent ;
+    pht:event [
+        a pht:TrainIstantiatedEvent ;
+        pht:timestamp "2021-12-0912:00:00Z" 
+    ] ;
+    pht:event [
+        a pht:StartedTransmissionEvent ;
+        pht:station ex:station1 ;
+        pht:timestamp "2021-12-0912:10:00Z" 
+    ] ;
+    pht:event [
+        a pht:StartedRunningAtStationEvent ;
+        pht:station ex:station1 ;
+        pht:timestamp "2021-12-0912:15:00Z" 
+    ] .
+
+ex:train2 pht:execution ex:execution2 .
+
+ex:execution a pht:TrainExecution ;
+    pht:description "A sample execution" ;
+    pht:trainId ex:train3 ;
+    pht:creator ex:u2 ;
+    pht:enableEvent pht:TrainInstantiatedEvent ;
+    pht:enableEvent pht:StartedRunningStationEvent ;
+    pht:enableEvent pht:StartedTransmissionEvent ;
+    pht:event [
+        a pht:TrainIstantiatedEvent ;
+        pht:timestamp "2021-12-0912:00:00Z" 
+    ] ;
+    pht:event [
+        a pht:StartedTransmissionEvent ;
+        pht:station ex:station1 ;
+        pht:timestamp "2021-12-0912:10:00Z" 
+    ] ;
+    pht:event [
+        a pht:StartedRunningAtStationEvent ;
+        pht:station ex:station1 ;
+        pht:timestamp "2021-12-0912:15:00Z" 
+    ] .
+
+ex:train3 pht:execution ex:execution .
+
+
+ex:train7 a pht:Train ;
+    pht:creator ex:u7 ;
+    pht:identifier "Here could be an additional identifier" ;
+    pht:description "This train is a toy example." ;
+    pht:title "Test train" ;
+    pht:version "1.0" ;
+    pht:publicationDate "2021-12-09" ;
+    pht:model [
+        pht:creator ex:u7 ;
+        pht:right "This model can be used by everybody" ;
+        pht:description "An example model. Normally the model attribute would point to an URL which would needs to be accessed for info" ;
+        pht:size "1000"^^xsd:integer ;
+        pht:dataInteractionRead true ;
+        pht:dataInteractionDelete false ;
+        pht:dataInteractionWrite false ;
+        pht:minimumEstimatedGFLOPS "1";
+        pht:needCUDASupport false ;
+    ] .
+
+ex:execution7 a pht:TrainExecution ;
+    pht:description "A sample execution" ;
+    pht:trainId ex:train7 ;
+    pht:creator ex:u7 ;
+    pht:enableEvent pht:TrainInstantiatedEvent ;
+    pht:enableEvent pht:StartedRunningStationEvent ;
+    pht:enableEvent pht:StartedTransmissionEvent ;
+    pht:enableEvent pht:MemoryUsageReport;
+    pht:enableEvent pht:CPUUsageReport;
+    pht:event [
+        a pht:TrainIstantiatedEvent ;
+        pht:timestamp "2021-12-0912:00:00Z" 
+    ] ;
+    pht:event [
+        a pht:StartedTransmissionEvent ;
+        pht:station ex:station1 ;
+        pht:timestamp "2021-12-0912:10:00Z" 
+    ] ;
+    pht:event [
+        a pht:StartedRunningAtStationEvent ;
+        pht:station ex:station1 ;
+        pht:timestamp "2021-12-0912:15:00Z" 
+    ] ;
+    pht:event [
+        a pht:MemoryUsageReport ;
+        pht:station ex:station1 ;
+        pht:value 2.3 
+    ] ;
+    pht:event [
+        a pht:CPUUsageReport ;
+        pht:station ex:station1 ;
+        pht:value 3 .
+    ] .
+
+ex:train7 pht:execution ex:execution7 .

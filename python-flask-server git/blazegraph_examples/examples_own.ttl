@@ -1,0 +1,602 @@
+@prefix pht: <http://www.personalhealthtrainmetadata.org/#> .
+@prefix mock: <http://phtmetadatamock.org#> . 
+@prefix dmop: <http://www.e-lico.eu/ontologies/dmo/DMOP/DMKB.owl> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://www.example.org/pht_examples#> .
+
+pht:FileDataSet rdfs:subClassOf pht:DataSet .
+pht:TabularDataSet rdfs:subClassOf pht:DataSet .
+ex:me 
+    rdf:type foaf:Agent ;
+    foaf:name "Julia" .
+ex:another
+    rdf:type foaf:Agent ;
+    foaf:name "Jodie" .
+
+ex:u1 a foaf:Agent ;
+    foaf:name "Jane" ;
+    foaf:mbox "jane@example.org" .
+
+ex:u2 a foaf:Agent ;
+    foaf:name "John" ;
+    foaf:mbox "john@example.org" .
+
+ex:u3 a foaf:Agent ;
+    foaf:name "Jodie New" ;
+    foaf:mbox "jodienew@example.org" .
+
+ex:u4 a foaf:Agent ;
+    foaf:name "Jane One" ;
+    foaf:mbox "janeone@example.org" .   
+
+ex:u5 a foaf:Agent ;
+    foaf:name "John One" ;
+    foaf:mbox "johnone@example.org" .
+
+ex:u6 a foaf:Agent ;
+    foaf:name "Jodie One" ;
+    foaf:mbox "jodieone@example.org" . 
+
+ex:u7 a foaf:Agent ;
+    foaf:name "Jane Two" ;
+    foaf:mbox "jane.two@example.org" .
+
+ex:u8 a foaf:Agent ;
+    foaf:name "John Two" ;
+    foaf:mbox "john.two@example.org" .
+
+ex:u9 a foaf:Agent ;
+    foaf:name "Jodie Two" ;
+    foaf:mbox "jodie2@example.org" .
+
+ex:u10 a foaf:Agent ;
+    foaf:name "Jane Three" ;
+    foaf:mbox "janethree@example.org" .   
+
+ex:u11 a foaf:Agent ;
+    foaf:name "John Three" ;
+    foaf:mbox "john_three@example.org" .
+
+ex:u12 a foaf:Agent ;
+    foaf:name "Jodie Three" ;
+    foaf:mbox "jodie_3@example.org" . 
+
+ex:station1 
+    rdf:type pht:Station ;
+    pht:stationOwner ex:me ;
+    pht:responsibleForStation ex:another ;
+    pht:title "Station 1" ;
+    pht:description "The first station for testing the dashboard" ;
+    pht:longitude "50.776614"^^xsd:float ;
+    pht:latitude "6.042804"^^xsd:float ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport true;
+        pht:maximumNumberOfModelsSupported "25"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "1200"^^xsd:integer ;
+        pht:estimatedGFLOPS "1234"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:FileDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "application/json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:description "A test data set" ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+
+ex:station2 
+    rdf:type pht:Station ;
+    pht:stationOwner ex:another ;
+    pht:responsibleForStation ex:another ;
+    pht:title "Station 2" ;
+    pht:description "The second station for testing the dashboard" ;
+    pht:longitude "50.776614"^^xsd:float ;
+    pht:latitude "6.042804"^^xsd:float ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport false;
+        pht:maximumNumberOfModelsSupported "10"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "750"^^xsd:integer ;
+        pht:estimatedGFLOPS "738"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:TabularDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "text/csv" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:attribute [];
+        pht:identifierToStation "1" ;
+        pht:description "This data set is also an example" ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+ex:station3 
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u7 ;
+    pht:responsibleForStation ex:me ;
+    pht:title "Station 3" ;
+    pht:description "The third station for testing the dashboard" ;
+    pht:longitude "50.776614"^^xsd:float ;
+    pht:latitude "6.042804"^^xsd:float ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport false;
+        pht:maximumNumberOfModelsSupported "25"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "100000"^^xsd:integer ;
+        pht:estimatedGFLOPS "1230"^^xsd:integer ;
+    ] ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport false;
+        pht:maximumNumberOfModelsSupported "2"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "3452"^^xsd:integer ;
+        pht:estimatedGFLOPS "1233"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:FileDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "application/json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:description "A File containing information about various patients" ;
+        pht:accessConstrain pht:accessConstrainUnconstrained ;
+    ] .
+ex:station4 
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u4 ;
+    pht:responsibleForStation ex:me ;
+    pht:title "Station 4" ;
+    pht:description "The fourth station for testing the dashboard" ;
+    pht:longitude "50.776614"^^xsd:float ;
+    pht:latitude "6.042804"^^xsd:float ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport true;
+        pht:maximumNumberOfModelsSupported "25"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "100000"^^xsd:integer ;
+        pht:estimatedGFLOPS "500"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:TabularDataSet ;
+        pht:fileType "image/png" ;
+        pht:characteristic [
+            rdf:type dmop:NumberOfInstances ;
+            dmop:hasValue "100" ;
+        ] ;
+        pht:characteristic [
+            rdf:type dmop:NumberOfFeatures ;
+            dmop:hasValue "5" ;
+        ] ;
+        rdf:type pht:DataSet ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:attribute [];
+        pht:identifierToStation "1" ;
+        pht:description "A test data set" ;
+        pht:accessConstrain pht:accessConstrainUnconstrained ;
+    ] .
+
+#not sure if works
+ex:station5
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u5 ;
+    pht:responsibleForStation ex:u6 ;
+    pht:description "Fifth testing station" ;
+    pht:title "Station 5" ;
+    pht:right "Everybody who uses the architecture may use this station, since no important data is stored there" ;
+    pht:longitude "48.92551"^^xsd:float ;
+    pht:latitude "95.31148"^^xsd:float ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:supportsOCI true ;
+        pht:hasCUDASupport false ;
+        pht:maximumNumberOfModelsSupported 5 ;
+        pht:maximumModelSizeKilobytesSupported 1000000 
+    ] ;
+    pht:dataSet [
+        rdf:type pht:TabularDataSet ;
+        rdf:type pht:DataSet ;
+        pht:description "A non-existing data set for Station 5" ;
+        pht:pid "notanacutalpid" ;
+        pht:right "This is not an actual dataset, therefore you don't have to respect any legal regulations" ;
+        pht:accessURL "sql://127.0.0.1:1234" ;
+        pht:usedDifferentialPrivacy [
+            a pht:DifferentialPrivacyKAnonymity ;
+            pht:parameter "10"^^xsd:float ;
+        ] ;
+        pht:attribute [
+            pht:key "id" ;
+            pht:description "An identifier identifying nothing for station 5" 
+        ] ;
+        pht:attribute [
+            pht:key "name" ;
+            pht:description "A name S5" 
+        ] ;
+    ] .
+
+ex:stationMinimal a pht:Station ;
+    pht:stationOwner ex:u10 ;
+    pht:responsibleForStation ex:u3 ;
+    pht:longitude "-141.29387"^^xsd:float ;
+    pht:latitude "-66.17674"^^xsd:float ;
+    pht:computationalEnvironment [
+        a pht:ExecutionEnvironment ;
+    ] ;
+    pht:dataSet [
+        a pht:TabularDataSet ;
+        pht:identifierToStation "123" ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+        pht:attribute [];
+    ] .
+
+ex:station6 a pht:Station ;
+    pht:stationOwner ex:u2 ;
+    pht:responsibleForStation ex:u3 ;
+    pht:description "Station 6" ;
+    pht:title "S 6" ;
+    pht:right "Shrug" ;
+    pht:computationalEnvironment [
+        a pht:ExecutionEnvironment ;
+        pht:supportsOCI true ;
+        pht:hasCUDASupport false ;
+        pht:estimatedGFLOPS "1234"^^xsd:integer ;
+        pht:maximumModelSizeKilobytesSupported 116273 
+    ] ;
+    pht:dataSet [
+        a pht:FileDataSet ;
+        pht:fileType "application/json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyLDiversity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:theme "Dark." ;
+        pht:description "Data Set for station 6" ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+
+
+ex:train1 
+    rdf:type pht:Train ;
+    pht:creator ex:u1 ;
+    pht:publisher ex:u1 ;
+    pht:identifier ex:train1 ;
+    pht:description "Train 1" ;
+    pht:title "Train 1" ;
+    pht:version "1.0" ;
+    pht:published "2020-07-16"^^xsd:date ;
+    pht:execution [
+        pht:identifier "testid" ;
+        rdf:type pht:TrainExecution ;
+        pht:trainId ex:train1 ;
+        pht:description "A mock execution with random generated events (well not really)!" ;
+        pht:creator ex:u6 ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "2"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:32:11.807Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station2 ;
+            pht:value "2"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:32:11.807Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "7"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:35:07.591Z"^^xsd:datetime ;
+        ] ;
+         pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "4"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:36:38.754Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "8"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:37:25.220Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "5"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:32:11.807Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "9"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:37:25.220Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "3"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:38:10.210Z"^^xsd:datetime ;
+        ] ;
+        #%state
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station1 ;
+            pht:stepNumber "1"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station2 ;
+            pht:stepNumber "2"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station3 ;
+            pht:stepNumber "3"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station4 ;
+            pht:stepNumber "4"^^xsd:integer ;
+        ] ;
+        pht:dispatchingPattern pht:trainDispatchingPatternLinear ;
+        pht:public "true"^^xsd:boolean ;
+
+    ] ;
+    pht:model [
+        pht:identifier "testid" ;
+        rdf:type pht:Model ;
+        pht:identifier ex:model1 ;
+        pht:creator ex:u3 ;
+        pht:size "100"^^xsd:integer ;
+        pht:description "It does absolutly nothing" ;
+        pht:dataInteractionRead "true"^^xsd:boolean ;
+        pht:dataInteractionWrite "true"^^xsd:boolean ;
+        pht:dataInteractionDelete "false"^^xsd:boolean ;
+        pht:minimumEstimatedGFLOPS "1.0"^^xsd:float ;
+    ] .
+
+ex:train2 
+    rdf:type pht:Train ;
+    pht:creator ex:u2 ;
+    pht:publisher ex:u2 ;
+    pht:identifier ex:train2 ;
+    pht:title "Train 2" ;
+    pht:version "1.0" ;
+    pht:published "2020-07-16"^^xsd:date ;
+    pht:execution [
+        pht:identifier "testid2" ;
+        rdf:type pht:TrainExecution ;
+        pht:trainId ex:train2 ;
+        pht:description "A mock execution with non-generated events!" ;
+        pht:creator ex:u5 ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station2 ;
+            pht:value "7"^^xsd:integer ;
+            pht:timestamp "2022-01-28T10:32:11.807Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station2 ;
+            pht:value "12"^^xsd:integer ;
+            pht:timestamp "2022-01-28T10:34:49.122Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "6"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:32:07.591Z"^^xsd:datetime ;
+        ] ;
+         pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "2"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:33:38.754Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "15"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:34:25.220Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "14"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:32:15.827Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "3"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:37:26.200Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:station1 ;
+            pht:value "5"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:34:08.210Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:station2 ;
+            pht:value "9"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:34:08.210Z"^^xsd:datetime ;
+        ] ;
+        #%state
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station1 ;
+            pht:stepNumber "1"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station6 ;
+            pht:stepNumber "2"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station5 ;
+            pht:stepNumber "3"^^xsd:integer ;
+        ] ;
+        pht:dispatchingPattern pht:trainDispatchingPatternLinear ;
+        pht:public "true"^^xsd:boolean ;
+
+    ] ;
+    pht:model [
+        pht:identifier "testid2" ;
+        rdf:type pht:Model ;
+        pht:identifier ex:model2 ;
+        pht:creator ex:u3 ;
+        pht:size "100"^^xsd:integer ;
+        pht:description "It does absolutly nothing" ;
+        pht:dataInteractionRead "true"^^xsd:boolean ;
+        pht:dataInteractionWrite "true"^^xsd:boolean ;
+        pht:dataInteractionDelete "true"^^xsd:boolean ;
+        pht:minimumEstimatedGFLOPS "1.0"^^xsd:float ;
+    ] .
+
+
+ex:train3
+    rdf:type pht:Train ;
+    pht:creator ex:u5 ;
+    pht:publisher ex:u3 ;
+    pht:identifier ex:train2 ;
+    pht:title "Train 3" ;
+    pht:version "1.0" ;
+    pht:published "2020-09-16"^^xsd:date ;
+    pht:execution [
+        pht:identifier "testid3" ;
+        rdf:type pht:TrainExecution ;
+        pht:trainId ex:train2 ;
+        pht:description "A mock execution with non-generated events!" ;
+        pht:creator ex:u1 ;
+        pht:event [
+            a pht:StartedRunningAtStationEvent ;
+            pht:station ex:stationMinimal ;
+            pht:timestamp "2022-01-28T09:11:48.00Z" 
+        ] ;
+        pht:event [
+            a pht:TrainIstantiatedEvent ;
+            pht:timestamp "2022-01-28T09:07:50.00Z" 
+        ] ;
+        pht:event [
+            a pht:StartedTransmissionEvent ;
+            pht:station ex:stationMinimal ;
+            pht:timestamp "2022-01-28T09:08:10:00Z" 
+        ] ;
+        pht:event [
+            a pht:FinishedRunningAtStationEvent ;
+            pht:station ex:stationMinimal ;
+            pht:timestamp "2022-01-29T10:36:00.122Z" 
+        ] ;
+        pht:event [
+            a pht:FinishedTransmissionEvent ;
+            pht:station ex:stationMinimal ;
+            pht:timestamp "2022-01-28T09:08:47:00Z" 
+        ] ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:stationMinimal ;
+            pht:value "7"^^xsd:integer ;
+            pht:timestamp "2022-01-28T10:32:11.807Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:station3 ;
+            pht:value "12"^^xsd:integer ;
+            pht:timestamp "2022-01-28T10:34:49.122Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:stationMinimal ;
+            pht:value "6"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:32:07.591Z"^^xsd:datetime ;
+        ] ;
+         pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:stationMinimal ;
+            pht:value "2"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:33:38.754Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:CPUUsageReportEvent ;
+            pht:station ex:stationMinimal ;
+            pht:value "15"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:34:25.220Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:stationMinimal ;
+            pht:value "14"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:32:15.827Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:stationMinimal ;
+            pht:value "3"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:37:26.200Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:stationMinimal ;
+            pht:value "5"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:34:08.210Z"^^xsd:datetime ;
+        ] ;
+        pht:event [
+            a pht:MemoryUsageReportEvent ;
+            pht:station ex:station3 ;
+            pht:value "9"^^xsd:integer ;
+            pht:timestamp "2022-01-29T09:34:08.210Z"^^xsd:datetime ;
+        ] ;
+        #%state
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:stationMinimal ;
+            pht:stepNumber "1"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station1 ;
+            pht:stepNumber "2"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station6 ;
+            pht:stepNumber "3"^^xsd:integer ;
+        ] ;
+        pht:dispatchingPattern pht:trainDispatchingPatternLinear ;
+        pht:public "true"^^xsd:boolean ;
+
+    ] ;
+    pht:model [
+        pht:identifier "testid2" ;
+        rdf:type pht:Model ;
+        pht:identifier ex:model2 ;
+        pht:creator ex:u3 ;
+        pht:size "100"^^xsd:integer ;
+        pht:description "It does absolutly nothing" ;
+        pht:dataInteractionRead "true"^^xsd:boolean ;
+        pht:dataInteractionWrite "true"^^xsd:boolean ;
+        pht:dataInteractionDelete "true"^^xsd:boolean ;
+        pht:minimumEstimatedGFLOPS "1.0"^^xsd:float ;
+    ] .
+
+
