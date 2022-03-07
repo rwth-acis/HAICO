@@ -2,6 +2,7 @@ FROM python:3-alpine
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
+RUN apk add build-base jpeg-dev zlib-dev
 
 COPY requirements.txt /usr/src/app/
 

@@ -1,0 +1,112 @@
+{
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Hello there! What would you like to do? I can retrieve information about stations and trains for you."
+			}
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🚉 Information about stations",
+						"emoji": true
+					},
+					"value": "click_me_123",
+					"action_id": "station"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🚂 Information about trains",
+						"emoji": true
+					},
+					"value": "click_me_123",
+					"action_id": "train"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "ℹ️ Tell me more",
+						"emoji": true
+					},
+					"value": "click_me_123",
+					"action_id": "information"
+				}
+			]
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "📈 See statistics",
+						"emoji": true
+					},
+					"value": "click_me_123",
+					"action_id": "train_performance"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🚂 Request new train",
+						"emoji": true
+					},
+					"value": "click_me_123",
+					"action_id": "train_request"
+				}
+			]
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🚉 Information about station",
+						"emoji": true
+					},
+					"value": "click_me_123",
+					"action_id": "station_info"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🚂 See upcomming trains",
+						"emoji": true
+					},
+					"value": "click_me_123",
+					"action_id": "train"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🏅 Get performance details",
+						"emoji": true
+					},
+					"value": "click_me_123",
+					"action_id": "station_performance"
+				}
+			]
+		}
+	]
+}

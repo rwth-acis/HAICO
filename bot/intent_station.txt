@@ -1,0 +1,157 @@
+## intent:station_owner
+- owner station [Station3]{"entity": "stationID", "value": "Station3"}
+- get owner for station [station3]{"entity": "stationID", "value": "station3"}
+- get owner station [station000]{"entity": "stationID", "value": "station000"}
+- show owner station [station0]{"entity": "stationID", "value": "station0"}
+- Who is the owner for station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- who owns station [StatioN1]{"entity": "stationID", "value": "StatioN1"} ?
+- show owner for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show owner station [stationMin]{"entity": "stationID", "value": "stationMin"}
+## intent:station_responsible
+- responsible station [Station3]{"entity": "stationID", "value": "Station3"}
+- get responsible for station [station3]{"entity": "stationID", "value": "station3"}
+- get responsible station [station000]{"entity": "stationID", "value": "station000"}
+- show responsible station [station0]{"entity": "stationID", "value": "station0"}
+- Who is the responsible for station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- who is responsible for station [StatioN1]{"entity": "stationID", "value": "StatioN1"} ?
+- show responsible for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show responsible station [stationMin]{"entity": "stationID", "value": "stationMin"}
+## intent:station_cert
+- certificate station [station3]{"entity": "stationID", "value": "station3"}
+- cert station [station31]{"entity": "stationID", "value": "station31"}
+- get certificate for station [station3]{"entity": "stationID", "value": "station3"}
+- get the certificate for the station [station000]{"entity": "stationID", "value": "station000"}
+- show certificate station [station0]{"entity": "stationID", "value": "station0"}
+- What is the certificate for station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- station [station1]{"entity": "stationID", "value": "station1"} certificate
+- show certificate for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show the certificate station [station9]{"entity": "stationID", "value": "station9"}
+## intent:station_title
+- title station [station3]{"entity": "stationID", "value": "station3"}
+- get title for station [station3]{"entity": "stationID", "value": "station3"}
+- get the title for the station [station000]{"entity": "stationID", "value": "station000"}
+- show title station [station0]{"entity": "stationID", "value": "station0"}
+- What is the title for station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- station [station1]{"entity": "stationID", "value": "station1"} title
+- show title for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show the title station [station99]{"entity": "stationID", "value": "station99"}
+## intent:station_description
+- description station [Station3]{"entity": "stationID", "value": "Station3"}
+- get description for station [station3]{"entity": "stationID", "value": "station3"}
+- Get description station [station000]{"entity": "stationID", "value": "station000"}
+- show description station [station0]{"entity": "stationID", "value": "station0"}
+- show description for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show description station [station99]{"entity": "stationID", "value": "station99"}
+## intent:station_rights
+- rights station [station3]{"entity": "stationID", "value": "station3"}
+- get rights for station [station3]{"entity": "stationID", "value": "station3"}
+- get the rights for the station [station000]{"entity": "stationID", "value": "station000"}
+- show rights station [station0]{"entity": "stationID", "value": "station0"}
+- What are the rights for station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- station [station1]{"entity": "stationID", "value": "station1"} rights
+- show rights for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show the rights station [stationMini]{"entity": "stationID", "value": "stationMini"}
+## intent:station_loc
+- Get location for station [station1]{"entity": "stationID", "value": "station1"}
+- get location for station [station10]{"entity": "stationID", "value": "station10"}
+- Show location for station [stationA]{"entity": "stationID", "value": "stationA"}
+- show location for station [stationmki]{"entity": "stationID", "value": "stationmki"}
+- location station [stationx]{"entity": "stationID", "value": "stationx"}
+- station [station99]{"entity": "stationID", "value": "station99"} location
+- Where is station [5station]{"entity": "stationID", "value": "5station"} ?
+- where is station [station1]{"entity": "stationID", "value": "station1"} 
+## intent:station_info
+- get information for station [station1]{"entity": "stationID", "value": "station1"}
+- Get info for station [station2]{"entity": "stationID", "value": "station2"}
+- show information for station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+- Show info for station [station6]{"entity": "stationID", "value": "station6"}
+- All information for station [station10]{"entity": "stationID", "value": "station10"}
+- Information station [station1]{"entity": "stationID", "value": "station1"}
+## intent:comp_env
+- get computational environment for station [station1]{"entity": "stationID", "value": "station1"}
+- show computational environment for station [station2]{"entity": "stationID", "value": "station2"}
+- computational environment station [station66]{"entity": "stationID", "value": "station66"}
+- computational environment station [station3]{"entity": "stationID", "value": "station3"}
+- Get computational environment for station [stationX]{"entity": "stationID", "value": "stationX"}
+- Show computational environment for station [station2]{"entity": "stationID", "value": "station2"}
+- Get computational environment station [station1]{"entity": "stationID", "value": "station1"}
+## intent:station_dataset
+- data station [station3]{"entity": "stationID", "value": "station3"}
+- station [station32]{"entity": "stationID", "value": "station32"} data
+- get data for the station [station000]{"entity": "stationID", "value": "station000"}
+- show dataset station [station0]{"entity": "stationID", "value": "station0"}
+- What data does station [stationA]{"entity": "stationID", "value": "stationA"} have?
+- station [station1]{"entity": "stationID", "value": "station1"} dataset
+- show data of station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show present data format station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+## intent:current_at_station
+- trains station [Station3]{"entity": "stationID", "value": "Station3"}
+- get trains for station [station3]{"entity": "stationID", "value": "station3"}
+- Get trains station [station000]{"entity": "stationID", "value": "station000"}
+- show trains station [station0]{"entity": "stationID", "value": "station0"}
+- show trains at station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show trains station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+- trains station [station1]{"entity": "stationID", "value": "station1"}
+- Which trains are at station [station5]{"entity": "stationID", "value": "station5"} ?
+- which trains at station [station1]{"entity": "stationID", "value": "station1"} ?
+## intent:station_error
+- errors station [station3]{"entity": "stationID", "value": "station3"}
+- error station [station31]{"entity": "stationID", "value": "station31"}
+- get all errors for station [station3]{"entity": "stationID", "value": "station3"}
+- get the errors for the station [station000]{"entity": "stationID", "value": "station000"}
+- show errors station [station0]{"entity": "stationID", "value": "station0"}
+- What errors had station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- station [station1]{"entity": "stationID", "value": "station1"} errors
+- show errors for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show all errors station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+## intent:station_log
+- logs station [station3]{"entity": "stationID", "value": "station3"}
+- log station [station31]{"entity": "stationID", "value": "station31"}
+- station log [station32]{"entity": "stationID", "value": "station32"}
+- get all logs for station [station3]{"entity": "stationID", "value": "station3"}
+- get the logs for the station [station000]{"entity": "stationID", "value": "station000"}
+- show logs station [station0]{"entity": "stationID", "value": "station0"}
+- What logs has station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- station [station1]{"entity": "stationID", "value": "station1"} logs
+- show logs for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show all logs station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+## intent:station_rejections
+- rejections station [station3]{"entity": "stationID", "value": "station3"}
+- rejection station [station31]{"entity": "stationID", "value": "station31"}
+- get all rejections for station [station3]{"entity": "stationID", "value": "station3"}
+- get the rejections for the station [station000]{"entity": "stationID", "value": "station000"}
+- show rejections station [station0]{"entity": "stationID", "value": "station0"}
+- What rejections had station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- was station [station0]{"entity": "stationID", "value": "station0"} rejected 
+- station [station1]{"entity": "stationID", "value": "station1"} rejections
+- show rejections at station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show all rejections station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+- which trains did station [station1]{"entity": "stationID", "value": "station1"} reject
+- did station [station1]{"entity": "stationID", "value": "station1"} reject trains
+## intent:station_performance
+- get performance for station [station1]{"entity": "stationID", "value": "station1"}
+- show performance for station [station2]{"entity": "stationID", "value": "station2"}
+- performance station [station66]{"entity": "stationID", "value": "station66"}
+- memory station [stationA]{"entity": "stationID", "value": "stationA"}
+- overall performance station [station3]{"entity": "stationID", "value": "station3"}
+- Get performance for station [stationX]{"entity": "stationID", "value": "stationX"}
+- Show performance for station [station2]{"entity": "stationID", "value": "station2"}
+- Get performance station [station1]{"entity": "stationID", "value": "station1"}
+- get overall performance for station [stationJ]{"entity": "stationID", "value": "stationJ"}
+- show overall performance for station [station2]{"entity": "stationID", "value": "station2"}
+- overall performance station [station7]{"entity": "stationID", "value": "station7"}
+## intent:all_stations
+- get all stations
+- Get all stations
+- show all stations
+- Show all stations
+- Show me all stations
+- show me all stations 
+- Show me all stations please
+- all stations
+- stations all
+##intent:station
+- station
+- Station
+- stations
+- Stations

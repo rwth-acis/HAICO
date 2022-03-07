@@ -1,6 +1,6 @@
 #Examples to be used with the VS Code extension REST Client
-#get_comp_env_by_id
-POST http://localhost:8081/api/station/compenv HTTP/1.1
+
+POST http://localhost:8081/api/user HTTP/1.1
 content-type: application/json
 
 {
@@ -8,17 +8,68 @@ content-type: application/json
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "",
+    "entities": {"userID": {"value": "u1"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/train/request HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_title",
+    "entities": {"train_class": {"value": "test"}, "stations": {"value": "test"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/station/business HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_owner",
     "entities": {"stationID": {"value": "station1"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
 }
 
-###get_all_trains
-POST http://localhost:8081/api/train/all HTTP/1.1
-###get_all_stations
-POST http://localhost:8081/api/station/all HTTP/1.1
+###
+POST http://localhost:8081/api/station/business HTTP/1.1
+content-type: application/json
 
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_title",
+    "entities": {"stationID": {"value": "station1"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/station/business HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_info",
+    "entities": {"stationID": {"value": "station1"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
 ###get_train_performance_cpu
 POST http://localhost:8081/api/train/performance/CPU HTTP/1.1
 content-type: application/json
@@ -499,6 +550,21 @@ content-type: application/json
     "channel": "TestChannel",
     "intent": "",
     "entities": {"trainID": {"value": "train1"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###request_train
+POST http://localhost:8081/api/train/request HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "",
+    "entities": {"train_class": {"value": "a"}, "stations": {"value": "b"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
