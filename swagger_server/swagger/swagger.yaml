@@ -101,7 +101,7 @@ paths:
         "500":
           description: "Internal Server error."
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
-  /station/exeuction:
+  /station/execution:
     post:
       description: "Returns the queried execution information about a station given its ID."
       operationId: "station_execution"

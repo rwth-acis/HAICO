@@ -15,7 +15,6 @@ ex:me
 ex:another
     rdf:type foaf:Agent ;
     foaf:name "Jodie" .
-
 ex:u1 a foaf:Agent ;
     foaf:name "Jane" ;
     foaf:mbox "jane@example.org" .
@@ -74,7 +73,7 @@ ex:station1
     pht:latitude "6.042804"^^xsd:float ;
     pht:computationalEnvironment [
         rdf:type pht:ExecutionEnvironment ;
-        pht:hasCudaSupport true;
+        pht:hasCudaSupport true ;
         pht:maximumNumberOfModelsSupported "25"^^xsd:integer ;
         pht:maximumNumberSizeKilobytesSupported "1200"^^xsd:integer ;
         pht:estimatedGFLOPS "1234"^^xsd:integer ;
@@ -102,7 +101,7 @@ ex:station2
     pht:latitude "6.042804"^^xsd:float ;
     pht:computationalEnvironment [
         rdf:type pht:ExecutionEnvironment ;
-        pht:hasCudaSupport false;
+        pht:hasCudaSupport false ;
         pht:maximumNumberOfModelsSupported "10"^^xsd:integer ;
         pht:maximumNumberSizeKilobytesSupported "750"^^xsd:integer ;
         pht:estimatedGFLOPS "738"^^xsd:integer ;
@@ -130,14 +129,14 @@ ex:station3
     pht:latitude "6.042804"^^xsd:float ;
     pht:computationalEnvironment [
         rdf:type pht:ExecutionEnvironment ;
-        pht:hasCudaSupport false;
+        pht:hasCudaSupport false ;
         pht:maximumNumberOfModelsSupported "25"^^xsd:integer ;
         pht:maximumNumberSizeKilobytesSupported "100000"^^xsd:integer ;
         pht:estimatedGFLOPS "1230"^^xsd:integer ;
     ] ;
     pht:computationalEnvironment [
         rdf:type pht:ExecutionEnvironment ;
-        pht:hasCudaSupport false;
+        pht:hasCudaSupport false ;
         pht:maximumNumberOfModelsSupported "2"^^xsd:integer ;
         pht:maximumNumberSizeKilobytesSupported "3452"^^xsd:integer ;
         pht:estimatedGFLOPS "1233"^^xsd:integer ;
@@ -164,7 +163,7 @@ ex:station4
     pht:latitude "6.042804"^^xsd:float ;
     pht:computationalEnvironment [
         rdf:type pht:ExecutionEnvironment ;
-        pht:hasCudaSupport true;
+        pht:hasCudaSupport true ;
         pht:maximumNumberOfModelsSupported "25"^^xsd:integer ;
         pht:maximumNumberSizeKilobytesSupported "100000"^^xsd:integer ;
         pht:estimatedGFLOPS "500"^^xsd:integer ;
@@ -191,7 +190,6 @@ ex:station4
         pht:accessConstrain pht:accessConstrainUnconstrained ;
     ] .
 
-#not sure if works
 ex:station5
     rdf:type pht:Station ;
     pht:stationOwner ex:u5 ;

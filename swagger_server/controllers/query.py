@@ -6,6 +6,7 @@
 import datetime
 import logging
 import time
+import os
 # pylint: disable=E1136  # pylint/issues/3139
 from typing import Tuple, Optional
 
@@ -31,7 +32,7 @@ def blazegraph_query(query_str: str) -> Optional[dict]:
     PREFIX mock: <http://phtmetadatamock.org#>
     """
     # Blazegraph endpoint
-    url = "http://127.0.0.1:9998/bigdata/sparql"
+    url = os.environ["BLAZEGRAPHURL"]
 
     sparql = SPARQLWrapper(url)
     sparql.setReturnFormat(JSON)
