@@ -1008,6 +1008,175 @@ def get_train_performance(train_id: str) -> Tuple[int, str]:
     return 2, cpu, mem, response_cpu, response_mem
 
 
+def get_train_average(train_id: str) -> Tuple[int, str]:
+    """
+        Queries blazegraph server for average statistics of a train:
+        average memory consumption, CPU usage, runtime per station, and the amount of stations visited.
+        returns: succes_code, information as string or error message.
+    """
+    # TODO
+    query_string_cpu = f"""
+        SELECT ?station ?usage WHERE {{
+            {ont_pref}:{train_id} a pht:Train .
+            {ont_pref}:{train_id} pht:execution ?execution .
+            ?execution pht:event ?ev .
+            ?ev a pht:CPUUsageReportEvent .
+            ?ev pht:station ?station .
+            ?ev pht:value ?usage .
+        }}
+    """
+    response_cpu = blazegraph_query(query_string_cpu)
+    query_string_mem = f"""
+        SELECT ?station ?usage WHERE {{
+            {ont_pref}:{train_id} a pht:Train .
+            {ont_pref}:{train_id} pht:execution ?execution .
+            ?execution pht:event ?ev .
+            ?ev a pht:MemoryUsageReportEvent .
+            ?ev pht:station ?station .
+            ?ev pht:value ?usage .
+        }}
+    """
+    response_mem = blazegraph_query(query_string_mem)
+    query_string_runtime = f"""
+        SELECT ?station ?start ?end WHERE {{
+            {ont_pref}:{train_id} a pht:Train .
+            {ont_pref}:{train_id} pht:execution ?execution .
+            ?execution pht:event ?ev .
+            ?evStart a pht:StartedRunningAtStationEvent .
+            ?evStart pht:station ?station .
+            ?evStart pht:timestamp ?start .
+            ?evEnd a pht:FinishedRunningAtStationEvent .
+            ?evEnd pht:station ?station .
+            ?evEnd pht:timestamp ?end .
+        }}
+    """
+    response_runtime = blazegraph_query(query_string_runtime)
+    query_string_route = f"""
+        SELECT ?station WHERE {{
+            {ont_pref}:{train_id} a pht:Train .
+            {ont_pref}:{train_id} pht:execution ?exec .
+            ?exec pht:plannedRouteStep ?plan .
+            ?plan pht:station ?station .
+        }}
+    """
+    response_route = blazegraph_query(query_string_route)
+    cpu = True
+    mem = True
+    runtime = True
+    if not response_cpu:
+        cpu = False
+        logging.error(
+            "Query failed in module query function get_train_average query_cpu")
+    if not response_mem:
+        mem = False
+        logging.error(
+            "Query failed in module query function get_train_average query_mem")
+    if not response_runtime:
+        runtime = False
+        logging.error(
+            "Query failed in module query function get_train_average query_runtime")
+    if not (cpu and mem and runtime):
+        return 0, "Something went wrong querying the server."
+    if cpu and not response_cpu["results"]["bindings"]:
+        cpu = False
+    if mem and not response_mem["results"]["bindings"]:
+        mem = False
+    if runtime and not response_runtime["results"]["bindings"]:
+        runtime = False
+    if not (cpu and mem and runtime):
+        return 1, "No average statistics found."
+
+    # get average of cpu and memory usage
+    message = f"On average train {train_id}: "
+    if cpu:
+        total_cpu = 0.0
+        total_values = 0
+        for i, current in enumerate(response_cpu["results"]["bindings"]):
+            usage = float(current["usage"]["value"])
+            total_cpu += usage
+            total_values = i
+        avg_cpu = (total_cpu/total_values)
+        if mem or runtime:
+            message += f"Had a CPU usage of {avg_cpu} %, "
+        else:
+            message += f"Had a CPU usage of {avg_cpu} %."
+    if mem:
+        total_mem = 0.0
+        total_values = 0
+        for i, current in enumerate(response_mem["results"]["bindings"]):
+            usage = float(current["usage"]["value"])
+            total_mem += usage
+            total_values = i
+        avg_mem = (total_mem/total_values)
+        if not cpu:
+            message += f"Used {avg_mem} MB of memory."
+        else:
+            message += f"and used {avg_mem} MB of memory."
+
+    # get amount of visited stations + time spent there
+    if runtime:
+        visited = {}
+        for current in response_runtime["results"]["bindings"]:
+            station = current["station"]["value"]
+            if not station in visited:
+                start = current["start"]["value"]
+                end = current["end"]["value"]
+                visited[station] = {"start": start, "end": end}
+        elapsed = []
+        for station in visited:
+            start = current["time"]["value"]
+            # artifact from testing
+            if start.startswith("220"):
+                start = start[1:]
+            # converting dates to datetime objects
+            try:
+                converted_start = datetime.datetime.strptime(
+                    start, '%Y-%m-%dT%H:%M:%S.%f%z')
+            except Exception:  # pylint: disable=broad-except
+                logging.info("Date does not have the expected format")
+                try:
+                    converted_start = datetime.datetime.strptime(
+                        start, '%Y-%m-%d%H:%M:%S.%f%z')
+                except Exception:  # pylint: disable=broad-except
+                    logging.warning(
+                        "Date does not conform to any format")
+
+            end = current["time"]["value"]
+            # artifact from testing
+            if end.startswith("220"):
+                end = end[1:]
+            # converting dates to datetime objects
+            try:
+                converted_end = datetime.datetime.strptime(
+                    end, '%Y-%m-%dT%H:%M:%S.%f%z')
+            except Exception:  # pylint: disable=broad-except
+                logging.info("Date does not have the expected format")
+                try:
+                    converted_end = datetime.datetime.strptime(
+                        end, '%Y-%m-%d%H:%M:%S.%f%z')
+                except Exception:  # pylint: disable=broad-except
+                    logging.warning(
+                        "Date does not conform to any format")
+            delta = converted_end - converted_start
+            elapsed_seconds = delta.total_seconds()
+            elapsed.append(elapsed_seconds)
+        total_stations = len(elapsed)
+        avg_time = str(datetime.timedelta(sum(elapsed)/total_stations))
+        message += f"The train visited {total_stations} stations in total and spend {avg_time} per station."
+        if response_route and response_route["results"]["bindings"]:
+            planned_stations = []
+            for current in response_route["results"]["bindings"]:
+                planned_stations.append(current["station"]["value"])
+            non_visited = []
+            for station in planned_stations:
+                if station not in visited:
+                    non_visited.append(station)
+            if non_visited:
+                message += f"The following stations were scheduled but the train was not run on them: {' '.join(non_visited)}"
+
+    return 2, message
+
+
 def get_station_rights(station_id: str) -> Tuple[int, str]:
     """
         Queries blazegraph server for a station's rights

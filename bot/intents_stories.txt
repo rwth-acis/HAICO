@@ -1,0 +1,237 @@
+## intent:greeting
+- Hello
+- hello
+- Hi
+- hi
+- Hey
+- hey
+- Hallo 
+- hallo 
+- Salut
+- salut 
+## intent:goodbye
+- Goodbye
+- goodbye
+- Bye
+- bye
+- bye bye
+- Byebye
+- Thanks, bye
+- thanks, bye
+- thanks bye
+- Thanks bye
+## intent:help
+- help
+- Help 
+- What can you do?
+- What can you do
+- manual
+- Manual
+- How can I use you?
+- What can I tell you?
+- How can you help me?
+## intent:station_info
+- get information for station [station1]{"entity": "stationID", "value": "station1"}
+- Get info for station [station2]{"entity": "stationID", "value": "station2"}
+- show information for station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+- Show info for station [station6]{"entity": "stationID", "value": "station6"}
+- All information for station [station10]{"entity": "stationID", "value": "station10"}
+- Information station [station1]{"entity": "stationID", "value": "station1"}
+- Please tell me about station [Private_TEST]{"entity": "stationID", "value": "Private_TEST"}
+- What information do you have about station [UKAACHEN]{"entity": "stationID", "value": "UKAACHEN"} ?
+## intent:station_dataset
+- data station [station3]{"entity": "stationID", "value": "station3"}
+- station [station32]{"entity": "stationID", "value": "station32"} data
+- get data for the station [station000]{"entity": "stationID", "value": "station000"}
+- show dataset station [station0]{"entity": "stationID", "value": "station0"}
+- What data does station [stationA]{"entity": "stationID", "value": "stationA"} have?
+- station [station1]{"entity": "stationID", "value": "station1"} dataset
+- show data of station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show present data format station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+- What data does station [UKAACHEN]{"entity": "stationID", "value": "UKAACHEN"} have?
+- What dataset does station [Private_TEST]{"entity": "stationID", "value": "Private_TEST"} have?
+## intent:current_at_station
+- trains at station [Station3]{"entity": "stationID", "value": "Station3"}
+- get trains at station [station3]{"entity": "stationID", "value": "station3"}
+- Get trains currently at station [station000]{"entity": "stationID", "value": "station000"}
+- show trains currently at station [station0]{"entity": "stationID", "value": "station0"}
+- show trains at station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show trains at station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"} currently
+- Which trains are at station [station5]{"entity": "stationID", "value": "station5"} ?
+- which trains at station [station1]{"entity": "stationID", "value": "station1"} ?
+- what trains are currently at station [Private_TEST]{"entity": "stationID", "value": "Private_TEST"}?
+- Which trains are at station [UKAACHEN]{"entity": "stationID", "value": "UKAACHEN"} at the moment?
+## intent:station_error
+- errors at station [station3]{"entity": "stationID", "value": "station3"}
+- get all errors for station [station3]{"entity": "stationID", "value": "station3"}
+- get the errors for the station [Private_TEST]{"entity": "stationID", "value": "Private_TEST"}
+- show errors of station [station0]{"entity": "stationID", "value": "station0"}
+- What errors did occur at station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- What errors occured at station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- What errors happened at station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- Did station [UKAACHEN]{"entity": "stationID", "value": "UKAACHEN"} encouter any errors?
+- station [station1]{"entity": "stationID", "value": "station1"} errors
+- show errors for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show all errors station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+## intent:station_log
+- logs for station [station3]{"entity": "stationID", "value": "station3"}
+- log station [station31]{"entity": "stationID", "value": "station31"}
+- station logs [station32]{"entity": "stationID", "value": "station32"}
+- get all logs for station [station3]{"entity": "stationID", "value": "station3"}
+- get the logs for the station [station000]{"entity": "stationID", "value": "station000"}
+- show logs station [station0]{"entity": "stationID", "value": "station0"}
+- What logs has station [stationA]{"entity": "stationID", "value": "stationA"} ?
+- station [station1]{"entity": "stationID", "value": "station1"} logs
+- show the logs for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show log messages at station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+## intent:station_rejection
+- rejections at station [station3]{"entity": "stationID", "value": "station3"}
+- rejection from station [station31]{"entity": "stationID", "value": "station31"}
+- get the rejections for the station [station000]{"entity": "stationID", "value": "station000"}
+- show rejections station [station0]{"entity": "stationID", "value": "station0"}
+- station [station1]{"entity": "stationID", "value": "station1"} rejections
+- show rejections at station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show all rejections station [stationMinimal]{"entity": "stationID", "value": "stationMinimal"}
+- which trains did station [station1]{"entity": "stationID", "value": "station1"} reject?
+- Did station [station1]{"entity": "stationID", "value": "station1"} reject any trains?
+- did station [station1]{"entity": "stationID", "value": "station1"} reject trains
+## intent:upcomming_trains
+- next trains station [Station3]{"entity": "stationID", "value": "Station3"}
+- get next trains for station [station3]{"entity": "stationID", "value": "station3"}
+- Get upcomming trains station [station000]{"entity": "stationID", "value": "station000"}
+- show future trains station [station0]{"entity": "stationID", "value": "station0"}
+- show next trains for station [stationPP]{"entity": "stationID", "value": "stationPP"}
+- Show comming trains station [hjklhjkl]{"entity": "stationID", "value": "hjklhjkl"}
+- future trains station [station1]{"entity": "stationID", "value": "station1"}
+- Which trains will visit station [station5]{"entity": "stationID", "value": "station5"} ?
+- which trains are going to visit station [station1]{"entity": "stationID", "value": "station1"} next ?
+- which trains are comming to station [station1]{"entity": "stationID", "value": "station1"}
+- Which trains are scheduled to visit station [station1]{"entity": "stationID", "value": "station1"}
+## intent:station_performance
+- get performance for station [station1]{"entity": "stationID", "value": "station1"}
+- show performance for station [station2]{"entity": "stationID", "value": "station2"}
+- performance station [station66]{"entity": "stationID", "value": "station66"}
+- overall performance station [station3]{"entity": "stationID", "value": "station3"}
+- Get performance for station [stationX]{"entity": "stationID", "value": "stationX"}
+- Show performance for station [station2]{"entity": "stationID", "value": "station2"}
+- Get performance station [station1]{"entity": "stationID", "value": "station1"}
+- get overall performance for station [stationJ]{"entity": "stationID", "value": "stationJ"}
+- show overall performance for station [station2]{"entity": "stationID", "value": "station2"}
+- overall performance station [station7]{"entity": "stationID", "value": "station7"}
+- show me the performance statistics for station [UKAACHEN]{"entity": "UKAACHEN", "value": "station7"}
+- usage on station [Private_TEST]{"entity": "stationID", "value": "Private_TEST"}
+## intent:train_info
+- get info for train [train1]{"entity": "trainID", "value": "train1"}
+- Get info for train [train2]{"entity": "trainID", "value": "train2"}
+- show info for train [wdnwjdwq32432]{"entity": "trainID", "value": "wdnwjdwq32432"}
+- Show info for train [train6]{"entity": "trainID", "value": "train6"}
+- All info for train [train10]{"entity": "trainID", "value": "train10"}
+- all info for train [trainjkl]{"entity": "trainID", "value": "trainjkl"}
+- Info for train [traint]{"entity": "trainID", "value": "traint"}
+- info for train [Train3]{"entity": "trainID", "value": "Train3"}
+- Info train [trAin7]{"entity": "trainID", "value": "trAin7"}
+- info train [Train30]{"entity": "trainID", "value": "Train30"}
+- train [train1]{"entity": "trainID", "value": "train1"} all info
+- Train [trainOB]{"entity": "trainID", "value": "trainOB"} all information
+- train [train4]{"entity": "trainID", "value": "train4"} information
+- Train [trainOB]{"entity": "trainID", "value": "trainOB"} info
+- Information for train [traint]{"entity": "trainID", "value": "traint"}
+- information for train [Train3]{"entity": "trainID", "value": "Train3"}
+- Information train [trAin7]{"entity": "trainID", "value": "trAin7"}
+- information train [Train30]{"entity": "trainID", "value": "Train30"}
+- Information train [train1]{"entity": "trainID", "value": "train1"}
+- Please tell me about train [train_hello]]{"entity": "trainID", "value": "train_hello"}
+- What information do you have about train [hello_world]{"entity": "trainID", "value": "hello_world"} ?
+## intent:train_model
+- model train [train3]{"entity": "trainID", "value": "train3"}
+- get model for train [train3]{"entity": "trainID", "value": "train3"}
+- get the model for the train [train000]{"entity": "trainID", "value": "train000"}
+- show model train [train0]{"entity": "trainID", "value": "train0"}
+- What is the model for train [trainA]{"entity": "trainID", "value": "trainA"} ?
+- train [train1]{"entity": "trainID", "value": "train1"} model
+- show model for train [trainPP]{"entity": "trainID", "value": "trainPP"}
+- Show the model train [hjklhjkl]{"entity": "trainID", "value": "hjklhjkl"}
+- What algorithm does train [trainPP]{"entity": "trainID", "value": "trainPP"} use?
+## intent:future_route
+- future route train [Train3]{"entity": "trainID", "value": "Train3"}
+- upcomming future route train [train3]{"entity": "trainID", "value": "train3"}
+- future steps train [train000]{"entity": "trainID", "value": "train000"}
+- all future steps train [train0]{"entity": "trainID", "value": "train0"} 
+- train [trainPP]{"entity": "trainID", "value": "trainPP"} future route 
+- train [train8]{"entity": "trainID", "value": "train8"} future steps
+- all future steps [Train3]{"entity": "trainID", "value": "Train3"}
+- What is the future route for train [trainPP]{"entity": "trainID", "value": "trainPP"} ?
+- what is the upcomming route for train [trainP]{"entity": "trainID", "value": "trainP"} 
+- What stations train [hjklhjkl]{"entity": "trainID", "value": "hjklhjkl"} will visit next ?
+- which stations will train [train1]{"entity": "trainID", "value": "train1"} visit next
+- what stations train [train7]{"entity": "trainID", "value": "train7"} next
+- next stations train [train7]{"entity": "trainID", "value": "train7"}
+- next steps train [train7]{"entity": "trainID", "value": "train7"}
+- next planned stations train [trainAL]{"entity": "trainID", "value": "trainAL"} 
+## intent:train_log
+- logs train [train3]{"entity": "trainID", "value": "train3"}
+- log train [train31]{"entity": "trainID", "value": "train31"}
+- train log [train32]{"entity": "trainID", "value": "train32"}
+- get all logs for train [train3]{"entity": "trainID", "value": "train3"}
+- get the logs for the train [train000]{"entity": "trainID", "value": "train000"}
+- show logs train [train0]{"entity": "trainID", "value": "train0"}
+- What logs has train [trainA]{"entity": "trainID", "value": "trainA"} ?
+- train [train1]{"entity": "trainID", "value": "train1"} logs
+- show logs for train [trainPP]{"entity": "trainID", "value": "trainPP"}
+- Show all logs train [hjklhjkl]{"entity": "trainID", "value": "hjklhjkl"}
+## intent:train_rejection
+- rejections train [train3]{"entity": "trainID", "value": "train3"}
+- rejection train [train31]{"entity": "trainID", "value": "train31"}
+- get all rejections for train [train3]{"entity": "trainID", "value": "train3"}
+- get the rejections for the train [train000]{"entity": "trainID", "value": "train000"}
+- show rejections train [train0]{"entity": "trainID", "value": "train0"}
+- What rejections had train [trainA]{"entity": "trainID", "value": "trainA"} ?
+- was train [train0]{"entity": "trainID", "value": "train0"} rejected 
+- train [train1]{"entity": "trainID", "value": "train1"} rejections
+- show rejections for train [trainPP]{"entity": "trainID", "value": "trainPP"}
+- Show all rejections train [hjklhjkl]{"entity": "trainID", "value": "hjklhjkl"}
+- where was train [trainPP]{"entity": "trainID", "value": "trainPP"} rejected
+- who rejected train [trainPP]{"entity": "trainID", "value": "trainPP"} ?
+## intent:train_error
+- errors train [train3]{"entity": "trainID", "value": "train3"}
+- error train [train31]{"entity": "trainID", "value": "train31"}
+- get all errors for train [train3]{"entity": "trainID", "value": "train3"}
+- get the errors for the train [train000]{"entity": "trainID", "value": "train000"}
+- show errors train [train0]{"entity": "trainID", "value": "train0"}
+- What errors had train [trainA]{"entity": "trainID", "value": "trainA"} ?
+- train [train1]{"entity": "trainID", "value": "train1"} errors
+- show errors for train [trainPP]{"entity": "trainID", "value": "trainPP"}
+- Show all errors train [hjklhjkl]{"entity": "trainID", "value": "hjklhjkl"}
+## intent:current_station
+- where is train [Train3]{"entity": "trainID", "value": "Train3"}
+- where train [train3]{"entity": "trainID", "value": "train3"}
+- station train [train000]{"entity": "trainID", "value": "train000"}
+- Where is train [train0]{"entity": "trainID", "value": "train0"} ?
+- Where is train [trainPP]{"entity": "trainID", "value": "trainPP"} currently ?
+- where is the train [hjklhjkl]{"entity": "trainID", "value": "hjklhjkl"} at the moment ?
+- at which station is train [Train3]{"entity": "trainID", "value": "Train3"}
+- at which station the train [trainPP]{"entity": "trainID", "value": "trainPP"} currently ?
+- At which station train [hjklhjkl]{"entity": "trainID", "value": "hjklhjkl"} at the moment ?
+- which station train [train1]{"entity": "trainID", "value": "train1"}
+- what station train [train7]{"entity": "trainID", "value": "train7"}
+- station train [trainAL]{"entity": "trainID", "value": "trainAL"} now
+## intent:train_performance
+- get performance for train [train1]{"entity": "trainID", "value": "train1"}
+- show performance for train [train2]{"entity": "trainID", "value": "train2"}
+- performance train [train66]{"entity": "trainID", "value": "train66"}
+- memory train [trainA]{"entity": "trainID", "value": "trainA"}
+- overall performance train [Train3]{"entity": "trainID", "value": "Train3"}
+- Get performance for train [trainX]{"entity": "trainID", "value": "trainX"}
+- Show performance for train [train2]{"entity": "trainID", "value": "train2"}
+- Get performance train [train1]{"entity": "trainID", "value": "train1"}
+- get overall performance for train [TrainJ]{"entity": "trainID", "value": "TrainJ"}
+- show overall performance for train [train2]{"entity": "trainID", "value": "train2"}
+- overall performance train [train7]{"entity": "trainID", "value": "train7"}
+## intent:send_train
+- send train [hello-world]{"entity":"train_class", "value": "hello-world"} to station [Bruegel]{"entity":"stations", "value": "Bruegel"}
+- send train [hello-world]{"entity":"train_class", "value": "hello-world"} to stations [Station-UKK Private_TEST]{"entity":"stations", "value": "Bruegel Private_TEST"}
+- request train [hello-world]{"entity":"train_class", "value": "hello-world"} to stations [Station-UKK Private_TEST aachenbeeck]{"entity":"stations", "value": "Station-UKK Private_TEST aachenbeeck"}
+## intent: train_average
+- what is the average performance of train [train1]{"entity": "trainID", "value": "train1"}
+- average visits train [train5]{"entity": "trainID", "value": "train5"}
+- get the average for train [train_hello]{"entity": "trainID", "value": "train_hello"}

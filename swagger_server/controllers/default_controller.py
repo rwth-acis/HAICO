@@ -81,13 +81,13 @@ def get_coffee():  # noqa: E501
     return {text: "I'm a teapot", closeContext: "false"}, 418
 
 
-def station_business(json_input: dict) -> Tuple[dict, int]:
+def station_information(json_input: dict) -> Tuple[dict, int]:
     """
-        Handles queries for station_business information.
+        Handles queries for station_information information.
         returns: {text: retrieved_information, closeContext: false}, 200
     """
     if not connexion.request.is_json:
-        logging.error("No JSON request in station_business")
+        logging.error("No JSON request in station_information")
         return {text: "Something went wrong processing your request: Not a JSON request", closeContext: "false"}, 200
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
 
@@ -115,6 +115,10 @@ def station_business(json_input: dict) -> Tuple[dict, int]:
             message = f"Location for station {station_id}: {message_loc}"
         else:
             message = message_loc
+    if intent == "comp_env":
+        _, message = query.get_comp_env(station_id)
+    if intent == "station_dataset":
+        _, message = query.get_station_dataset(station_id)
     elif intent == "station_info":
         message = f"Information for station {station_id}: "
         code_owner, message_owner = query.get_station_role(station_id, "Owner")
@@ -147,55 +151,7 @@ def station_business(json_input: dict) -> Tuple[dict, int]:
         if code_cert != 2 and code_dataset != 2 and code_description != 2 and code_location != 2 and code_owner != 2 and code_responsible != 2 and code_rights != 2 and code_title != 2:
             return {text: f"No information for station {station_id} found.", closeContext: false}, 200
     else:
-        logging.error("Intent not recognized in station_business")
-        return {text: "Something went wrong processing your request: Unrecognized Intent.", closeContext: false}, 200
-    return {text: message, closeContext: false}, 200
-
-
-def station_runtime(json_input: dict) -> Tuple[dict, int]:
-    """
-        Handles queries for station runtime information.
-        returns: {text: retrieved_information, closeContext: false}, 200
-    """
-    if not connexion.request.is_json:
-        logging.error("No JSON request in station_runtime")
-        return {text: "Something went wrong processing your request: Not a JSON request", closeContext: "false"}, 200
-    json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
-
-    code_intent, intent = get_intent(json_input)
-    if code_intent == 0:
-        return {text: "Something went wrong processing your request: Not intent provided", closeContext: false}, 200
-    code_id, station_id = get_id(json_input, "stationID")
-    if code_id != 2:
-        return {text: f"Something went wrong processing your request: {station_id}", closeContext: false}, 200
-    if intent == "comp_env":
-        _, message = query.get_comp_env(station_id)
-    else:
-        logging.error("Intent not recognized in station_runtime")
-        return {text: "Something went wrong processing your request: Unrecognized Intent.", closeContext: false}, 200
-    return {text: message, closeContext: false}, 200
-
-
-def station_dataset(json_input: str) -> Tuple[dict, str]:
-    """
-        Handles queries for station dataset information.
-        returns: {text: retrieved_information, closeContext: false}, 200
-    """
-    if not connexion.request.is_json:
-        logging.error("No JSON request in station_dataset")
-        return {text: "Something went wrong processing your request: Not a JSON request", closeContext: "false"}, 200
-    json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
-
-    code_intent, intent = get_intent(json_input)
-    if code_intent == 0:
-        return {text: "Something went wrong processing your request: Not intent provided", closeContext: false}, 200
-    code_id, station_id = get_id(json_input, "stationID")
-    if code_id != 2:
-        return {text: f"Something went wrong processing your request: {station_id}", closeContext: false}, 200
-    if intent == "station_dataset":
-        _, message = query.get_station_dataset(station_id)
-    else:
-        logging.error("Intent not recognized in station_dataset")
+        logging.error("Intent not recognized in station_information")
         return {text: "Something went wrong processing your request: Unrecognized Intent.", closeContext: false}, 200
     return {text: message, closeContext: false}, 200
 
@@ -232,13 +188,13 @@ def station_execution(json_input: dict) -> Tuple[dict, int]:
     return {text: message, closeContext: false}, 200
 
 
-def train_business(json_input: dict) -> Tuple[dict, int]:
+def train_information(json_input: dict) -> Tuple[dict, int]:
     """
         Handles queries for train business information.
         returns: {text: retrieved_information, closeContext: false}, 200
     """
     if not connexion.request.is_json:
-        logging.error("No JSON request in train_business")
+        logging.error("No JSON request in train_information")
         return {text: "Something went wrong processing your request: Not a JSON request", closeContext: "false"}, 200
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
 
@@ -259,6 +215,8 @@ def train_business(json_input: dict) -> Tuple[dict, int]:
         _, message = query.get_train_role(train_id, "publisher")
     elif intent == "train_cert":
         _, message = query.get_certificate(train_id, "Train")
+    if intent == "train_model":
+        _, message = query.get_train_model(train_id)
     elif intent == "train_info":
         message = f"Information for train {train_id}: "
         code_creator, message_creator = query.get_train_role(
@@ -294,32 +252,7 @@ def train_business(json_input: dict) -> Tuple[dict, int]:
         if code_cert != 2 and code_creator != 2 and code_description != 2 and code_model != 2 and code_publisher != 2 and code_title != 2 and code_version != 2:  # and code_source != 2 and code_pubdate != 2
             return {text: f"No information for train {train_id} found.", closeContext: false}, 200
     else:
-        logging.error("Intent not recognized in train_business")
-        return {text: "Something went wrong processing your request: Unrecognized Intent.", closeContext: false}, 200
-    return {text: message, closeContext: false}, 200
-
-
-def train_technical(json_input: dict) -> Tuple[dict, int]:
-    """
-        Handles queries for technical train information.
-        returns: {text: retrieved_information, closeContext: false}, 200
-    """
-    if not connexion.request.is_json:
-        logging.error("No JSON request in train_technical")
-        return {text: "Something went wrong processing your request: Not a JSON request", closeContext: "false"}, 200
-    json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
-
-    code_intent, intent = get_intent(json_input)
-    if code_intent == 0:
-        return {text: "Something went wrong processing your request: Not intent provided", closeContext: false}, 200
-    code_id, train_id = get_id(json_input, "trainID")
-    if code_id != 2:
-        return {text: f"Something went wrong processing your request: {train_id}", closeContext: false}, 200
-    # TODO  comp env seperate?
-    if intent == "train_model":
-        _, message = query.get_train_model(train_id)
-    else:
-        logging.error("Intent not recognized in train_technical")
+        logging.error("Intent not recognized in train_information")
         return {text: "Something went wrong processing your request: Unrecognized Intent.", closeContext: false}, 200
     return {text: message, closeContext: false}, 200
 
@@ -330,7 +263,7 @@ def train_runtime(json_input: dict) -> Tuple[dict, int]:
         returns: {text: retrieved_information, closeContext: false}, 200
     """
     if not connexion.request.is_json:
-        logging.error("No JSON request in train_execution")
+        logging.error("No JSON request in train_runtimecution")
         return {text: "Something went wrong processing your request: Not a JSON request", closeContext: "false"}, 200
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
 
@@ -358,8 +291,10 @@ def train_runtime(json_input: dict) -> Tuple[dict, int]:
         _, message = query.get_train_rejections(train_id)
     elif intent == "current_station":
         _, message = query.get_current_station(train_id)
+    elif intent == "train_average":
+        _, message = query.get_train_average(train_id)
     else:
-        logging.error("Intent not recognized in train_execution")
+        logging.error("Intent not recognized in train_runtimecution")
         return {text: "Something went wrong processing your request: Unrecognized Intent.", closeContext: false}, 200
     return {text: message, closeContext: false}, 200
 
@@ -379,12 +314,10 @@ def train_request(json_input: dict) -> Tuple[dict, int]:
     train_class = json_input._entities["train_class"]["value"]
     stations = json_input._entities["stations"]["value"]
 
-    # FOR TESTING
     if train_class == "test":
         train_class = ""
     if stations == "test":
-        stations = []
-    # TODO station array
+        stations = ""
     code, response = request_train.post_train(train_class, stations)
     if code == 0:
         return {text: "Something went wrong: Train couldn't be sent", closeContext: false}, 200
@@ -411,6 +344,33 @@ def get_all(json_input: dict) -> Tuple[dict, int]:
     else:
         logging.error("Intent not recognized in get_all")
         return {text: "Something went wrong processing your request: Unrecognized Intent.", closeContext: false}, 200
+    return {text: message, closeContext: false}, 200
+
+
+def help_text(json_input: dict) -> Tuple[dict, int]:
+    """ Simply returns a help/ general information text.
+        returns: {text: help_text, closeContext: false}, 200 """
+    if not connexion.request.is_json:
+        logging.error("No JSON request in help_text")
+        return {text: "Something went wrong processing your request: Not a JSON request", closeContext: "false"}, 200
+    message = """
+        Hello 👋
+        Here are some examples of what I can do:
+        🚉 Get the trains that are currently at a station
+        🧭 Tell you where a train is currently at
+        🗺 Get a train's route
+        📈 Get performance details for a train or station
+        🧮 Tell you average performance information about a train
+        💡 Retrieve information about a station or a train
+        🚂 Request a train
+        🛑 Get errors a train encountered
+        🙅‍♀️ Ask if a train was rejected
+        🗓 Tell you which trains will visit a station
+        🗄 Get information about a station's dataset
+        🟢 Please make sure to include station or train IDs in your message, e.g.:
+            At which station is train train123 at the moment?
+            Which train is currently at station station6 ? 
+    """
     return {text: message, closeContext: false}, 200
 
 

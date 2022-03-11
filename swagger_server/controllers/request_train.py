@@ -8,22 +8,22 @@ from typing import Tuple, Union
 import requests
 
 stations = {
-    1: "Bruegel",
-    2: "Privat-Weber",
-    3: "Private_TEST",
-    4: "Private-Weber2",
-    5: "Private-Welten",
-    6: "HSMW",
-    7: "Melanoma Station",
-    8: "MDS Station",
-    9: "PHT MDS Leipzig",
-    10: "PHT IMISE LEIPZIG",
-    11: "Station-UKA",
-    12: "Station-UKK",
-    13: "Station-UMG",
-    14: "Station-UMG_temp",
-    15: "aachenbeeck",
-    16: "aachenmenzel"
+    0: "Bruegel",
+    1: "Privat-Weber",
+    2: "Private_TEST",
+    3: "Private-Weber2",
+    4: "Private-Welten",
+    5: "HSMW",
+    6: "Melanoma Station",
+    7: "MDS Station",
+    8: "PHT MDS Leipzig",
+    9: "PHT IMISE LEIPZIG",
+    10: "Station-UKA",
+    11: "Station-UKK",
+    12: "Station-UMG",
+    13: "Station-UMG_temp",
+    14: "aachenbeeck",
+    15: "aachenmenzel"
 }
 
 repositories = {
@@ -33,7 +33,7 @@ repositories = {
 
 def get_session_tokens() -> Union[Tuple[int, str, str], Tuple[int, str]]:
     """
-        Returns the session token and session state from menzel.informatik.rwth-aachen.de:3006
+        Returns the session token and session state from REQUESTURL
         returns: success_code, token, session_state or success_code, failed_message
     """
     headers_token = {
@@ -47,7 +47,8 @@ def get_session_tokens() -> Union[Tuple[int, str, str], Tuple[int, str]]:
         'password': os.environ['PASSWORD']
     }
 
-    url_token = 'https://menzel.informatik.rwth-aachen.de:3006/auth/realms/pht/protocol/openid-connect/token'
+    url_request_enpoint = os.environ['REQUESTURL']
+    url_token = f"{url_request_enpoint}:3006/auth/realms/pht/protocol/openid-connect/token"
 
     try:
         response_token = requests.post(
@@ -70,16 +71,17 @@ def get_session_tokens() -> Union[Tuple[int, str, str], Tuple[int, str]]:
     return 2, token, session_state
 
 
-def post_train(train_class: str, station_route: list[str]) -> Tuple[int, str]:
+def post_train(train_class: str, station_route: str) -> Tuple[int, str]:
     """
-        Sends train request to https://menzel.informatik.rwth-aachen.de:3005 with aquired token and session parameters.
+        Sends train request to REQUESTURL:3005 with aquired token and session parameters.
         returns: success_code, message
     """
     success_code, token, session_state = get_session_tokens()
     if success_code != 2:
         return 1, "Something went wrong requesting the train."
 
-    url = "https://menzel.informatik.rwth-aachen.de:3005/centralservice/api/jobinfo"
+    url_request_enpoint = os.environ['REQUESTURL']
+    url = f"{url_request_enpoint}:3005/centralservice/api/jobinfo"
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
@@ -90,7 +92,26 @@ def post_train(train_class: str, station_route: list[str]) -> Tuple[int, str]:
         train_class = repositories[1]
     if not station_route:
         station_route = stations[16]
-    data = f"{{\n    \"trainclassid\": \"{train_class}\",\n    \"traininstanceid\": 1,\n    \"route\": \"{station_route}\"\n}}"
+    # FOR DEMO PURPOSES
+    if train_class not in repositories:
+        return 1, "The specified train repository does not exist"
+    # Does this make sense? There should be a better way lol
+    stations_exists = False
+    station_route = station_route.lower()
+    final_route = ""
+    error_message = ""
+
+    for s in stations.values():
+        if s.lower() in station_route:
+            final_route += s
+            stations_exists = True
+            station_route = station_route.replace(s.lower(), '')
+    if not stations_exists:
+        return 1, "The provided station route does not contain any existing stations."
+    if not station_route.strip():
+        error_message = f" I couldn't find the following stations so I excluded them from the route: {' '.join(station_route.split())}"
+
+    data = f"{{\n    \"trainclassid\": \"{train_class}\",\n    \"traininstanceid\": 1,\n    \"route\": \"{final_route}\"\n}}"
 
     try:
         response = requests.post(url,
@@ -117,4 +138,4 @@ def post_train(train_class: str, station_route: list[str]) -> Tuple[int, str]:
     for message in station_message:
         result += message + " "
     result += "."
-    return 2, result
+    return 2, result + error_message

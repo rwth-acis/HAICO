@@ -32,56 +32,10 @@ paths:
         "500":
           description: "Internal Server error."
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
-  /station/business:
+  /station/information:
     post:
-      description: "Returns the queried business information about a station given its ID."
-      operationId: "station_business"
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - in: "body"
-          name: "json_input"
-          description: "Station ID and information to query"
-          required: true
-          schema:
-            $ref: "#/definitions/SBF"
-      responses:
-        "200":
-          description: "OK. Station Information."
-          schema:
-            $ref: "#/definitions/SBFRes"
-        "500":
-          description: "Internal Server error."
-      x-swagger-router-controller: "swagger_server.controllers.default_controller"
-  /station/runtime:
-    post:
-      description: "Returns the queried runtime information about a station given its ID."
-      operationId: "station_runtime"
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - in: "body"
-          name: "json_input"
-          description: "Station ID and information to query"
-          required: true
-          schema:
-            $ref: "#/definitions/SBF"
-      responses:
-        "200":
-          description: "OK. Station Information."
-          schema:
-            $ref: "#/definitions/SBFRes"
-        "500":
-          description: "Internal Server error."
-      x-swagger-router-controller: "swagger_server.controllers.default_controller"
-  /station/dataset:
-    post:
-      description: "Returns the queried dataset information about a station given its ID."
-      operationId: "station_dataset"
+      description: "Returns the queried information about a station given its ID."
+      operationId: "station_information"
       consumes:
         - "application/json"
       produces:
@@ -124,10 +78,10 @@ paths:
         "500":
           description: "Internal Server error."
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
-  /train/business:
+  /train/information:
     post:
       description: "Returns the queried business information about a train given its ID."
-      operationId: "train_business"
+      operationId: "train_information"
       consumes:
         - "application/json"
       produces:
@@ -151,29 +105,6 @@ paths:
     post:
       description: "Returns the queried runtime information about a train given its ID."
       operationId: "train_runtime"
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - in: "body"
-          name: "json_input"
-          description: "Train ID and information to query"
-          required: true
-          schema:
-            $ref: "#/definitions/SBF"
-      responses:
-        "200":
-          description: "OK. Train Information."
-          schema:
-            $ref: "#/definitions/SBFRes"
-        "500":
-          description: "Internal Server error."
-      x-swagger-router-controller: "swagger_server.controllers.default_controller"
-  /train/technical:
-    post:
-      description: "Returns the queried technical information of a train given its ID."
-      operationId: "train_technical"
       consumes:
         - "application/json"
       produces:

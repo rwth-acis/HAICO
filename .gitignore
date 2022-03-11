@@ -67,3 +67,7 @@ target/
 .DS_Store
 *.pdf
 auth.md
+intents_all.txt
+intents_small.txt
+intents.txt
+examples.ttl
