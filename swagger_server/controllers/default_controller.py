@@ -172,13 +172,13 @@ def station_execution(json_input: dict) -> Tuple[dict, int]:
     code_id, station_id = get_id(json_input, "stationID")
     if code_id != 2:
         return {text: f"Something went wrong processing your request: {station_id}", closeContext: false}, 200
-    elif intent == "station_upcomming":
+    elif intent == "upcomming_trains":
         _, message = query.get_upcomming_trains(station_id)
     elif intent == "current_at_station":
         _, message = query.get_current_trains(station_id)
     elif intent == "station_error":
         _, message = query.get_station_errors(station_id)
-    elif intent == "station_logs":
+    elif intent == "station_log":
         _, message = query.get_station_log(station_id)
     elif intent == "station_rejections":
         _, message = query.get_station_rejections(station_id)

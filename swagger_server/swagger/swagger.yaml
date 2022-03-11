@@ -32,6 +32,29 @@ paths:
         "500":
           description: "Internal Server error."
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /help:
+    post:
+      description: "Returns help text about the bot's abilities."
+      operationId: "help_text"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "json_input"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/SBF"
+      responses:
+        "200":
+          description: "OK. User Help text."
+          schema:
+            $ref: "#/definitions/SBFRes"
+        "500":
+          description: "Internal Server error."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
   /station/information:
     post:
       description: "Returns the queried information about a station given its ID."
