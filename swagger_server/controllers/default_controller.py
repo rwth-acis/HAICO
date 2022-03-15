@@ -21,8 +21,8 @@ closeContext = "closeContext"  # pylint: disable=C0103
 false = "false"  # pylint: disable=C0103
 
 
-def validate(check_id):
-    return check_id.isalnum()
+# def validate(check_id):
+#     return check_id.isalnum()
 
 
 def get_id(json_input: dict, check_id: str) -> Tuple[int, str]:
@@ -38,8 +38,8 @@ def get_id(json_input: dict, check_id: str) -> Tuple[int, str]:
     id_value = json_input._entities[check_id]["value"].strip(
     )
 
-    if not validate(id_value):
-        return 1, f"Malformed {check_id}: {id_value}"
+    # if not validate(id_value):
+    #     return 1, f"Malformed {check_id}: {id_value}"
     return 2, id_value
 
 

@@ -181,7 +181,6 @@ def draw_usage(values: dict, plot_title: str, train: bool) -> str:
             single_value[key] = item
         else:
             multi_value[key] = item
-
     # TODO maybe change figsize later on
     fig, axs = plt.subplots(nrows=rows, ncols=cols,
                             figsize=(7, 7), squeeze=False)
@@ -204,8 +203,8 @@ def draw_usage(values: dict, plot_title: str, train: bool) -> str:
     col_index = 0
 
     for key, item in single_value.items():
-        usage = int(item[0][1])
-        rest = 100 - usage
+        usage = float(item[0][1])
+        rest = 100.0 - usage
         # we do not need labels here
         label = ["", "", ""]
         # 50% of the donut shall be blanc
@@ -214,7 +213,7 @@ def draw_usage(values: dict, plot_title: str, train: bool) -> str:
         # color = [rest(lightgrey), usage(darkgreen), blanc(white)]
         color = ['#d3d3d3', '#006b3c', 'w']
         axs[row_index, col_index].set_title(
-            f"{plot_title} for {key}", fontsize=10)
+            f"{plot_title} for {key} ({usage})", fontsize=10)
         wedges, labels = axs[row_index, col_index].pie(values, wedgeprops=dict(
             width=0.3, edgecolor='w'), labels=label, colors=color)
         wedges[-1].set_visible(False)

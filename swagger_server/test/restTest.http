@@ -78,7 +78,7 @@ content-type: application/json
     "msg":"TestMessage",
     "botName": "TestBot",
     "channel": "TestChannel",
-    "intent": "train_performance",
+    "intent": "get_performance",
     "entities": {"trainID": {"value": "train3"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
