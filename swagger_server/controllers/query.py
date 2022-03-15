@@ -23,14 +23,24 @@ def blazegraph_query(query_str: str) -> Optional[dict]:
         returns: response or None if query failed
     """
     prefix = """
-    PREFIX pht: <http://www.personalhealthtrainmetadata.org/#>
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    PREFIX ex: <http://www.example.org/pht_examples#>
-    PREFIX mock: <http://phtmetadatamock.org#>
+        PREFIX pht: <http://www.personalhealthtrainmetadata.org/#> 
+        PREFIX mock: <http://phtmetadatamock.org#>  
+        PREFIX dmop: <http://www.e-lico.eu/ontologies/dmo/DMOP/DMKB.owl> 
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX ex: <http://www.example.org/pht_examples#> 
     """
+    # prefix_old = """
+    # PREFIX pht: <http://www.personalhealthtrainmetadata.org/#>
+    # PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    # PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    # PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+    # PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    # PREFIX ex: <http://www.example.org/pht_examples#>
+    # PREFIX mock: <http://phtmetadatamock.org#>
+    # """
     # Blazegraph endpoint
     url = os.environ["BLAZEGRAPHURL"]
 

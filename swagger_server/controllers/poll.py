@@ -14,7 +14,7 @@ from flask import render_template
 from . import query
 
 
-ont_pref = ""
+ont_pref = "ex"
 """
 EMAILS stores which emails want to receive messages for which events and for which stations/ trains
 e.g EMAILS = {
