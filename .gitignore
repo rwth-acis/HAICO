@@ -66,6 +66,7 @@ target/
 
 .DS_Store
 *.pdf
+*.png
 auth.md
 intents_all.txt
 intents_small.txt

@@ -1,0 +1,174 @@
+{
+	"type": "modal",
+	"title": {
+		"type": "plain_text",
+		"text": "🚂 Request a new train",
+		"emoji": true
+	},
+	"submit": {
+		"type": "plain_text",
+		"text": "Submit",
+		"emoji": true
+	},
+	"close": {
+		"type": "plain_text",
+		"text": "Cancel",
+		"emoji": true
+	},
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Please note: currently you can only select a train route. \n Requesting a different train than the default is not yet supported."
+			}
+		},
+		{
+			"type": "input",
+			"element": {
+				"type": "multi_static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select options",
+					"emoji": true
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Bruegel",
+							"emoji": true
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Privat-Weber",
+							"emoji": true
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Privat-TEST",
+							"emoji": true
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Private-Weber2",
+							"emoji": true
+						},
+						"value": "value-3"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Private-Welten",
+							"emoji": true
+						},
+						"value": "value-4"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "HSMW",
+							"emoji": true
+						},
+						"value": "value-5"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Melanoma Station",
+							"emoji": true
+						},
+						"value": "value-6"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "MDS Station",
+							"emoji": true
+						},
+						"value": "value-7"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "PHT MDS Leipzig",
+							"emoji": true
+						},
+						"value": "value-8"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "PHT IMISE LEIPZIG",
+							"emoji": true
+						},
+						"value": "value-9"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Station-UKA",
+							"emoji": true
+						},
+						"value": "value-10"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Station-UKK",
+							"emoji": true
+						},
+						"value": "value-11"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Station-UMG",
+							"emoji": true
+						},
+						"value": "value-12"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Station-UMG_temp",
+							"emoji": true
+						},
+						"value": "value-13"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "aachenbeeck",
+							"emoji": true
+						},
+						"value": "value-14"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "aachenmenzel",
+							"emoji": true
+						},
+						"value": "value-15"
+					}
+				],
+				"action_id": "multi_static_select-action"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Please select a train route:",
+				"emoji": true
+			}
+		}
+	]
+}

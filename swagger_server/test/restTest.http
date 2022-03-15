@@ -28,7 +28,7 @@ content-type: application/json
     "time": "1644224769.807741"
 }
 ###
-POST http://localhost:8081/api/station/business HTTP/1.1
+POST http://localhost:8081/api/station/information HTTP/1.1
 content-type: application/json
 
 {
@@ -71,14 +71,14 @@ content-type: application/json
     "time": "1644224769.807741"
 }
 ###get_train_performance_cpu
-POST http://localhost:8081/api/train/performance/CPU HTTP/1.1
+POST http://localhost:8081/api/performance HTTP/1.1
 content-type: application/json
 
 {
     "msg":"TestMessage",
     "botName": "TestBot",
     "channel": "TestChannel",
-    "intent": "",
+    "intent": "train_performance",
     "entities": {"trainID": {"value": "train3"}} ,
     "email": "Test@email.com",
     "user": "TestUser",

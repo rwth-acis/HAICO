@@ -194,7 +194,7 @@ def get_comp_env(station_id: str) -> Tuple[int, str]:
         return 1, f"""No information about the computational environment of station {station_id} found"""
 
     body = response["results"]["bindings"][0]
-    message = f"Computational environment for station {station_id}:"
+    message = f"🖥️ Computational environment for station {station_id}:"
     flag = False
     if "gflop" in body:
         flag = True
@@ -280,7 +280,7 @@ def get_station_role(station_id: str, role: str) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"No {role} for station {station_id} found."
 
-    message = f"{role} for station {station_id}: "
+    message = f"👷 {role} for station {station_id}: "
     for i, item in enumerate(response["results"]["bindings"]):
         role = item["role"]["value"]
         name = item["name"]["value"]
@@ -313,7 +313,7 @@ def get_train_role(train_id: str, role: str) -> Tuple[int, str]:
         return 1, f"No {role} for train {train_id} found."
     # max one publisher
     if role == "publisher":
-        return 2, f"{role} for train {train_id}: {response['results']['bindings'][0]['name']['value']} ({response['results']['bindings'][0]['role']['value']})"
+        return 2, f"👷 {role} for train {train_id}: {response['results']['bindings'][0]['name']['value']} ({response['results']['bindings'][0]['role']['value']})"
     message = f"{role} for train {train_id}: "
     for i, item in enumerate(response["results"]["bindings"]):
         role = item["role"]["value"]
@@ -350,7 +350,7 @@ def get_certificate(target_id: str, piece: str) -> Tuple[int, str]:
     if response["results"]["bindings"]:
         return 1, "No certificate found."
 
-    message = "Certificate: "
+    message = "📜 Certificate: "
 
     flag = False
     for item in response["results"]["bindings"]:
@@ -446,7 +446,7 @@ def get_current_station(train_id: str) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"The train with ID {train_id} is currently not running at any station."
 
-    message = f"The train {train_id} is currently running at station {response['results']['bindings'][0]['station']['value']}."
+    message = f"🚉 The train {train_id} is currently running at station {response['results']['bindings'][0]['station']['value']}."
     return 2, message
 
 
@@ -479,7 +479,7 @@ def get_current_trains(station_id: str) -> Tuple[int, str]:
     if response["results"]["bindings"]:
         return 1, f"No trains at station {station_id} found."
 
-    message = f"Trains at station {station_id}:"
+    message = f"🚆 Trains at station {station_id}:"
 
     for i, current in enumerate(response["results"]["bindings"]):
         train = current["train"]["value"]
@@ -517,7 +517,7 @@ def get_station_errors(station_id: str) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"No error logs for station {station_id} found."
     # TODO ?
-    message = f"Error logs for station {station_id}: "
+    message = f"🚫 Error logs for station {station_id}: "
     for current in response["results"]["bindings"]:
         train = current["train"]["value"]
         error = current["error"]["value"]
@@ -549,7 +549,7 @@ def get_train_errors(train_id: str) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"No error logs for train {train_id} found."
     # TODO ?
-    message = f"Error logs for train {train_id}: "
+    message = f"🚫 Error logs for train {train_id}: "
     for current in response["results"]["bindings"]:
         station = current["station"]["value"]
         error = current["error"]["value"]
@@ -1005,7 +1005,7 @@ def get_train_performance(train_id: str) -> Tuple[int, str]:
         mem = False
     if not (cpu and mem):
         return 1, cpu, mem, {}, {}, f"No performance for train {train_id} found."
-    return 2, cpu, mem, response_cpu, response_mem
+    return 2, cpu, mem, response_cpu, response_mem, ""
 
 
 def get_train_average(train_id: str) -> Tuple[int, str]:

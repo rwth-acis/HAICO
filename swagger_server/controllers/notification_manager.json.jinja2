@@ -1,0 +1,285 @@
+{
+	"type": "modal",
+	"title": {
+		"type": "plain_text",
+		"text": "🛎️ Notification Manager",
+		"emoji": true
+	},
+	"submit": {
+		"type": "plain_text",
+		"text": "Submit",
+		"emoji": true
+	},
+	"close": {
+		"type": "plain_text",
+		"text": "Cancel",
+		"emoji": true
+	},
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": "Here are the notifications you are subscribed to. \n By pressing unsubsribe you will no longer receive notifications for the specified event and ID.",
+				"emoji": true
+			}
+		},
+		{
+			"type": "divider"
+		},
+        {% for sub in subscription %}
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "{{ sub.id }} {{ sub.event }}"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"text": "🔕 Unsubscribe",
+					"emoji": true
+				},
+				"value": "{{ sub.id }},{{ sub.event }}",
+				"action_id": "del"
+			}
+		},
+		{% endfor %}
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "No longer receive any notifications"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"text": "🔕 Unsubscribe from all",
+					"emoji": true
+				},
+				"value": "{{ e_mail }}",
+				"action_id": "del_all",
+				"confirm": {
+					"title": {
+						"type": "plain_text",
+						"text": "Warning"
+					},
+					"text": {
+						"type": "mrkdwn",
+						"text": "Are you sure you no longer want to receive any notifications?"
+					},
+					"confirm": {
+						"type": "plain_text",
+						"text": "Yes, please"
+					},
+					"deny": {
+						"type": "plain_text",
+						"text": "Nope, let's keep some"
+					}
+				}
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "🔔 *Subscribe to other notifications*"
+			}
+		},
+		{
+			"type": "input",
+			"element": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select a train or station",
+					"emoji": true
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Bruegel",
+							"emoji": true
+						},
+						"value": "value-0, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Privat-Weber",
+							"emoji": true
+						},
+						"value": "value-1, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Privat-TEST",
+							"emoji": true
+						},
+						"value": "value-2, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Private-Weber2",
+							"emoji": true
+						},
+						"value": "value-3, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Private-Welten",
+							"emoji": true
+						},
+						"value": "value-4, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "HSMW",
+							"emoji": true
+						},
+						"value": "value-5, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Melanoma Station",
+							"emoji": true
+						},
+						"value": "value-6, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "MDS Station",
+							"emoji": true
+						},
+						"value": "value-7, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "PHT MDS Leipzig",
+							"emoji": true
+						},
+						"value": "value-8, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "PHT IMISE LEIPZIG",
+							"emoji": true
+						},
+						"value": "value-9, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Station-UKA",
+							"emoji": true
+						},
+						"value": "value-10, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Station-UKK",
+							"emoji": true
+						},
+						"value": "value-11, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Station-UMG",
+							"emoji": true
+						},
+						"value": "value-12, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Station-UMG_temp",
+							"emoji": true
+						},
+						"value": "value-13, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "aachenbeeck",
+							"emoji": true
+						},
+						"value": "value-14, , {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "aachenmenzel",
+							"emoji": true
+						},
+						"value": "value-15, , {{ e_mail }}"
+					}
+				],
+				"action_id": "select_piece"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Select a train or station",
+				"emoji": true
+			}
+		},
+		{
+			"type": "input",
+			"element": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Event",
+					"emoji": true
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "🚫 Error messages",
+							"emoji": true
+						},
+						"value": "ERROR, {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "✅ Finished Running",
+							"emoji": true
+						},
+						"value": "FINISHED, {{ e_mail }}"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "🏁 Ready to run (stations only)",
+							"emoji": true
+						},
+						"value": "READY, {{ e_mail }}"
+					}
+				],
+				"action_id": "select_event"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Select an event to monitor",
+				"emoji": true
+			}
+		}
+	]
+}

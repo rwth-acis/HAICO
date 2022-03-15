@@ -20,4 +20,4 @@ Station Admin
 Train Operator
 - execution information by train: train_performance
 - train errors: train_error
-- average information about train: train_average
+- average execution information about train: train_average

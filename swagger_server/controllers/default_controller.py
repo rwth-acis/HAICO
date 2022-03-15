@@ -1,16 +1,17 @@
+"""
+    Default controller module.
+    Handels the requests that the server receives.
+"""
 # pylint: disable=E1136
 # pylint: disable=W0212
 # this is set for the whole file because of https://github.com/PyCQA/pylint/issues/3139
 import logging
-from typing import Tuple, Union
+from typing import Tuple
 
 import connexion
-#import six
-from SPARQLWrapper import JSON, SPARQLWrapper
-from swagger_server import util
+#from swagger_server import util
 from swagger_server.models.sbf import SBF  # noqa: E501
-from swagger_server.models.sbf_res import SBFRes  # noqa: E501
-from swagger_server.models.sbf_res_img import SBFResImg  # noqa: E501
+#from swagger_server.models.sbf_res_img import SBFResImg  # noqa: E501
 
 from . import plot, query, request_train
 
@@ -112,12 +113,12 @@ def station_information(json_input: dict) -> Tuple[dict, int]:
     elif intent == "station_loc":
         code_loc, message_loc = query.get_location(station_id)
         if code_loc == 2:
-            message = f"Location for station {station_id}: {message_loc}"
+            message = f"🏡 Location for station {station_id}: {message_loc}"
         else:
             message = message_loc
-    if intent == "comp_env":
+    elif intent == "comp_env":
         _, message = query.get_comp_env(station_id)
-    if intent == "station_dataset":
+    elif intent == "station_dataset":
         _, message = query.get_station_dataset(station_id)
     elif intent == "station_info":
         message = f"Information for station {station_id}: "
@@ -152,6 +153,7 @@ def station_information(json_input: dict) -> Tuple[dict, int]:
             return {text: f"No information for station {station_id} found.", closeContext: false}, 200
     else:
         logging.error("Intent not recognized in station_information")
+        print(json_input)
         return {text: "Something went wrong processing your request: Unrecognized Intent.", closeContext: false}, 200
     return {text: message, closeContext: false}, 200
 
@@ -304,6 +306,7 @@ def train_request(json_input: dict) -> Tuple[dict, int]:
         Handles train requests.
         returns: {text: success_message, closeContext: false}, 200
     """
+    # TODO: via slack blocks
     if not connexion.request.is_json:
         return {text: "Something went wrong. Not a JSON request", closeContext: "false"}, 200
 
@@ -376,71 +379,85 @@ def help_text(json_input: dict) -> Tuple[dict, int]:
 
 def get_performance(json_input: dict) -> Tuple[dict, int]:
     """
-        Handles queries for performance visualistations.
-        Does NOT return an error if visualistation failed.
-        returns: {fileBody: base64 encoded pdf, fileName: pdf_name, fileType: "pdf"}, 200
+        Handles queries for performance information and visualistations.
+        Does return an error if visualistation failed.
+        returns: {fileBody: base64 encoded png, fileName: png_name, fileType: "png"}, 200 
+        or {text: message, closeContext: false}, 200
     """
     if not connexion.request.is_json:
         logging.error("No JSON request in get_performance")
         return {text: "Something went wrong processing your request: Not a JSON request", closeContext: "false"}, 200
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
-
     code, intent = get_intent(json_input)
     if code == 0:
         return {text: "Something went wrong processing your request: Not intent provided", closeContext: false}, 200
-    if intent == "station_performance":
-        code_id, station_id = get_id(json_input, "stationID")
-        if code_id != 2:
-            return {text: f"Something went wrong processing your request: {station_id}", closeContext: false}, 200
-        code_query, cpu, mem, response_cpu, response_mem, _ = query.get_station_performance(
-            station_id)
-        if code_query == 2:
-            code_plot, encoded_pdf = plot.plot_station_performance(
-                station_id, cpu, mem, response_cpu, response_mem)
-            if code_plot == 2:
-                return {
-                    "fileBody": str(encoded_pdf),
-                    "fileName": "station_performance",
-                    "fileType": "pdf"
-                }, 200
-    if intent == "train_perfomance":
-        code_id, train_id = get_id(json_input, "trainID")
-        if code_id != 2:
-            return {text: f"Something went wrong processing your request: {train_id}", closeContext: false}, 200
-        code_query, cpu, mem, response_cpu, response_mem, _ = query.get_train_performance(
-            train_id)
-        if code_query == 2:
-            code_plot, encoded_pdf = plot.plot_train_performance(
-                train_id, cpu, mem, response_cpu, response_mem)
-            if code_plot == 2:
-                return {
-                    "fileBody": str(encoded_pdf),
-                    "fileName": "train_performance",
-                    "fileType": "pdf"
-                }, 200
-    if intent == "train_memory":
-        code_query, cpu, mem, response_cpu, response_mem, _ = query.get_train_performance(
-            train_id)
-        if code_query == 2 and mem:
-            code_plot, encoded_pdf = plot.plot_train_mem(
-                train_id, response_mem)
-            if code_plot == 2:
-                return {
-                    "fileBody": str(encoded_pdf),
-                    "fileName": "train_memory",
-                    "fileType": "pdf"
-                }, 200
-    if intent == "train_cpu":
-        code_query, cpu, mem, response_cpu, response_mem, _ = query.get_train_performance(
-            train_id)
-        if code_query == 2 and cpu:
-            code_plot, encoded_pdf = plot.plot_train_cpu(
-                train_id, response_cpu)
-            if code_plot == 2:
-                return {
-                    "fileBody": str(encoded_pdf),
-                    "fileName": "train_cpu",
-                    "fileType": "pdf"
-                }, 200
-    else:
-        logging.error("Intent not recognized in get_performance.")
+    if intent == "get_performance":
+        if json_input._entities:
+            if "stationID" in json_input._entities:
+                code_id, station_id = get_id(json_input, "stationID")
+                if code_id != 2:
+                    return {text: f"Something went wrong processing your request: {station_id}", closeContext: false}, 200
+                code_query, cpu, mem, response_cpu, response_mem, message = query.get_station_performance(
+                    station_id)
+                if code_query == 2:
+                    code_plot, encoded_pdf = plot.plot_station_performance(
+                        station_id, cpu, mem, response_cpu, response_mem)
+                    if code_plot == 2:
+                        return {
+                            "fileBody": str(encoded_pdf),
+                            "fileName": "station_performance",
+                            "fileType": "pdf"
+                        }, 200
+                return {text: message, closeContext: false}, 200
+            if "trainID" in json_input._entities:
+                code_id, train_id = get_id(json_input, "trainID")
+                if code_id != 2:
+                    return {text: f"Something went wrong processing your request: {train_id}", closeContext: false}, 200
+                if "average" in json_input._entities:
+                    _, message = query.get_train_average(train_id)
+                    return {text: message, closeContext: false}, 200
+                # if "train_memory" in json_input._entities:
+                #     code_query, cpu, mem, response_cpu, response_mem, message = query.get_train_performance(
+                #         train_id)
+                #     if code_query == 2 and mem:
+                #         code_plot, encoded_pdf = plot.plot_train_mem(
+                #             train_id, response_mem)
+                #         if code_plot == 2:
+                #             return {
+                #                 "fileBody": str(encoded_pdf),
+                #                 "fileName": "train_memory",
+                #                 "fileType": "pdf"
+                #             }, 200
+                #     return {text: message, closeContext: false}, 200
+                # if "train_cpu" in json_input._entities:
+                #     code_query, cpu, mem, response_cpu, response_mem, message = query.get_train_performance(
+                #         train_id)
+                #     if code_query == 2 and cpu:
+                #         code_plot, encoded_pdf = plot.plot_train_cpu(
+                #             train_id, response_cpu)
+                #         if code_plot == 2:
+                #             return {
+                #                 "fileBody": str(encoded_pdf),
+                #                 "fileName": "train_cpu",
+                #                 "fileType": "pdf"
+                #             }, 200
+                #
+                #      return {text: message, closeContext: false}, 200
+                else:
+                    code_query, cpu, mem, response_cpu, response_mem, message = query.get_train_performance(
+                        train_id)
+                    if code_query == 2:
+                        code_plot, encoded_pdf = plot.plot_train_performance(
+                            train_id, cpu, mem, response_cpu, response_mem)
+                        if code_plot == 2:
+                            return {
+                                "fileBody": str(encoded_pdf),
+                                "fileName": "train_performance",
+                                "fileType": "png"
+                            }, 200
+
+                    return {text: message, closeContext: false}, 200
+
+        else:
+            logging.error("Intent not recognized in get_performance.")
+    return {text: "Something went wrong: Intent not recognized", closeContext: false}, 200

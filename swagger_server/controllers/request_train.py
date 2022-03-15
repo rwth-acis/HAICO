@@ -1,4 +1,5 @@
-"""Module to rquest trains."""
+# pylint:disable=logging-fstring-interpolation
+"""Module to request trains."""
 
 import json
 import logging
@@ -101,11 +102,11 @@ def post_train(train_class: str, station_route: str) -> Tuple[int, str]:
     final_route = ""
     error_message = ""
 
-    for s in stations.values():
-        if s.lower() in station_route:
-            final_route += s
+    for cur in stations.values():
+        if cur.lower() in station_route:
+            final_route += cur
             stations_exists = True
-            station_route = station_route.replace(s.lower(), '')
+            station_route = station_route.replace(cur.lower(), '')
     if not stations_exists:
         return 1, "The provided station route does not contain any existing stations."
     if not station_route.strip():

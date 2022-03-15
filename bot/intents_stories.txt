@@ -107,19 +107,6 @@
 - which trains are going to visit station [station1]{"entity": "stationID", "value": "station1"} next ?
 - which trains are comming to station [station1]{"entity": "stationID", "value": "station1"}
 - Which trains are scheduled to visit station [station1]{"entity": "stationID", "value": "station1"}
-## intent:station_performance
-- get performance for station [station1]{"entity": "stationID", "value": "station1"}
-- show performance for station [station2]{"entity": "stationID", "value": "station2"}
-- performance station [station66]{"entity": "stationID", "value": "station66"}
-- overall performance station [station3]{"entity": "stationID", "value": "station3"}
-- Get performance for station [stationX]{"entity": "stationID", "value": "stationX"}
-- Show performance for station [station2]{"entity": "stationID", "value": "station2"}
-- Get performance station [station1]{"entity": "stationID", "value": "station1"}
-- get overall performance for station [stationJ]{"entity": "stationID", "value": "stationJ"}
-- show overall performance for station [station2]{"entity": "stationID", "value": "station2"}
-- overall performance station [station7]{"entity": "stationID", "value": "station7"}
-- show me the performance statistics for station [UKAACHEN]{"entity": "UKAACHEN", "value": "station7"}
-- usage on station [Private_TEST]{"entity": "stationID", "value": "Private_TEST"}
 ## intent:train_info
 - get info for train [train1]{"entity": "trainID", "value": "train1"}
 - Get info for train [train2]{"entity": "trainID", "value": "train2"}
@@ -215,23 +202,30 @@
 - which station train [train1]{"entity": "trainID", "value": "train1"}
 - what station train [train7]{"entity": "trainID", "value": "train7"}
 - station train [trainAL]{"entity": "trainID", "value": "trainAL"} now
-## intent:train_performance
+## intent:get_performance
 - get performance for train [train1]{"entity": "trainID", "value": "train1"}
 - show performance for train [train2]{"entity": "trainID", "value": "train2"}
 - performance train [train66]{"entity": "trainID", "value": "train66"}
-- memory train [trainA]{"entity": "trainID", "value": "trainA"}
-- overall performance train [Train3]{"entity": "trainID", "value": "Train3"}
+- [overall]{"entity": "amount", "value": "overall"} performance train [Train3]{"entity": "trainID", "value": "Train3"}
 - Get performance for train [trainX]{"entity": "trainID", "value": "trainX"}
 - Show performance for train [train2]{"entity": "trainID", "value": "train2"}
 - Get performance train [train1]{"entity": "trainID", "value": "train1"}
-- get overall performance for train [TrainJ]{"entity": "trainID", "value": "TrainJ"}
-- show overall performance for train [train2]{"entity": "trainID", "value": "train2"}
-- overall performance train [train7]{"entity": "trainID", "value": "train7"}
-## intent:send_train
-- send train [hello-world]{"entity":"train_class", "value": "hello-world"} to station [Bruegel]{"entity":"stations", "value": "Bruegel"}
-- send train [hello-world]{"entity":"train_class", "value": "hello-world"} to stations [Station-UKK Private_TEST]{"entity":"stations", "value": "Bruegel Private_TEST"}
-- request train [hello-world]{"entity":"train_class", "value": "hello-world"} to stations [Station-UKK Private_TEST aachenbeeck]{"entity":"stations", "value": "Station-UKK Private_TEST aachenbeeck"}
-## intent: train_average
-- what is the average performance of train [train1]{"entity": "trainID", "value": "train1"}
-- average visits train [train5]{"entity": "trainID", "value": "train5"}
-- get the average for train [train_hello]{"entity": "trainID", "value": "train_hello"}
+- get [overall]{"entity": "amount", "value": "overall"} performance for train [TrainJ]{"entity": "trainID", "value": "TrainJ"}
+- show [overall]{"entity": "amount", "value": "overall"} performance for train [train2]{"entity": "trainID", "value": "train2"}
+- [overall]{"entity": "amount", "value": "overall"} performance train [train7]{"entity": "trainID", "value": "train7"}
+- [average]{"entity": "amount", "value": "average"} performance train [train_hello]{"entity": "trainID", "value": "train_hello"}
+- Get [average]{"entity": "amount", "value": "average"} performance for train [trainX]{"entity": "trainID", "value": "trainX"}
+- Show [average]{"entity": "amount", "value": "average"} performance for train [train2]{"entity": "trainID", "value": "train2"}
+- average]{"entity": "amount", "value": "average"} performance train [train66]{"entity": "trainID", "value": "train66"}
+- get performance for station [station1]{"entity": "stationID", "value": "station1"}
+- show performance for station [station2]{"entity": "stationID", "value": "station2"}
+- performance station [station66]{"entity": "stationID", "value": "station66"}
+- overall performance station [station3]{"entity": "stationID", "value": "station3"}
+- Get performance for station [stationX]{"entity": "stationID", "value": "stationX"}
+- Show performance for station [station2]{"entity": "stationID", "value": "station2"}
+- Get performance station [station1]{"entity": "stationID", "value": "station1"}
+- get overall performance for station [stationJ]{"entity": "stationID", "value": "stationJ"}
+- show overall performance for station [station2]{"entity": "stationID", "value": "station2"}
+- overall performance station [station7]{"entity": "stationID", "value": "station7"}
+- show me the performance statistics for station [UKAACHEN]{"entity": "UKAACHEN", "value": "station7"}
+- usage on station [Private_TEST]{"entity": "stationID", "value": "Private_TEST"}

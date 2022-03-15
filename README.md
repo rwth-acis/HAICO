@@ -16,13 +16,16 @@ To run the server, please execute the following from the root directory:
 
 ```
 pip3 install -r requirements.txt
-BLAZEGRAPHURL=$blazegraph_endpoint LOGINNAME=$username PASSWORD=$password REQUESTURL=$train_request_endpoint python3 -m swagger_server
+BLAZEGRAPHURL=$blazegraph_endpoint LOGINNAME=$username PASSWORD=$password REQUESTURL=$train_request_endpoint SBFURL=$SBF_endpoint SLACKTOKEN=$slack_token python3 -m swagger_server
 ```
 
-BLAZEGRAPHURL: Endpoint of the blazegraph database
-LOGINNAME: User name for the train request endpoint
-PASSWORD: Password for the train request endpoint
-REQUESTURL: Request endpoint
+BLAZEGRAPHURL: Endpoint of the blazegraph database (required)
+LOGINNAME: User name for the train request endpoint (optional, for train requests)
+PASSWORD: Password for the train request endpoint (optional, for train requests)
+REQUESTURL: Request endpoint (optional, for train requests)
+SBFURL: SBF endpoint (optional, for user notifications)
+SLACKTOKEN: Slack token (optional, for user notifications)
+
 The Swagger definition lives here:
 
 ```

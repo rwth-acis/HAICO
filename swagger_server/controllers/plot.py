@@ -6,13 +6,10 @@ import logging
 import time
 from typing import Tuple
 
-#import fitz
-from PyPDF2 import PdfFileMerger
 import matplotlib
-import matplotlib.dates as mdates
+#import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
-# import numpy as np
-from matplotlib.backends.backend_pdf import PdfPages
+from PIL import Image
 
 # no GUI backend -> plt.show() etc will not work
 matplotlib.use('Agg')
@@ -22,17 +19,17 @@ def plot_train_cpu(train_id: str, response: dict) -> Tuple[int, str]:
     """
         Plots the a train's CPU usage
         response: CPU usage response from blazegraph
-        returns: success_code, base64 encoded pdf or error message
+        returns: success_code, base64 encoded png file or error message
     """
-    pdf_title = plot_usage(train_id, response, "CPU", train_id, "")
-
+    image_title = draw_usage(order_values(
+        response, "station"), f"CPU Usage in % for train {train_id}", True)
     try:
-        with open(pdf_title, "rb") as pdf:
-            encoded_string = base64.b64encode(pdf.read())
+        with open(image_title, "rb") as png:
+            encoded_string = base64.b64encode(png.read())
             return 2, encoded_string
     except Exception:  # pylint: disable=broad-except
         logging.error(
-            "The PDF was not generated module plot function plot_train_cpu.")
+            "The png file was not generated module plot function plot_train_cpu.")
         return 0, "Something went wrong: The performance plot could not be generated"
 
 
@@ -40,17 +37,18 @@ def plot_train_mem(train_id: str, response: str) -> Tuple[int, str]:
     """
         Plots the a train's memory usage
         response: memory usage response from blazegraph
-        returns: success_code, base64 encoded pdf or error message
+        returns: success_code, base64 encoded png file or error message
     """
-    pdf_title = plot_usage(train_id, response, "Memory", train_id, "")
+    image_title = draw_usage(order_values(
+        response, "station"), f"Memory Usage in MB for train {train_id}", True)
 
     try:
-        with open(pdf_title, "rb") as pdf:
-            encoded_string = base64.b64encode(pdf.read())
+        with open(image_title, "rb") as png:
+            encoded_string = base64.b64encode(png.read())
             return 2, encoded_string
     except Exception:  # pylint: disable=broad-except
         logging.error(
-            "The PDF was not generated module plot function plot_train_mem.")
+            "The png file was not generated module plot function plot_train_mem.")
         return 0, "Something went wrong: The performance plot could not be generated"
 
 
@@ -61,48 +59,47 @@ def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bo
         mem: flag if memory usage is present
         response_cpu: CPU usage response from blazegraph
         response_mem: memory usage response from blazegraph
-        returns: success_code, base64 encoded pdf or error message
+        returns: success_code, base64 encoded png file or error message
     """
     if cpu:
-        pdf_title_cpu = plot_usage(
-            train_id, response_cpu, "CPU", train_id, "")
+        image_title_cpu = image_title = draw_usage(order_values(
+            response_cpu, "station"), f"CPU Usage in % for train {train_id}", True)
 
     if mem:
-        pdf_title_mem = plot_usage(
-            train_id, response_mem, "Memory", train_id, "")
+        image_title_mem = draw_usage(order_values(response_mem, "station"),
+                                     f"Memory Usage in MB for train {train_id}", True)
 
     if not cpu and not mem:
         return 0, "No information about CPU and Memory Usage present."
 
     if cpu and mem:
-        merger = PdfFileMerger()
-
-        pdfs = [pdf_title_cpu, pdf_title_mem]
-        # for pdf in [f"{pdf_title_cpu}", f"{pdf_title_mem}"]:
-        #     with fitz.open(pdf) as mfile:
-        #         result.insert_pdf(mfile)
-        for pdf in pdfs:
-            merger.append(pdf)
         current_date = datetime.datetime.strftime(
             datetime.datetime.now(), '%d%m%y%f')
-        pdf_title = f"{train_id}_performance_{current_date}.pdf"
-        merger.write(pdf_title)
-        merger.close()
-        # result = fitz.open()
+        image_title = f"{train_id}_performance_{current_date}.png"
+        images = [Image.open(x) for x in [image_title_mem, image_title_cpu]]
+        widths, heights = zip(*(i.size for i in images))
 
-        # for pdf in [f"{pdf_title_cpu}", f"{pdf_title_mem}"]:
-        #     with fitz.open(pdf) as mfile:
-        #         result.insert_pdf(mfile)
+        total_width = sum(widths)
+        max_height = max(heights)
+
+        new_image = Image.new('RGB', (total_width, max_height))
+
+        x_offset = 0
+        for image in images:
+            new_image.paste(image, (x_offset, 0))
+            x_offset += image.size[0]
+
+        new_image.save(image_title)
 
     else:
-        pdf_title = pdf_title_cpu if cpu else pdf_title_mem
+        image_title = image_title_cpu if cpu else image_title_mem
     try:
-        with open(pdf_title, "rb") as pdf:
-            encoded_string = base64.b64encode(pdf.read())
+        with open(image_title, "rb") as png:
+            encoded_string = base64.b64encode(png.read())
             return 2, encoded_string
     except Exception:  # pylint: disable=broad-except
         logging.error(
-            "The PDF was not generated module plot function plot_train_performance.")
+            "The png file was not generated module plot function plot_train_performance.")
         return 0, "Something went wrong: The performance plot could not be generated"
 
 
@@ -113,131 +110,128 @@ def plot_station_performance(station_id: str, cpu: str, mem: str, response_cpu: 
         mem: flag if memory usage is present
         response_cpu: CPU usage response from blazegraph
         response_mem: memory usage response from blazegraph
-        returns: success_code, base64 encoded pdf or error message
+        returns: success_code, base64 encoded png file or error message
     """
     if cpu:
-        pdf_title_cpu = plot_usage(
-            station_id, response_cpu, "CPU", "", station_id)
+        image_title_cpu = draw_usage(order_values(response_cpu, "train"),
+                                     f"CPU Usage in % on station {station_id}", False)
 
     if mem:
-        pdf_title_mem = plot_usage(
-            station_id, response_mem, "Memory", "", station_id)
+        image_title_mem = draw_usage(order_values(response_mem, "train"),
+                                     f"Memory Usage in MB on station {station_id}", False)
 
     if not cpu and not mem:
         return 0, "No information about CPU and Memory Usage present."
 
     if cpu and mem:
-        #result = fitz.open()
-        merger = PdfFileMerger()
-
-        # pdf_cpu = open(pdf_title_cpu, "rb")
-        # pdf_mem = open(pdf_title_mem, "rb")
-        pdfs = [pdf_title_cpu, pdf_title_mem]
-        # for pdf in [f"{pdf_title_cpu}", f"{pdf_title_mem}"]:
-        #     with fitz.open(pdf) as mfile:
-        #         result.insert_pdf(mfile)
-        for pdf in pdfs:
-            merger.append(pdf)
         current_date = datetime.datetime.strftime(
             datetime.datetime.now(), '%d%m%y%f')
-        pdf_title = f"{station_id}_performance_{current_date}.pdf"
-        merger.write(pdf_title)
-        merger.close()
+        image_title = f"{station_id}_performance_{current_date}.png"
+        images = [Image.open(x) for x in [image_title_mem, image_title_cpu]]
+        widths, heights = zip(*(i.size for i in images))
+
+        total_width = sum(widths)
+        max_height = max(heights)
+
+        new_image = Image.new('RGB', (total_width, max_height))
+
+        x_offset = 0
+        for image in images:
+            new_image.paste(image, (x_offset, 0))
+            x_offset += image.size[0]
+
+        new_image.save(image_title)
 
     else:
-        pdf_title = pdf_title_cpu if cpu else pdf_title_mem
+        image_title = image_title_cpu if cpu else image_title_mem
 
     try:
-        with open(pdf_title, "rb") as pdf:
-            encoded_string = base64.b64encode(pdf.read())
+        with open(image_title, "rb") as png:
+            encoded_string = base64.b64encode(png.read())
             return 2, encoded_string
     except Exception:  # pylint: disable=broad-except
         logging.error(
-            "The PDF was not generated module plot function plot_station_performance.")
+            "The png file was not generated module plot function plot_station_performance.")
         return 0, "Something went wrong: The performance plot could not be generated"
 
 
-def plot_usage(context_id: str, response: dict, resource: str, train_id: str, station_id: str) -> str:
+def draw_usage(values: dict, plot_title: str, train: bool) -> str:
     """
         Plots usage as a half donut or time - usage diagram.
-        context_id: station or train ID
-        reponse: blazegraph response (should not be empty)
-        resource: Train or Station
-        train_id: ID of train. "" if a station's performance should be plotted.
-        station_id: ID of station. "" if a train's performance should be plotted.
-        returns: title of the created PDF
+        values: ordered dict of station/ train - data - usage pairs
+        plot_title: Title of the created plot
+        train: indicates whether a station's(False) or a train's(True) performance is plotted
+        returns: title of the created png file
     """
-    if (not train_id and not station_id) or (train_id and station_id):
-        logging.warning(
-            f"train_id: {train_id}, station_id: {station_id}. Output may be unexpected.")
+    # note: this is very stupid but matplotlib is not making me very happy so I gotta live with that
+    amount_subplots = 1
+    # note: this is just as stupid but(!) I cannot think math right now
+    rows = 1
+    cols = 1
+    single_value = {}
+    multi_value = {}
+    for key, item in values.items():
+        if len(item) == 1:
+            amount_subplots += 1
+            if (rows * cols) / amount_subplots < 1:
+                if rows <= cols:
+                    rows += 1
+                else:
+                    cols += 1
+            single_value[key] = item
+        else:
+            multi_value[key] = item
+
+    # TODO maybe change figsize later on
+    fig, axs = plt.subplots(nrows=rows, ncols=cols,
+                            figsize=(7, 7), squeeze=False)
+    fig.suptitle(plot_title, fontsize=16)
+    # axs[0,0] is the only plot with multiple lines
+    if multi_value:
+        axs[0, 0].set_title(plot_title)
+        axs[0, 0].set_ylabel("Usage")  # TODO
+        for key, item in multi_value.items():
+            x_values = []
+            y_values = []
+            sorted_date_values = sorted(item, key=lambda c: c[0])
+            for date, val in sorted_date_values:
+                x_values.append(date)
+                y_values.append(val)
+            axs[0, 0].plot(x_values, y_values, '-o', label=f'{key}')
+        axs[0, 0].legend(prop={'size': 6})
+
+    row_index = 1 if multi_value else 0
+    col_index = 0
+
+    for key, item in single_value.items():
+        usage = int(item[0][1])
+        rest = 100 - usage
+        # we do not need labels here
+        label = ["", "", ""]
+        # 50% of the donut shall be blanc
+        values = [rest, usage, rest + usage]
+
+        # color = [rest(lightgrey), usage(darkgreen), blanc(white)]
+        color = ['#d3d3d3', '#006b3c', 'w']
+        axs[row_index, col_index].set_title(
+            f"{plot_title} for {key}", fontsize=10)
+        wedges, labels = axs[row_index, col_index].pie(values, wedgeprops=dict(
+            width=0.3, edgecolor='w'), labels=label, colors=color)
+        wedges[-1].set_visible(False)
+        if row_index == rows:
+            col_index += 1
+            row_index = 0
+
+    # save
     current_date = datetime.datetime.strftime(
         datetime.datetime.now(), '%d%m%y%f')
-    pdf_title = f"{context_id}_{resource}_{current_date}.pdf"
 
-    if train_id:
-        in_response = "station"
-    else:
-        in_response = "train"
+    part = "train" if train else "station"
+    image_title = f"{part}_{current_date}.png"
+    plt.savefig(image_title, bbox_inches='tight', dpi=500)
+    plt.close()
 
-    values = order_values(response, in_response)
-
-    with PdfPages(pdf_title) as pdf:
-        for key, item in values.items():
-            plot_title = f"{resource} usage for train {context_id} on station {key} "
-            if not train_id:
-                plot_title = f"{resource} usage for train {key} on station {context_id} "
-            if len(item) == 1:
-                # there's only one pair (time, usage) hence there's no use in displaying
-                # that on a time scale
-                # produces a half donut diagram
-
-                usage = int(item[0][1])
-                rest = 100 - usage
-                # we do not need labels here
-                label = ["", "", ""]
-                # 50% of the donut shall be blanc
-                values = [rest, usage, rest+usage]
-
-                # color = [rest(lightgrey), usage(darkgreen), blanc(white)]
-                color = ['#d3d3d3', '#006b3c', 'w']
-                fig, ax = plt.subplots(figsize=(5, 5))
-                x1, y1 = -0.4, -0.05
-                ax.annotate(f"{resource} usage: {usage} %", xy=(x1, y1))
-                wedges, labels = plt.pie(values, wedgeprops=dict(
-                    width=0.3, edgecolor='w'), labels=label, colors=color)
-                # for the invisble part of the donut
-                wedges[-1].set_visible(False)
-
-                plt.rcParams["axes.titlesize"] = 8
-                date = item[0][0]
-                plt.title(
-                    plot_title + f" at {date.strftime('%d.%m.%Y %H:%M:%S')}", loc='center', wrap=True)
-
-                pdf.savefig()
-            else:
-                x_values = []
-                y_values = []
-                sorted_date_values = sorted(item, key=lambda c: c[0])
-                for date, val in sorted_date_values:
-                    x_values.append(date)
-                    y_values.append(val)
-
-                fig, ax = plt.subplots()
-                plt.plot(x_values, y_values, '-o')
-                plt.rcParams["axes.titlesize"] = 8
-                plt.xlabel("Date and Time")
-                unit = "MB"
-                if resource.lower() == "cpu":
-                    unit = "%"
-                plt.ylabel(f"{resource} Usage in {unit}")
-                plt.title(plot_title)
-                plt.gcf().autofmt_xdate()
-                ax.set_ylim(ymin=0)
-                date_format = mdates.DateFormatter('%d.%m. %H:%M')
-                plt.gca().xaxis.set_major_formatter(date_format)
-                pdf.savefig()
-        plt.close()
-    return pdf_title
+    return image_title
 
 
 def order_values(response: dict, target_str: str) -> dict:
