@@ -14,6 +14,20 @@ content-type: application/json
     "time": "1644224769.807741"
 }
 ###
+POST https://milki-psy.dbis.rwth-aachen.de/api/user HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "",
+    "entities": {"userID": {"value": "u4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+### debug
 POST http://localhost:8081/api/train/request HTTP/1.1
 content-type: application/json
 
@@ -22,7 +36,21 @@ content-type: application/json
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "station_title",
-    "entities": {"train_class": {"value": "test"}, "stations": {"value": "test"}} ,
+    "entities": {"stations": {"value": "Private-Weber2"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/train/request HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_title",
+    "entities": {"stations": {"value": "Private_TEST"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
@@ -43,7 +71,82 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:8081/api/station/business HTTP/1.1
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_owner",
+    "entities": {"stationID": {"value": "station_aachen"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST http://localhost:8081/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_responsible",
+    "entities": {"stationID": {"value": "stationMinimal"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_responsible",
+    "entities": {"stationID": {"value": "station_cologne"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST http://localhost:8081/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_cert",
+    "entities": {"stationID": {"value": "station2"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_cert",
+    "entities": {"stationID": {"value": "station_leipzig"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST http://localhost:8081/api/station/information HTTP/1.1
 content-type: application/json
 
 {
@@ -51,13 +154,88 @@ content-type: application/json
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "station_title",
+    "entities": {"stationID": {"value": "station3"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_title",
+    "entities": {"stationID": {"value": "station_mittweida"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST http://localhost:8081/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "comp_env",
     "entities": {"stationID": {"value": "station1"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
 }
+
 ###
-POST http://localhost:8081/api/station/business HTTP/1.1
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "comp_env",
+    "entities": {"stationID": {"value": "station_leipzig_imise"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST http://localhost:8081/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_dataset",
+    "entities": {"stationID": {"value": "station4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_dataset",
+    "entities": {"stationID": {"value": "station_aachen"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/station/information HTTP/1.1
 content-type: application/json
 
 {
@@ -65,12 +243,433 @@ content-type: application/json
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "station_info",
+    "entities": {"stationID": {"value": "station5"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_info",
+    "entities": {"stationID": {"value": "station_cologne"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/station/execution HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "upcomming_trains",
+    "entities": {"stationID": {"value": "stationMinimal"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/execution HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "upcomming_trains",
+    "entities": {"stationID": {"value": "station_cologne"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/station/execution HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "current_at_station",
+    "entities": {"stationID": {"value": "station3"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/execution HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "current_at_station",
+    "entities": {"stationID": {"value": "station_leipzig"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/station/execution HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_error",
+    "entities": {"stationID": {"value": "station6"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/execution HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_error",
+    "entities": {"stationID": {"value": "station_leipzig_imise"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/station/execution HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_log",
+    "entities": {"stationID": {"value": "station3"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/execution HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_log",
+    "entities": {"stationID": {"value": "station_mittweida"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/station/execution HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_rejections",
     "entities": {"stationID": {"value": "station1"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
 }
-###get_train_performance_cpu
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/station/execution HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "station_rejections",
+    "entities": {"stationID": {"value": "station_cologne"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/train/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "train_info",
+    "entities": {"trainID": {"value": "train1"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/train/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "train_info",
+    "entities": {"trainID": {"value": "train4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/train/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "train_model",
+    "entities": {"trainID": {"value": "train2"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/train/information HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "train_model",
+    "entities": {"trainID": {"value": "train4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/train/runtime HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "planned_route",
+    "entities": {"trainID": {"value": "train3"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/train/runtime HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "planned_route",
+    "entities": {"trainID": {"value": "train4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/train/runtime HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "train_error",
+    "entities": {"trainID": {"value": "train2"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/train/runtime HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "train_error",
+    "entities": {"trainID": {"value": "train4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/train/runtime HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "train_log",
+    "entities": {"trainID": {"value": "train1"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/train/runtime HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "train_log",
+    "entities": {"trainID": {"value": "train4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/train/runtime HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "train_rejection",
+    "entities": {"trainID": {"value": "train4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/train/runtime HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "train_rejection",
+    "entities": {"trainID": {"value": "train4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/train/runtime HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "current_station",
+    "entities": {"trainID": {"value": "train2"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/train/runtime HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "current_station",
+    "entities": {"trainID": {"value": "train4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/all HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "all_stations",
+    "entities": {"trainID": {"value": "train2"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/all HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "all_trains",
+    "entities": {"trainID": {"value": "train4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/help HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "help",
+    "entities": {"trainID": {"value": "train2"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/help HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "help",
+    "entities": {"trainID": {"value": "train4"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
 POST http://localhost:8081/api/performance HTTP/1.1
 content-type: application/json
 
@@ -79,492 +678,108 @@ content-type: application/json
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "get_performance",
-    "entities": {"trainID": {"value": "train3"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644224769.807741"
-}
-
-###get_admin_by_id
-POST http://localhost:8081/api/admin HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"adminID": {"value": "u10"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127ts"
-}
-
-###get_cur_train_station_by_id
-POST http://localhost:8081/api/train/station HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127ts"
-}
-
-###get_running_trains
-POST http://localhost:8081/api/train/running HTTP/1.1
-
-###get_station_cert_by_id
-POST http://localhost:8081/api/station/cert HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station2"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_station_dataset_by_id
-POST http://localhost:8081/api/station/dataset HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_station_description_by_id
-POST http://localhost:8081/api/station/description HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station2"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_station_errors_by_id
-POST http://localhost:8081/api/station/error HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_station_location_by_id
-POST http://localhost:8081/api/station/location HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_station_owner_by_id
-POST http://localhost:8081/api/station/owner HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station2"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_station_resp_by_id
-POST http://localhost:8081/api/station/responsible HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station3"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_station_title_by_id
-POST http://localhost:8081/api/station/title HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "stationMinimal"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_train_certificate_by_id
-POST http://localhost:8081/api/train/cert HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_train_creator_by_id
-POST http://localhost:8081/api/train/creator HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
     "entities": {"trainID": {"value": "train2"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
-    "time": "1644229012.380127"
+    "time": "1644224769.807741"
 }
 
-###get_train_route_by_id
-POST http://localhost:8081/api/train/route/full HTTP/1.1
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/performance HTTP/1.1
 content-type: application/json
 
 {
     "msg":"TestMessage",
     "botName": "TestBot",
     "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train2"}} ,
+    "intent": "get_performance",
+    "entities": {"trainID": {"value": "train4"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
-    "time": "1644229012.380127"
+    "time": "1644224769.807741"
 }
-
-###get_user_by_id
-
-POST http://localhost:8081/api/user HTTP/1.1
+###
+POST http://localhost:8081/api/performance HTTP/1.1
 content-type: application/json
 
 {
     "msg":"TestMessage",
     "botName": "TestBot",
     "channel": "TestChannel",
-    "intent": "",
-    "entities": {"userID": {"value": "u7"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_train_description_by_id
-POST http://localhost:8081/api/train/description HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train2"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_train_future_route_by_id
-POST http://localhost:8081/api/train/route/upcomming HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train3"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_train_past_route_by_id
-POST http://localhost:8081/api/train/route/past HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train3"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_upcomming_trains_by_id
-POST http://localhost:8081/api/station/train/upcomming HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-### I know what I need it for
-POST http://localhost:8081/api/station/train/upcomming HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "stationMinimal"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-### get_trains_at_station_by_id
-POST http://localhost:8081/api/station/train HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "stationMinimal"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_train_version_by_id
-POST http://localhost:8081/api/train/version HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_train_title_by_id
-POST http://localhost:8081/api/train/title HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_train_started_running_by_id
-POST http://localhost:8081/api/train/started/running HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train3"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_train_finished_running_by_id
-POST http://localhost:8081/api/train/finished/running HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train3"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644229012.380127"
-}
-
-###get_train_memory_by_id
-
-POST http://localhost:8081/api/train/performance/memory HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train1"}} ,
+    "intent": "get_performance",
+    "entities": {"trainID": {"value": "train2"}, "amount": {"value": "average"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
 }
 
-###get_train_performance_by_id
-POST http://localhost:8081/api/train/performance HTTP/1.1
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/performance HTTP/1.1
 content-type: application/json
 
 {
     "msg":"TestMessage",
     "botName": "TestBot",
     "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train1"}} ,
+    "intent": "get_performance",
+    "entities": {"trainID": {"value": "train4"}, "amount": {"value": "average"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST http://localhost:8081/api/performance HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "get_performance",
+    "entities": {"stationID": {"value": "station5"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
 }
 
-###get_station_performance_by_id
-POST http://localhost:8081/api/station/performance HTTP/1.1
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/performance HTTP/1.1
 content-type: application/json
 
 {
     "msg":"TestMessage",
     "botName": "TestBot",
     "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station1"}} ,
+    "intent": "get_performance",
+    "entities": {"stationID": {"value": "station_goettingen"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
 }
-
-###get_station_dataset_by_id
-POST http://localhost:8081/api/station/dataset HTTP/1.1
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/performance HTTP/1.1
 content-type: application/json
 
 {
     "msg":"TestMessage",
     "botName": "TestBot",
     "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station1"}} ,
+    "intent": "get_performance",
+    "entities": {"stationID": {"value": "station_aachen"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
 }
-
-###get_station_info_by_id
-POST http://localhost:8081/api/station/info HTTP/1.1
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/performance HTTP/1.1
 content-type: application/json
 
 {
     "msg":"TestMessage",
     "botName": "TestBot",
     "channel": "TestChannel",
-    "intent": "",
-    "entities": {"stationID": {"value": "station1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644224769.807741"
-}
-
-###get_train_info_by_id
-POST http://localhost:8081/api/train/info HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644224769.807741"
-}
-
-###get_train_model_by_id
-POST http://localhost:8081/api/train/model HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"trainID": {"value": "train1"}} ,
-    "email": "Test@email.com",
-    "user": "TestUser",
-    "time": "1644224769.807741"
-}
-
-###request_train
-POST http://localhost:8081/api/train/request HTTP/1.1
-content-type: application/json
-
-{
-    "msg":"TestMessage",
-    "botName": "TestBot",
-    "channel": "TestChannel",
-    "intent": "",
-    "entities": {"train_class": {"value": "a"}, "stations": {"value": "b"}} ,
+    "intent": "get_performance",
+    "entities": {"stationID": {"value": "station_cologne"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"

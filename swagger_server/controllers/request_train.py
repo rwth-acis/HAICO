@@ -72,7 +72,7 @@ def get_session_tokens() -> Union[Tuple[int, str, str], Tuple[int, str]]:
     return 2, token, session_state
 
 
-def post_train(train_class: str, station_route: str) -> Tuple[int, str]:
+def post_train(station_route: str) -> Tuple[int, str]:
     """
         Sends train request to REQUESTURL:3005 with aquired token and session parameters.
         returns: success_code, message

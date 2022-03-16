@@ -33,7 +33,8 @@ def get_id(json_input: dict, check_id: str) -> Tuple[int, str]:
         returns: success_code and id value or error message
     """
     if not check_id in json_input._entities or not "value" in json_input._entities[check_id]:
-        logging.error("No ID provided in validate_request")
+        logging.error("No ID provided in get_id")
+        logging.info(json_input)
         return 0, f"No {check_id} was provided."
     id_value = json_input._entities[check_id]["value"].strip(
     )
@@ -312,16 +313,14 @@ def train_request(json_input: dict) -> Tuple[dict, int]:
 
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
     print(json_input)
-    if not "train_class" in json_input._entities or not "value" in json_input._entities["train_class"] or not "stations" in json_input._entities or not "value" in json_input._entities["stations"]:
-        return "Missing train class or route.", 0
-    train_class = json_input._entities["train_class"]["value"]
+    if not "stations" in json_input._entities or not "value" in json_input._entities["stations"]:
+        return "Missing route.", 0
+    #train_class = json_input._entities["train_class"]["value"]
     stations = json_input._entities["stations"]["value"]
 
-    if train_class == "test":
-        train_class = ""
     if stations == "test":
         stations = ""
-    code, response = request_train.post_train(train_class, stations)
+    code, response = request_train.post_train(stations)
     if code == 0:
         return {text: "Something went wrong: Train couldn't be sent", closeContext: false}, 200
     return {text: response, closeContext: false}, 200
@@ -413,7 +412,7 @@ def get_performance(json_input: dict) -> Tuple[dict, int]:
                 code_id, train_id = get_id(json_input, "trainID")
                 if code_id != 2:
                     return {text: f"Something went wrong processing your request: {train_id}", closeContext: false}, 200
-                if "average" in json_input._entities:
+                if "amount" in json_input._entities and json_input._entities["amount"]["value"] == "average":
                     _, message = query.get_train_average(train_id)
                     return {text: message, closeContext: false}, 200
                 # if "train_memory" in json_input._entities:

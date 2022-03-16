@@ -77,7 +77,7 @@ def get_user_info(user_id: str) -> Tuple[int, str]:
         return 0, "Something went wrong querying the server."
     if not response["results"]["bindings"]:
         return 1, f"No user information for {user_id} found."
-    message = f"Information for {user_id}"
+    message = f"Information for {user_id}: "
     tmp_name = ""
     tmp_email = ""
     for item in response["results"]["bindings"]:
@@ -119,8 +119,8 @@ def get_title(target_id: str, piece: str) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"No title for {target_id} found."
     if piece == "Train":
-        return 2, f"Title: {response['results']['bindings'][0]['title']['value']}"
-    message = "Title: "
+        return 2, f"🪧 Title: {response['results']['bindings'][0]['title']['value']}"
+    message = "🪧 Title: "
     for item in response["results"]["bindings"]:
         message += f" {item['title']['value']} "
     message += "."
@@ -294,7 +294,7 @@ def get_station_role(station_id: str, role: str) -> Tuple[int, str]:
     for i, item in enumerate(response["results"]["bindings"]):
         role = item["role"]["value"]
         name = item["name"]["value"]
-        if i == len(response["results"]["bindings"]):
+        if i == len(response["results"]["bindings"]) - 1:
             message += f" {name} ({role})."
         else:
             message += f" {name} ({role}),"
@@ -328,7 +328,7 @@ def get_train_role(train_id: str, role: str) -> Tuple[int, str]:
     for i, item in enumerate(response["results"]["bindings"]):
         role = item["role"]["value"]
         name = item["name"]["value"]
-        if i == len(response["results"]["bindings"]):
+        if i == len(response["results"]["bindings"]) - 1:
             message += f" {name} ({role})."
         else:
             message += f" {name} ({role}),"
@@ -486,7 +486,7 @@ def get_current_trains(station_id: str) -> Tuple[int, str]:
         logging.error(
             "Query failed in module query function get_current_trains")
         return 0, "Something went wrong querying the server."
-    if response["results"]["bindings"]:
+    if not response["results"]["bindings"]:
         return 1, f"No trains at station {station_id} found."
 
     message = f"🚆 Trains at station {station_id}:"
@@ -494,7 +494,7 @@ def get_current_trains(station_id: str) -> Tuple[int, str]:
     for i, current in enumerate(response["results"]["bindings"]):
         train = current["train"]["value"]
         # Message should end in a full stop
-        if i == len(response["results"]["bindings"]):
+        if i == len(response["results"]["bindings"]) - 1:
             message += f" {train}."
         else:
             message += f" {train},"
@@ -589,11 +589,11 @@ def get_train_rejections(train_id: str) -> Tuple[int, str]:
             "Query failed in module query function get_train_rejections")
         return 0, "Something went wrong querying the server."
     if not response["results"]["bindings"]:
-        return 1, f"No error logs for train {train_id} found."
+        return 1, f"No rejections for train {train_id} found."
     for i, current in enumerate(response["response"]["bindings"]):
         station = current["station"]["value"]
         reason = current["reason"]["value"]
-        if i == len(response["response"]["bindings"]):
+        if i == len(response["response"]["bindings"]) - 1:
             message += f" {station} with reason {reason}."
         else:
             message += f" {station} with reason {reason},"
@@ -628,7 +628,7 @@ def get_station_rejections(station_id: str) -> Tuple[int, str]:
     for i, current in enumerate(response["response"]["bindings"]):
         train = current["train"]["value"]
         reason = current["reason"]["value"]
-        if i == len(response["response"]["bindings"]):
+        if i == len(response["response"]["bindings"]) - 1:
             message += f" {train} with reason {reason}."
         else:
             message += f" {train} with reason {reason},"
@@ -688,7 +688,7 @@ def get_station_dataset(station_id):
     # TODO
     result = response["results"]["bindings"][0]["setType"]["value"]
     if result == "file":
-        message = f"Station {station_id} has the data set format File Data Set. "
+        message = f"🗄️ Station {station_id} has the data set format File Data Set. "
         query_file = f"""
             SELECT ?type WHERE {{
                 {ont_pref}:{station_id} a pht:Station .
@@ -701,7 +701,7 @@ def get_station_dataset(station_id):
         if response_file and response_file["results"]["bindings"]:
             message += f"File Type: {response_file['results']['bindings'][0]['type']['value']}. "
     elif result == "tabular":
-        message = f"Station {station_id} has the data set format Tabular Data Set. "
+        message = f"🗄️ Station {station_id} has the data set format Tabular Data Set. "
         query_tab = f"""
             SELECT * WHERE {{
                 {ont_pref}:{station_id} a pht:Station .
@@ -744,17 +744,17 @@ def get_station_dataset(station_id):
     if response_dataset and response_dataset["results"]["bindings"]:
         result = response_dataset["results"]["bindings"][0]
         if "theme" in result:
-            message += f"Data set theme: {result['theme']['values']}"
+            message += f"Data set theme: {result['theme']['value']}"
         if "pid" in result:
-            message += f"Data set identifier: {result['pid']['values']}"
+            message += f"Data set identifier: {result['pid']['value']}"
         if "license" in result:
-            message += f"Data set license: {result['theme']['license']}"
+            message += f"Data set license: {result['license']['value']}"
         if "right" in result:
-            message += f"Data set right: {result['right']['values']}"
+            message += f"Data set right: {result['right']['value']}"
         if "url" in result:
-            message += f"Data set access URL: {result['url']['values']}"
+            message += f"Data set access URL: {result['url']['value']}"
         if "char" in result:
-            message += f"Data set characteristic: {result['char']['values']}"
+            message += f"Data set characteristic: {result['char']['value']}"
 
     query_access_privacy = f"""
         SELECT * WHERE {{
@@ -1134,7 +1134,7 @@ def get_train_average(train_id: str) -> Tuple[int, str]:
                 visited[station] = {"start": start, "end": end}
         elapsed = []
         for station in visited:
-            start = current["time"]["value"]
+            start = current["start"]["value"]
             # artifact from testing
             if start.startswith("220"):
                 start = start[1:]
@@ -1151,7 +1151,7 @@ def get_train_average(train_id: str) -> Tuple[int, str]:
                     logging.warning(
                         "Date does not conform to any format")
 
-            end = current["time"]["value"]
+            end = current["end"]["value"]
             # artifact from testing
             if end.startswith("220"):
                 end = end[1:]
@@ -1182,7 +1182,7 @@ def get_train_average(train_id: str) -> Tuple[int, str]:
                 if station not in visited:
                     non_visited.append(station)
             if non_visited:
-                message += f"The following stations were scheduled but the train was not run on them: {' '.join(non_visited)}"
+                message += f"The following stations were scheduled but the train did not run on them (yet): {' '.join(non_visited)}"
 
     return 2, message
 
@@ -1210,7 +1210,7 @@ def get_station_rights(station_id: str) -> Tuple[int, str]:
     message = f"Rights for station {station_id}:"
     for i, item in enumerate(response["results"]["bindings"]):
         right = item["right"]["value"]
-        if i == len(response["results"]["bindings"]):
+        if i == len(response["results"]["bindings"]) - 1:
             message += f" {right}."
         else:
             message += f" {right},"
@@ -1345,7 +1345,7 @@ def get_upcomming_trains(station_id: str) -> Tuple[int, str]:
     message = f"Upcoming trains for station {station_id}:"
     for i, current in enumerate(response["results"]["bindings"]):
         train = current["train"]["value"]
-        if i == len(response["results"]["bindings"]):
+        if i == len(response["results"]["bindings"]) - 1:
             message += f" {train}."
         else:
             message += f" {train},"
@@ -1382,7 +1382,7 @@ def get_station_log(station_id: str) -> Tuple[int, str]:
     for i, current in enumerate(response["results"]["bindings"]):
         train = current["train"]["value"]
         log = current["log"]["value"]
-        if i == len(response["results"]["bindings"]):
+        if i == len(response["results"]["bindings"]) - 1:
             message += f" {train}: {log}."
         else:
             message += f" {train}: {log},"
@@ -1418,7 +1418,7 @@ def get_train_log(train_id: str) -> Tuple[int, str]:
     for i, current in enumerate(response["results"]["bindings"]):
         station = current["station"]["value"]
         log = current["log"]["value"]
-        if i == len(response["results"]["bindings"]):
+        if i == len(response["results"]["bindings"]) - 1:
             message += f" {station}: {log}."
         else:
             message += f" {station}: {log},"
@@ -1624,10 +1624,12 @@ def get_route(response: dict) -> Tuple[int, str]:
         step_station.extend([[step, station]])
 
     sorted_values = sorted(step_station, key=lambda c: c[0])
+
     message = ""
 
-    for i, station, step in enumerate(sorted_values):
-        if i == len(sorted_values):
+    # TODO: kick out doubles!
+    for i, (station, step) in enumerate(sorted_values):
+        if i == len(sorted_values) - 1:
             message += f" {station} ({step})."
         else:
             message += f" {station} ({step}) ->"
