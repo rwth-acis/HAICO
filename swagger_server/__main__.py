@@ -6,7 +6,7 @@ from swagger_server import encoder
 
 
 def main():
-    poll.start_polling(25)
+    # poll.start_polling(25)
     app = connexion.App(__name__, specification_dir='./swagger/')
     app.app.json_encoder = encoder.JSONEncoder
     app.app.url_map.strict_slashes = False
