@@ -21,12 +21,14 @@ def describe_usage(values: dict, title: str, train: bool, cpu: bool):
     """
     single_value = {}
     multi_value = {}
+    print(values)
     for key, item in values.items():
         if len(item) == 1:
             single_value[key] = item
         else:
             multi_value[key] = item
-
+    print(single_value)
+    print(multi_value)
     if train:
         piece = "station"
         where = "On"
@@ -49,7 +51,7 @@ def describe_usage(values: dict, title: str, train: bool, cpu: bool):
                 values.append(float(val))
             avg = (sum(values) / (len(values)))
             message += f"{where} {key} : {avg}{unit}. "
-
+    print(message)
     return message
 
 
@@ -109,8 +111,9 @@ def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bo
     """
     message = ""
     if cpu:
+        # print(response_cpu)
         title = f"CPU Usage in % for train {train_id}. "
-        message += describe_usage(order_values(response_mem, "station"),
+        message += describe_usage(order_values(response_cpu, "station"),
                                   title, True, True)
         # image_title_cpu = image_title = draw_usage(order_values(
         #     response_cpu, "station"), f"CPU Usage in % for train {train_id}", True)
@@ -306,7 +309,9 @@ def order_values(response: dict, target_str: str) -> dict:
     """
     values = {}
     tmp = response["results"]["bindings"]
+    print(tmp)
     for current in tmp:
+        print(current)
         target = current[target_str]["value"]
         date = current["time"]["value"]
 
@@ -333,4 +338,5 @@ def order_values(response: dict, target_str: str) -> dict:
             values[target] = [[converted_date, usage]]
         else:
             values[target].extend([[converted_date, usage]])
+    print(values)
     return values
