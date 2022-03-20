@@ -619,7 +619,7 @@ content-type: application/json
     "msg":"TestMessage",
     "botName": "TestBot",
     "channel": "TestChannel",
-    "intent": "all_stations",
+    "intent": "all_trains",
     "entities": {"trainID": {"value": "train2"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
@@ -693,7 +693,7 @@ content-type: application/json
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "get_performance",
-    "entities": {"trainID": {"value": "train4"}} ,
+    "entities": {"trainID": {"value": "train2"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
