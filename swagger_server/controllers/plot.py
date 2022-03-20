@@ -15,22 +15,64 @@ from PIL import Image
 matplotlib.use('Agg')
 
 
+def describe_usage(values: dict, title: str, train: bool, cpu: bool):
+    """
+     Temporary solution.
+    """
+    single_value = {}
+    multi_value = {}
+    for key, item in values.items():
+        if len(item) == 1:
+            single_value[key] = item
+        else:
+            multi_value[key] = item
+
+    if train:
+        piece = "station"
+        where = "On"
+    else:
+        piece = "train"
+        where = "By"
+    if cpu:
+        unit = "%"
+    else:
+        unit = "MB"
+    message = title
+    if single_value:
+        for key, item in single_value.items():
+            usage = item[0][1]
+            message += f"{where} {key} : {usage}{unit}. "
+    if multi_value:
+        for key, item in multi_value.items():
+            values = []
+            for date, val in item:
+                values.append(float(val))
+            avg = (sum(values) / (len(values)))
+            message += f"{where} {key} : {avg}{unit}. "
+
+    return message
+
+
 def plot_train_cpu(train_id: str, response: dict) -> Tuple[int, str]:
     """
         Plots the a train's CPU usage
         response: CPU usage response from blazegraph
         returns: success_code, base64 encoded png file or error message
     """
-    image_title = draw_usage(order_values(
-        response, "station"), f"CPU Usage in % for train {train_id}", True)
-    try:
-        with open(image_title, "rb") as png:
-            encoded_string = base64.b64encode(png.read())
-            return 2, encoded_string
-    except Exception:  # pylint: disable=broad-except
-        logging.error(
-            "The png file was not generated module plot function plot_train_cpu.")
-        return 0, "Something went wrong: The performance plot could not be generated"
+    title = f"CPU Usage in % for train {train_id}. "
+    message = describe_usage(order_values(
+        response, "station"), title, True, True)
+    return message
+    # image_title = draw_usage(order_values(
+    #     response, "station"), f"CPU Usage in % for train {train_id}", True)
+    # try:
+    #     with open(image_title, "rb") as png:
+    #         encoded_string = base64.b64encode(png.read())
+    #         return 2, encoded_string
+    # except Exception:  # pylint: disable=broad-except
+    #     logging.error(
+    #         "The png file was not generated module plot function plot_train_cpu.")
+    #     return 0, "Something went wrong: The performance plot could not be generated"
 
 
 def plot_train_mem(train_id: str, response: str) -> Tuple[int, str]:
@@ -39,17 +81,21 @@ def plot_train_mem(train_id: str, response: str) -> Tuple[int, str]:
         response: memory usage response from blazegraph
         returns: success_code, base64 encoded png file or error message
     """
-    image_title = draw_usage(order_values(
-        response, "station"), f"Memory Usage in MB for train {train_id}", True)
+    title = f"Memory Usage in MB for train {train_id}. "
+    message = describe_usage(order_values(
+        response, "station"), title, True, False)
+    return message
+    # image_title = draw_usage(order_values(
+    #     response, "station"), f"Memory Usage in MB for train {train_id}", True)
 
-    try:
-        with open(image_title, "rb") as png:
-            encoded_string = base64.b64encode(png.read())
-            return 2, encoded_string
-    except Exception:  # pylint: disable=broad-except
-        logging.error(
-            "The png file was not generated module plot function plot_train_mem.")
-        return 0, "Something went wrong: The performance plot could not be generated"
+    # try:
+    #     with open(image_title, "rb") as png:
+    #         encoded_string = base64.b64encode(png.read())
+    #         return 2, encoded_string
+    # except Exception:  # pylint: disable=broad-except
+    #     logging.error(
+    #         "The png file was not generated module plot function plot_train_mem.")
+    #     return 0, "Something went wrong: The performance plot could not be generated"
 
 
 def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bool, response_mem: bool) -> Tuple[int, str]:
@@ -61,46 +107,54 @@ def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bo
         response_mem: memory usage response from blazegraph
         returns: success_code, base64 encoded png file or error message
     """
+    message = ""
     if cpu:
-        image_title_cpu = image_title = draw_usage(order_values(
-            response_cpu, "station"), f"CPU Usage in % for train {train_id}", True)
+        title = f"CPU Usage in % for train {train_id}. "
+        message += describe_usage(order_values(response_mem, "station"),
+                                  title, True, True)
+        # image_title_cpu = image_title = draw_usage(order_values(
+        #     response_cpu, "station"), f"CPU Usage in % for train {train_id}", True)
 
     if mem:
-        image_title_mem = draw_usage(order_values(response_mem, "station"),
-                                     f"Memory Usage in MB for train {train_id}", True)
+        title = f"Memory Usage in MB for train {train_id}. "
+        message += describe_usage(order_values(response_mem, "station"),
+                                  title, True, False)
+        # image_title_mem = draw_usage(order_values(response_mem, "station"),
+        #                              f"Memory Usage in MB for train {train_id}", True)
 
     if not cpu and not mem:
         return 0, "No information about CPU and Memory Usage present."
 
-    if cpu and mem:
-        current_date = datetime.datetime.strftime(
-            datetime.datetime.now(), '%d%m%y%f')
-        image_title = f"{train_id}_performance_{current_date}.png"
-        images = [Image.open(x) for x in [image_title_mem, image_title_cpu]]
-        widths, heights = zip(*(i.size for i in images))
+    return 2, message
+    # if cpu and mem:
+    #     current_date = datetime.datetime.strftime(
+    #         datetime.datetime.now(), '%d%m%y%f')
+    #     image_title = f"{train_id}_performance_{current_date}.png"
+    #     images = [Image.open(x) for x in [image_title_mem, image_title_cpu]]
+    #     widths, heights = zip(*(i.size for i in images))
 
-        total_width = sum(widths)
-        max_height = max(heights)
+    #     total_width = sum(widths)
+    #     max_height = max(heights)
 
-        new_image = Image.new('RGB', (total_width, max_height))
+    #     new_image = Image.new('RGB', (total_width, max_height))
 
-        x_offset = 0
-        for image in images:
-            new_image.paste(image, (x_offset, 0))
-            x_offset += image.size[0]
+    #     x_offset = 0
+    #     for image in images:
+    #         new_image.paste(image, (x_offset, 0))
+    #         x_offset += image.size[0]
 
-        new_image.save(image_title)
+    #     new_image.save(image_title)
 
-    else:
-        image_title = image_title_cpu if cpu else image_title_mem
-    try:
-        with open(image_title, "rb") as png:
-            encoded_string = base64.b64encode(png.read())
-            return 2, encoded_string
-    except Exception:  # pylint: disable=broad-except
-        logging.error(
-            "The png file was not generated module plot function plot_train_performance.")
-        return 0, "Something went wrong: The performance plot could not be generated"
+    # else:
+    #     image_title = image_title_cpu if cpu else image_title_mem
+    # try:
+    #     with open(image_title, "rb") as png:
+    #         encoded_string = base64.b64encode(png.read())
+    #         return 2, encoded_string
+    # except Exception:  # pylint: disable=broad-except
+    #     logging.error(
+    #         "The png file was not generated module plot function plot_train_performance.")
+    #     return 0, "Something went wrong: The performance plot could not be generated"
 
 
 def plot_station_performance(station_id: str, cpu: str, mem: str, response_cpu: str, response_mem: str) -> Tuple[int, str]:
@@ -112,47 +166,55 @@ def plot_station_performance(station_id: str, cpu: str, mem: str, response_cpu: 
         response_mem: memory usage response from blazegraph
         returns: success_code, base64 encoded png file or error message
     """
+    message = ""
     if cpu:
-        image_title_cpu = draw_usage(order_values(response_cpu, "train"),
-                                     f"CPU Usage in % on station {station_id}", False)
+        title = f"CPU Usage in % for station {station_id}. "
+        message += describe_usage(order_values(response_cpu, "train"),
+                                  title, False, True)
+        # image_title_cpu = draw_usage(order_values(response_cpu, "train"),
+        #                              f"CPU Usage in % on station {station_id}", False)
 
     if mem:
-        image_title_mem = draw_usage(order_values(response_mem, "train"),
-                                     f"Memory Usage in MB on station {station_id}", False)
+        title = f"CPU Usage in % for station {station_id}. "
+        message += describe_usage(order_values(response_mem, "train"),
+                                  title, False, False)
+        # image_title_mem = draw_usage(order_values(response_mem, "train"),
+        #                              f"Memory Usage in MB on station {station_id}", False)
 
     if not cpu and not mem:
         return 0, "No information about CPU and Memory Usage present."
 
-    if cpu and mem:
-        current_date = datetime.datetime.strftime(
-            datetime.datetime.now(), '%d%m%y%f')
-        image_title = f"{station_id}_performance_{current_date}.png"
-        images = [Image.open(x) for x in [image_title_mem, image_title_cpu]]
-        widths, heights = zip(*(i.size for i in images))
+    return 2, message
+    # if cpu and mem:
+    #     current_date = datetime.datetime.strftime(
+    #         datetime.datetime.now(), '%d%m%y%f')
+    #     image_title = f"{station_id}_performance_{current_date}.png"
+    #     images = [Image.open(x) for x in [image_title_mem, image_title_cpu]]
+    #     widths, heights = zip(*(i.size for i in images))
 
-        total_width = sum(widths)
-        max_height = max(heights)
+    #     total_width = sum(widths)
+    #     max_height = max(heights)
 
-        new_image = Image.new('RGB', (total_width, max_height))
+    #     new_image = Image.new('RGB', (total_width, max_height))
 
-        x_offset = 0
-        for image in images:
-            new_image.paste(image, (x_offset, 0))
-            x_offset += image.size[0]
+    #     x_offset = 0
+    #     for image in images:
+    #         new_image.paste(image, (x_offset, 0))
+    #         x_offset += image.size[0]
 
-        new_image.save(image_title)
+    #     new_image.save(image_title)
 
-    else:
-        image_title = image_title_cpu if cpu else image_title_mem
+    # else:
+    #     image_title = image_title_cpu if cpu else image_title_mem
 
-    try:
-        with open(image_title, "rb") as png:
-            encoded_string = base64.b64encode(png.read())
-            return 2, encoded_string
-    except Exception:  # pylint: disable=broad-except
-        logging.error(
-            "The png file was not generated module plot function plot_station_performance.")
-        return 0, "Something went wrong: The performance plot could not be generated"
+    # try:
+    #     with open(image_title, "rb") as png:
+    #         encoded_string = base64.b64encode(png.read())
+    #         return 2, encoded_string
+    # except Exception:  # pylint: disable=broad-except
+    #     logging.error(
+    #         "The png file was not generated module plot function plot_station_performance.")
+    #     return 0, "Something went wrong: The performance plot could not be generated"
 
 
 def draw_usage(values: dict, plot_title: str, train: bool) -> str:

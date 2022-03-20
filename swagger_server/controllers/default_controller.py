@@ -402,11 +402,12 @@ def get_performance(json_input: dict) -> Tuple[dict, int]:
                     code_plot, encoded_pdf = plot.plot_station_performance(
                         station_id, cpu, mem, response_cpu, response_mem)
                     if code_plot == 2:
-                        return {
-                            "fileBody": str(encoded_pdf),
-                            "fileName": "station_performance",
-                            "fileType": "pdf"
-                        }, 200
+                        return {text: encoded_pdf, closeContext: true}
+                        # return {
+                        #     "fileBody": str(encoded_pdf),
+                        #     "fileName": "station_performance",
+                        #     "fileType": "pdf"
+                        # }, 200
                 return {text: message, closeContext: true}, 200
             if "trainID" in json_input._entities:
                 code_id, train_id = get_id(json_input, "trainID")
@@ -449,11 +450,12 @@ def get_performance(json_input: dict) -> Tuple[dict, int]:
                         code_plot, encoded_pdf = plot.plot_train_performance(
                             train_id, cpu, mem, response_cpu, response_mem)
                         if code_plot == 2:
-                            return {
-                                "fileBody": str(encoded_pdf),
-                                "fileName": "train_performance",
-                                "fileType": "png"
-                            }, 200
+                            return {text: encoded_pdf, closeContext: true}
+                            # return {
+                            #     "fileBody": str(encoded_pdf),
+                            #     "fileName": "train_performance",
+                            #     "fileType": "png"
+                            # }, 200
 
                     return {text: message, closeContext: true}, 200
 
