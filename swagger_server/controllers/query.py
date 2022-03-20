@@ -1086,7 +1086,7 @@ def get_train_average(train_id: str) -> Tuple[int, str]:
         runtime = False
         logging.error(
             "Query failed in module query function get_train_average query_runtime")
-    if not (cpu and mem and runtime):
+    if not cpu and not mem and not runtime:
         return 0, "Something went wrong querying the server."
     if cpu and not response_cpu["results"]["bindings"]:
         cpu = False
@@ -1094,7 +1094,7 @@ def get_train_average(train_id: str) -> Tuple[int, str]:
         mem = False
     if runtime and not response_runtime["results"]["bindings"]:
         runtime = False
-    if not (cpu and mem and runtime):
+    if not cpu and not mem and not runtime:
         return 1, "No average statistics found."
 
     # get average of cpu and memory usage
