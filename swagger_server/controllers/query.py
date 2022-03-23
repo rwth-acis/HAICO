@@ -437,7 +437,6 @@ def get_current_station(train_id: str) -> Tuple[int, str]:
         SELECT ?station WHERE {{
             {ont_pref}:{train_id} a pht:Train .
             {ont_pref}:{train_id} pht:execution ?exec .
-            ?exec a pht:TrainExecution .
             ?exec pht:event ?ev .
             ?ev a pht:StartedRunningAtStationEvent .
             ?ev pht:station ?station .
