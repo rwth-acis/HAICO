@@ -389,7 +389,7 @@ def help_text(json_input: dict) -> Tuple[dict, int]:
             At which station is train train123 at the moment?
             Which train is currently at station station6 ? 
     """
-    return {text: render_template("hello_buttons.json.jinja"), closeContext: true}, 200
+    return {"blocks": render_template("hello_buttons.json.jinja"), closeContext: true}, 200
 
 
 def get_performance(json_input: dict) -> Tuple[dict, int]:
