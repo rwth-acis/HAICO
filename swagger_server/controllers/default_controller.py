@@ -516,41 +516,46 @@ def button(json_input: dict) -> Tuple[dict, int]:
     print(json_input)
     if "actions" in json_input and "action_id" in json_input["actions"]:
         action_id = json_input["actions"]["action_id"]
+        channel_id = ""
+        if "channel" in json_input:
+            channel_id = json_input["channel"]
         if action_id == "info_about_stations":
-            return {"blocks": render_template("station_selection.json.jinja")}
+            return {"channel_id": channel_id, "blocks": render_template("station_selection.json.jinja")}
         elif action_id == "info_about_trains":
-            return {"blocks": render_template("train_selection.json.jinja")}
+            return {"channel_id": channel_id, "blocks": render_template("train_selection.json.jinja")}
         elif action_id == "information":
             return
         elif action_id == "all_stations":
             _, message = query.get_all("Station")
-            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
         elif action_id == "all_trains":
             _, message = query.get_all("Train")
-            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
+        elif action_id == "request_train":
+            return {"channel_id": channel_id, "blocks": render_template("route_selector.json.jinja")}
         elif action_id == "station_selection":
             station_id = json_input["actions"]["selected_option"]["value"]
             station_name = json_input["actions"]["selected_option"]["text"]["text"]
-            return {"blocks": render_template("station.json.jinja", station_id=station_id, station_name=station_name)}
+            return {"channel_id": channel_id, "blocks": render_template("station.json.jinja", station_id=station_id, station_name=station_name)}
         elif action_id == "train_selection":
             train_id = json_input["actions"]["selected_option"]["value"]
             train_name = json_input["actions"]["selected_option"]["text"]["text"]
-            return {"blocks": render_template("train.json.jinja", train_id=train_id, train_name=train_name)}
+            return {"channel_id": channel_id, "blocks": render_template("train.json.jinja", train_id=train_id, train_name=train_name)}
         elif action_id in station_info:
             station_id = json_input["actions"]["selected_option"]["value"]
             _, message = station_info[action_id](station_id, "Station")
-            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
         elif action_id in station_exec:
             station_id = json_input["actions"]["selected_option"]["value"]
             _, message = station_exec[action_id](station_id, "Station")
-            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
         elif action_id in train_info:
             train_id = json_input["actions"]["selected_option"]["value"]
             _, message = train_info[action_id](train_id, "Train")
-            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
         elif action_id in train_run:
             train_id = json_input["actions"]["selected_option"]["value"]
             _, message = train_run[action_id](train_id, "Train")
-            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
 
     return
