@@ -1,0 +1,101 @@
+{
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "🚉 So you want to know more about station {{ station_name }}!"
+			}
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "ℹ️ General info",
+						"emoji": true
+					},
+					"value": {{ train_id }},
+					"action_id": "train_info"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🚉 Current station",
+						"emoji": true
+					},
+					"value": {{ train_id }},
+					"action_id": "current_station"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🗺 Future route",
+						"emoji": true
+					},
+					"value": {{ train_id }},
+					"action_id": "future_route"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "📈 Average performance ",
+						"emoji": true
+					},
+					"value": {{ train_id }},
+					"action_id": "train_performance_avg"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "⛔️ Errors"
+					},
+					"value": {{ train_id }},
+					"action_id": "train_errors"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🗄 Model"
+					},
+					"value": {{ train_id }},
+					"action_id": "train_model"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "📚 Logs"
+					},
+					"value": {{ train_id }},
+					"action_id": "train_log"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "👷 Creator"
+					},
+					"value": {{ train_id }},
+					"action_id": "train_creator"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🤵 Publisher"
+					},
+					"value": {{ train_id }},
+					"action_id": "train_publisher"
+				}
+			]
+		}
+	]
+}

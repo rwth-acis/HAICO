@@ -216,6 +216,29 @@ paths:
         "500":
           description: "Internal Server error."
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /buttonIntent:
+    post:
+      description: "Responds when a button is pressed."
+      operationId: "button"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "json_input"
+          description: ""
+          required: false
+          schema:
+            $ref: "#/definitions/SlackReq"
+      responses:
+        "200":
+          description: "OK."
+          schema:
+            $ref: "#/definitions/SBFRes"
+        "500":
+          description: "Internal Server error."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
 definitions:
   SBF:
     type: "object"
@@ -273,3 +296,15 @@ definitions:
         type: "string"
       fileType:
         type: "string"
+  SlackReq:
+    type: "object"
+    properties:
+      user:
+        type: "object"
+        properties: {}
+      trigger_id:
+        type: "string"
+      response_url:
+        type: "string"
+      actions:
+        type: "array"

@@ -61,6 +61,7 @@
 - which trains at station [station1]{"entity": "stationID", "value": "station1"} ?
 - what trains are currently at station [Private_TEST]{"entity": "stationID", "value": "Private_TEST"}?
 - Which trains are at station [UKAACHEN]{"entity": "stationID", "value": "UKAACHEN"} at the moment?
+- What train is at station  [station_aachen]{"entity": "stationID", "value": "station_aachen"}  at the moment?
 ## intent:station_error
 - errors at station [station3]{"entity": "stationID", "value": "station3"}
 - get all errors for station [station3]{"entity": "stationID", "value": "station3"}
@@ -191,17 +192,12 @@
 - Show all errors train [hjklhjkl]{"entity": "trainID", "value": "hjklhjkl"}
 ## intent:current_station
 - where is train [Train3]{"entity": "trainID", "value": "Train3"}
-- where train [train3]{"entity": "trainID", "value": "train3"}
-- station train [train000]{"entity": "trainID", "value": "train000"}
+- where is train [train3]{"entity": "trainID", "value": "train3"} now?
 - Where is train [train0]{"entity": "trainID", "value": "train0"} ?
 - Where is train [trainPP]{"entity": "trainID", "value": "trainPP"} currently ?
 - where is the train [hjklhjkl]{"entity": "trainID", "value": "hjklhjkl"} at the moment ?
 - at which station is train [Train3]{"entity": "trainID", "value": "Train3"}
-- at which station the train [trainPP]{"entity": "trainID", "value": "trainPP"} currently ?
 - At which station train [hjklhjkl]{"entity": "trainID", "value": "hjklhjkl"} at the moment ?
-- which station train [train1]{"entity": "trainID", "value": "train1"}
-- what station train [train7]{"entity": "trainID", "value": "train7"}
-- station train [trainAL]{"entity": "trainID", "value": "trainAL"} now
 ## intent:get_performance
 - get performance for train [train1]{"entity": "trainID", "value": "train1"}
 - show performance for train [train2]{"entity": "trainID", "value": "train2"}
@@ -229,3 +225,19 @@
 - overall performance station [station7]{"entity": "stationID", "value": "station7"}
 - show me the performance statistics for station [UKAACHEN]{"entity": "UKAACHEN", "value": "station7"}
 - usage on station [Private_TEST]{"entity": "stationID", "value": "Private_TEST"}
+## intent:all_stations
+- show me all stations
+- list all stations
+- get all stations
+- what stations are there
+- show all stations
+- Show me all stations please
+- get a list of all stations
+## intent:all_trains
+- show me all trains
+- list all trains
+- get all trains
+- which trains are there
+- show all trains
+- show me all trains please
+- get a list of all trains

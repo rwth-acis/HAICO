@@ -12,7 +12,7 @@ import connexion
 #from swagger_server import util
 from swagger_server.models.sbf import SBF  # noqa: E501
 #from swagger_server.models.sbf_res_img import SBFResImg  # noqa: E501
-
+from flask import render_template
 from . import plot, query, request_train
 
 # for me because I sometimes forget the quotation marks
@@ -20,6 +20,46 @@ text = "text"  # pylint: disable=C0103
 closeContext = "closeContext"  # pylint: disable=C0103
 true = "true"  # pylint: disable=C0103
 
+station_info = {
+    "station_owner": query.get_station_owner,
+    "station_responsible": query.get_station_responsible,
+    "station_cert": query.get_certificate,
+    "station_title": query.get_title,
+    "station_description": query.get_description,
+    "station_rights": query.get_station_rights,
+    "station_loc": query.get_location,
+    "comp_env": query.get_comp_env,
+    "station_dataset": query.get_station_dataset
+}
+
+station_exec = {
+    "upcomming_trains": query.get_upcomming_trains,
+    "current_at_station": query.get_current_trains,
+    "station_error": query.get_station_errors,
+    "station_log": query.get_station_log,
+    "station_rejections": query.get_station_rejections
+}
+
+train_info = {
+    "train_creator": query.get_train_creator,
+    "train_publisher": query.get_train_publisher,
+    "train_title": query.get_title,
+    "train_version": query.get_train_version,
+    "train_description": query.get_description,
+    "train_cert": query.get_certificate,
+    "train_model": query.get_train_model
+}
+
+train_run = {
+    "planned_route": query.get_full_route,
+    "future_route": query.get_future_route,
+    "past_route": query.get_past_route,
+    "train_error": query.get_train_errors,
+    "train_log": query.get_train_log,
+    "train_rejection": query.get_train_rejections,
+    "current_station": query.get_current_station,
+    "train_average": query.get_train_average
+}
 
 # def validate(check_id):
 #     return check_id.isalnum()
@@ -99,58 +139,21 @@ def station_information(json_input: dict) -> Tuple[dict, int]:
     code_id, station_id = get_id(json_input, "stationID")
     if code_id != 2:
         return {text: f"Something went wrong processing your request: {station_id}", closeContext: true}, 200
-    if intent == "station_responsible":
-        _, message = query.get_station_role(station_id, "Responsible")
-    elif intent == "station_owner":
-        _, message = query.get_station_role(station_id, "Owner")
-    elif intent == "station_cert":
-        _, message = query.get_certificate(station_id, "Station")
-    elif intent == "station_title":
-        _, message = query.get_title(station_id, "Station")
-    elif intent == "station_description":
-        _, message = query.get_description(station_id, "Station")
-    elif intent == "station_rights":
-        _, message = query.get_station_rights(station_id)
-    elif intent == "station_loc":
-        code_loc, message_loc = query.get_location(station_id)
-        if code_loc == 2:
-            message = f"🏡 Location for station {station_id}: {message_loc}"
-        else:
-            message = message_loc
-    elif intent == "comp_env":
-        _, message = query.get_comp_env(station_id)
-    elif intent == "station_dataset":
-        _, message = query.get_station_dataset(station_id)
+    if intent in station_info:
+        code_success, message = station_info[intent](station_id, "Station")
+        if intent == "station_loc" and code_success == 2:
+            message = f"🏡 Location for station {station_id}: {message}"
+
     elif intent == "station_info":
         message = f"Information for station {station_id}: "
-        code_owner, message_owner = query.get_station_role(station_id, "Owner")
-        if code_owner == 2:
-            message += message_owner
-        code_responsible, message_responsible = query.get_station_role(
-            station_id, "Responsible")
-        if code_responsible == 2:
-            message += message_responsible
-        code_description, message_description = query.get_description(
-            station_id, "Station")
-        if code_description == 2:
-            message += message_description
-        code_title, message_title = query.get_station_role(
-            station_id, "Station")
-        if code_title == 2:
-            message += message_title
-        code_rights, message_rights = query.get_station_rights(station_id)
-        if code_rights == 2:
-            message += message_rights
-        code_location, message_location = query.get_location(station_id)
-        if code_location == 2:
-            message += message_location
-        code_cert, message_cert = query.get_certificate(station_id, "Station")
-        if code_cert == 2:
-            message += message_cert
-        code_dataset, message_dataset = query.get_station_dataset(station_id)
-        if code_dataset == 2:
-            message += message_dataset
-        if code_cert != 2 and code_dataset != 2 and code_description != 2 and code_location != 2 and code_owner != 2 and code_responsible != 2 and code_rights != 2 and code_title != 2:
+        one_datapoint = False
+        for func in station_info.items():
+            code_success, sub_message = func(station_id, "Station")
+            if code_success == 2:
+                one_datapoint = True
+                message += sub_message
+
+        if not one_datapoint:
             return {text: f"No information for station {station_id} found.", closeContext: true}, 200
     else:
         logging.error("Intent not recognized in station_information")
@@ -175,16 +178,8 @@ def station_execution(json_input: dict) -> Tuple[dict, int]:
     code_id, station_id = get_id(json_input, "stationID")
     if code_id != 2:
         return {text: f"Something went wrong processing your request: {station_id}", closeContext: true}, 200
-    elif intent == "upcomming_trains":
-        _, message = query.get_upcomming_trains(station_id)
-    elif intent == "current_at_station":
-        _, message = query.get_current_trains(station_id)
-    elif intent == "station_error":
-        _, message = query.get_station_errors(station_id)
-    elif intent == "station_log":
-        _, message = query.get_station_log(station_id)
-    elif intent == "station_rejections":
-        _, message = query.get_station_rejections(station_id)
+    if intent in station_exec:
+        _, message = station_exec[intent](station_id, "Station")
     else:
         logging.error("Intent not recognized in station_execution")
         return {text: "Something went wrong processing your request: Unrecognized Intent.", closeContext: true}, 200
@@ -208,51 +203,17 @@ def train_information(json_input: dict) -> Tuple[dict, int]:
     if code_id != 2:
         return {text: f"Something went wrong processing your request: {train_id}", closeContext: true}, 200
     # TODO publication date
-    if intent == "train_title":
-        _, message = query.get_title(train_id, "Train")
-    elif intent == "train_version":
-        _, message = query.get_train_version(train_id)
-    elif intent == "train_creator":
-        _, message = query.get_train_role(train_id, "creator")
-    elif intent == "train_publisher":
-        _, message = query.get_train_role(train_id, "publisher")
-    elif intent == "train_cert":
-        _, message = query.get_certificate(train_id, "Train")
-    if intent == "train_model":
-        _, message = query.get_train_model(train_id)
+    if intent in train_info:
+        _, message = train_info[intent](train_id, "Train")
     elif intent == "train_info":
         message = f"Information for train {train_id}: "
-        code_creator, message_creator = query.get_train_role(
-            train_id, "creator")
-        if code_creator == 2:
-            message += message_creator
-        code_publisher, message_publisher = query.get_train_role(
-            train_id, "publisher")
-        if code_publisher == 2:
-            message += message_publisher
-        # code_source, message_source = query.
-        # if code_creator == 2:
-        #     message += message_source
-        code_description, message_description = query.get_description(
-            train_id, "Train")
-        if code_description == 2:
-            message += message_description
-        code_title, message_title = query.get_title(train_id, "Train")
-        if code_title == 2:
-            message += message_title
-        code_version, message_version = query.get_train_version(train_id)
-        if code_version == 2:
-            message += message_version
-        #code_pubdate, message_pubdate
-        # if code_pubdate == 2:
-        #     message += message_pubdate
-        code_cert, message_cert = query.get_certificate(train_id, "Train")
-        if code_cert == 2:
-            message += message_cert
-        code_model, message_model = query.get_train_model(train_id)
-        if code_model == 2:
-            message += message_model
-        if code_cert != 2 and code_creator != 2 and code_description != 2 and code_model != 2 and code_publisher != 2 and code_title != 2 and code_version != 2:  # and code_source != 2 and code_pubdate != 2
+        one_datapoint = False
+        for func in train_info.items():
+            code_success, sub_message = func(train_id, "Train")
+            if code_success == 2:
+                one_datapoint = True
+                message += sub_message
+        if not one_datapoint:
             return {text: f"No information for train {train_id} found.", closeContext: true}, 200
     else:
         logging.error("Intent not recognized in train_information")
@@ -277,25 +238,8 @@ def train_runtime(json_input: dict) -> Tuple[dict, int]:
     if code_id != 2:
         return {text: f"Something went wrong processing your request: {train_id}", closeContext: true}, 200
     # TODO  comp env seperate?
-    elif intent == "planned_route":
-        _, message = query.get_full_route(train_id)
-    elif intent == "future_route":
-        _, message = query.get_future_route(train_id)
-    elif intent == "past_route":
-        _, message = query.get_past_route(train_id)
-    elif intent == "train_last_started_run":
-        # TODO
-        return
-    elif intent == "train_error":
-        _, message = query.get_train_errors(train_id)
-    elif intent == "train_log":
-        _, message = query.get_train_log(train_id)
-    elif intent == "train_rejection":
-        _, message = query.get_train_rejections(train_id)
-    elif intent == "current_station":
-        _, message = query.get_current_station(train_id)
-    elif intent == "train_average":
-        _, message = query.get_train_average(train_id)
+    if intent in train_run:
+        _, message = train_run[intent](train_id)
     else:
         logging.error("Intent not recognized in train_runtimecution")
         return {text: "Something went wrong processing your request: Unrecognized Intent.", closeContext: true}, 200
@@ -373,7 +317,7 @@ def help_text(json_input: dict) -> Tuple[dict, int]:
             At which station is train train123 at the moment?
             Which train is currently at station station6 ? 
     """
-    return {text: message, closeContext: true}, 200
+    return {text: render_template("hello_buttons.json.jinja"), closeContext: true}, 200
 
 
 def get_performance(json_input: dict) -> Tuple[dict, int]:
@@ -462,3 +406,50 @@ def get_performance(json_input: dict) -> Tuple[dict, int]:
         else:
             logging.error("Intent not recognized in get_performance.")
     return {text: "Something went wrong: Intent not recognized", closeContext: true}, 200
+
+
+def button(json_input: dict) -> Tuple[dict, int]:
+    """
+        Handles button interactions
+    """
+    print(json_input)
+    if "actions" in json_input and "action_id" in json_input["actions"]:
+        action_id = json_input["actions"]["action_id"]
+        if action_id == "info_about_stations":
+            return {"blocks": render_template("station_selection.json.jinja")}
+        elif action_id == "info_about_trains":
+            return {"blocks": render_template("train_selection.json.jinja")}
+        elif action_id == "information":
+            return
+        elif action_id == "all_stations":
+            _, message = query.get_all("Station")
+            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+        elif action_id == "all_trains":
+            _, message = query.get_all("Train")
+            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+        elif action_id == "station_selection":
+            station_id = json_input["actions"]["selected_option"]["value"]
+            station_name = json_input["actions"]["selected_option"]["text"]["text"]
+            return {"blocks": render_template("station.json.jinja", station_id=station_id, station_name=station_name)}
+        elif action_id == "train_selection":
+            train_id = json_input["actions"]["selected_option"]["value"]
+            train_name = json_input["actions"]["selected_option"]["text"]["text"]
+            return {"blocks": render_template("train.json.jinja", train_id=train_id, train_name=train_name)}
+        elif action_id in station_info:
+            station_id = json_input["actions"]["selected_option"]["value"]
+            _, message = station_info[action_id](station_id, "Station")
+            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+        elif action_id in station_exec:
+            station_id = json_input["actions"]["selected_option"]["value"]
+            _, message = station_exec[action_id](station_id, "Station")
+            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+        elif action_id in train_info:
+            train_id = json_input["actions"]["selected_option"]["value"]
+            _, message = train_info[action_id](train_id, "Train")
+            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+        elif action_id in train_run:
+            train_id = json_input["actions"]["selected_option"]["value"]
+            _, message = train_run[action_id](train_id, "Train")
+            return {"blocks": render_template("simple_text.json.jinja", message=message)}
+
+    return

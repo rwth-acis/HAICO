@@ -1,37 +1,13 @@
 {
-	"type": "modal",
-	"title": {
-		"type": "plain_text",
-		"text": "🚂 Request a new train",
-		"emoji": true
-	},
-	"submit": {
-		"type": "plain_text",
-		"text": "Submit",
-		"emoji": true
-	},
-	"close": {
-		"type": "plain_text",
-		"text": "Cancel",
-		"emoji": true
-	},
 	"blocks": [
 		{
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "Please note: currently you can only select a train route. \n Requesting a different train than the default is not yet supported."
-			}
-		},
-		{
-			"type": "input",
-			"element": {
-				"type": "multi_static_select",
-				"placeholder": {
-					"type": "plain_text",
-					"text": "Select options",
-					"emoji": true
-				},
+				"text": "Please select a station."
+			},
+			"accessory": {
+				"type": "radio_buttons",
 				"options": [
 					{
 						"text": {
@@ -39,7 +15,7 @@
 							"text": "Bruegel",
 							"emoji": true
 						},
-						"value": "value-0"
+						"value": "station_bruegel"
 					},
 					{
 						"text": {
@@ -47,7 +23,7 @@
 							"text": "Privat-Weber",
 							"emoji": true
 						},
-						"value": "value-1"
+						"value": "station_privat-weber"
 					},
 					{
 						"text": {
@@ -55,7 +31,7 @@
 							"text": "Privat-TEST",
 							"emoji": true
 						},
-						"value": "value-2"
+						"value": "station_privat-test"
 					},
 					{
 						"text": {
@@ -63,7 +39,7 @@
 							"text": "Private-Weber2",
 							"emoji": true
 						},
-						"value": "value-3"
+						"value": "station_privat-weber2"
 					},
 					{
 						"text": {
@@ -71,7 +47,7 @@
 							"text": "Private-Welten",
 							"emoji": true
 						},
-						"value": "value-4"
+						"value": "station_privat-welten"
 					},
 					{
 						"text": {
@@ -79,7 +55,7 @@
 							"text": "HSMW",
 							"emoji": true
 						},
-						"value": "value-5"
+						"value": "station_HSMW"
 					},
 					{
 						"text": {
@@ -87,7 +63,7 @@
 							"text": "Melanoma Station",
 							"emoji": true
 						},
-						"value": "value-6"
+						"value": "station_melanoma"
 					},
 					{
 						"text": {
@@ -95,7 +71,7 @@
 							"text": "MDS Station",
 							"emoji": true
 						},
-						"value": "value-7"
+						"value": "station_mds"
 					},
 					{
 						"text": {
@@ -103,15 +79,28 @@
 							"text": "PHT MDS Leipzig",
 							"emoji": true
 						},
-						"value": "value-8"
-					},
+						"value": "station_pht_leipzig"
+					}
+				],
+				"action_id": "station_selection_1"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": " "
+			},
+			"accessory": {
+				"type": "radio_buttons",
+				"options": [
 					{
 						"text": {
 							"type": "plain_text",
 							"text": "PHT IMISE LEIPZIG",
 							"emoji": true
 						},
-						"value": "value-9"
+						"value": "station_imise_leipzig"
 					},
 					{
 						"text": {
@@ -119,7 +108,7 @@
 							"text": "Station-UKA",
 							"emoji": true
 						},
-						"value": "value-10"
+						"value": "station_uka"
 					},
 					{
 						"text": {
@@ -127,7 +116,7 @@
 							"text": "Station-UKK",
 							"emoji": true
 						},
-						"value": "value-11"
+						"value": "station_ukk"
 					},
 					{
 						"text": {
@@ -135,7 +124,7 @@
 							"text": "Station-UMG",
 							"emoji": true
 						},
-						"value": "value-12"
+						"value": "station_umg"
 					},
 					{
 						"text": {
@@ -143,7 +132,7 @@
 							"text": "Station-UMG_temp",
 							"emoji": true
 						},
-						"value": "value-13"
+						"value": "station_umg_tmp"
 					},
 					{
 						"text": {
@@ -151,7 +140,7 @@
 							"text": "aachenbeeck",
 							"emoji": true
 						},
-						"value": "value-14"
+						"value": "station_aachenbeeck"
 					},
 					{
 						"text": {
@@ -159,15 +148,10 @@
 							"text": "aachenmenzel",
 							"emoji": true
 						},
-						"value": "value-15"
+						"value": "station_aachenmenzel"
 					}
 				],
-				"action_id": "multi_static_select-action"
-			},
-			"label": {
-				"type": "plain_text",
-				"text": "Please select a train route:",
-				"emoji": true
+				"action_id": "station_selection_2"
 			}
 		}
 	]

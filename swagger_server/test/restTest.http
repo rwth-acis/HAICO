@@ -1,5 +1,48 @@
 #Examples to be used with the VS Code extension REST Client
+POST http://localhost:8081/api/buttonIntent HTTP/1.1
+content-type: application/json
 
+{
+	"type": "block_actions",
+	"user": {
+		"id": "U01DZF7FBAA",
+		"username": "julia.kunz",
+		"name": "julia.kunz",
+		"team_id": "T7VHTQVUH"
+	},
+	"api_app_id": "A02",
+	"token": "Shh_its_a_seekrit",
+	"container": {
+		"type": "message",
+		"text": "The contents of the original message where the action originated"
+	},
+	"trigger_id": "12466734323.1395872398",
+	"team": {
+		"id": "T7VHTQVUH",
+		"domain": "rwth-acis"
+	},
+	"enterprise": null,
+	"is_enterprise_install": false,
+	"state": {
+		"values": {}
+	},
+	"response_url": "https://www.postresponsestome.com/T123567/1509734234",
+	"actions": [
+		{
+			"type": "button",
+			"block_id": "eA9",
+			"action_id": "zgt7h",
+			"text": {
+				"type": "plain_text",
+				"text": "Farmhouse",
+				"emoji": true
+			},
+			"value": "click_me_123",
+			"action_ts": "1652130852.559563"
+		}
+	]
+}
+###
 POST http://localhost:8081/api/user HTTP/1.1
 content-type: application/json
 

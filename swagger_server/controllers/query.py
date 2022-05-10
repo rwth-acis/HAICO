@@ -153,7 +153,7 @@ def get_description(target_id: str, piece: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_location(station_id: str) -> Tuple[int, str]:
+def get_location(station_id: str, piece: str = None) -> Tuple[int, str]:
     """
         Queries blazegraph server for a station's location
         station_id: station ID string
@@ -176,7 +176,7 @@ def get_location(station_id: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_comp_env(station_id: str) -> Tuple[int, str]:
+def get_comp_env(station_id: str, piece: str = None) -> Tuple[int, str]:
     """
         Queries blazegraph server for a station's computational environment
         station_id: station ID string
@@ -269,69 +269,139 @@ def get_all(piece: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_station_role(station_id: str, role: str) -> Tuple[int, str]:
+def get_station_owner(station_id: str, owner: str) -> Tuple[int, str]:
     """
-        Queries blazegraph server for a station role
+        Queries blazegraph server for a station owner
         station_id: station ID string
-        role: Owner or Responsible
+        owner: Owner or Responsible
         returns: success_code, information as string or error_message
     """
     query_string = f"""
-        SELECT ?role ?name WHERE{{
+        SELECT ?owner ?name WHERE{{
             {ont_pref}:{station_id} a pht:Station .
-            {ont_pref}:{station_id} pht:station{role} ?role .
-            ?role foaf:name ?name .
+            {ont_pref}:{station_id} pht:station{owner} ?owner .
+            ?owner foaf:name ?name .
         }}
     """
     response = blazegraph_query(query_string)
     if not response:
-        logging.error("Query failed in module query function get_station_role")
+        logging.error(
+            "Query failed in module query function get_station_owner")
         return 0, "Something went wrong querying the server."
     if not response["results"]["bindings"]:
-        return 1, f"No {role} for station {station_id} found."
+        return 1, f"No {owner} for station {station_id} found."
 
-    message = f"👷 {role} for station {station_id}: "
+    message = f"👷 {owner} for station {station_id}: "
     for i, item in enumerate(response["results"]["bindings"]):
-        role = item["role"]["value"]
+        owner = item["owner"]["value"]
         name = item["name"]["value"]
         if i == len(response["results"]["bindings"]) - 1:
-            message += f" {name} ({role})."
+            message += f" {name} ({owner})."
         else:
-            message += f" {name} ({role}),"
+            message += f" {name} ({owner}),"
     return 2, message
 
 
-def get_train_role(train_id: str, role: str) -> Tuple[int, str]:
+def get_station_responsible(station_id: str, responsible: str) -> Tuple[int, str]:
     """
-        Queries blazegraph server for a train's role
-        train_id: train ID string
-        role: publisher or creator
+        Queries blazegraph server for a station responsible
+        station_id: station ID string
+        responsible: Owner or Responsible
         returns: success_code, information as string or error_message
     """
     query_string = f"""
-        SELECT ?role ?name WHERE {{
-            {ont_pref}:{train_id} a pht:Train .
-            {ont_pref}:{train_id} pht:{role} ?role .
-            ?role foaf:name ?name . 
+        SELECT ?responsible ?name WHERE{{
+            {ont_pref}:{station_id} a pht:Station .
+            {ont_pref}:{station_id} pht:station{responsible} ?responsible .
+            ?responsible foaf:name ?name .
         }}
     """
     response = blazegraph_query(query_string)
     if not response:
-        logging.error("Query failed in module query function get_train_role")
+        logging.error(
+            "Query failed in module query function get_station_responsible")
         return 0, "Something went wrong querying the server."
     if not response["results"]["bindings"]:
-        return 1, f"No {role} for train {train_id} found."
-    # max one publisher
-    if role == "publisher":
-        return 2, f"👷 {role} for train {train_id}: {response['results']['bindings'][0]['name']['value']} ({response['results']['bindings'][0]['role']['value']})"
-    message = f"{role} for train {train_id}: "
+        return 1, f"No {responsible} for station {station_id} found."
+
+    message = f"👷 {responsible} for station {station_id}: "
     for i, item in enumerate(response["results"]["bindings"]):
-        role = item["role"]["value"]
+        responsible = item["responsible"]["value"]
         name = item["name"]["value"]
         if i == len(response["results"]["bindings"]) - 1:
-            message += f" {name} ({role})."
+            message += f" {name} ({responsible})."
         else:
-            message += f" {name} ({role}),"
+            message += f" {name} ({responsible}),"
+    return 2, message
+
+
+def get_train_creator(train_id: str, creator: str) -> Tuple[int, str]:
+    """
+        Queries blazegraph server for a train's creator
+        train_id: train ID string
+        creator: publisher or creator
+        returns: success_code, information as string or error_message
+    """
+    query_string = f"""
+        SELECT ?creator ?name WHERE {{
+            {ont_pref}:{train_id} a pht:Train .
+            {ont_pref}:{train_id} pht:{creator} ?creator .
+            ?creator foaf:name ?name . 
+        }}
+    """
+    response = blazegraph_query(query_string)
+    if not response:
+        logging.error(
+            "Query failed in module query function get_train_creator")
+        return 0, "Something went wrong querying the server."
+    if not response["results"]["bindings"]:
+        return 1, f"No {creator} for train {train_id} found."
+    # max one publisher
+    if creator == "publisher":
+        return 2, f"👷 {creator} for train {train_id}: {response['results']['bindings'][0]['name']['value']} ({response['results']['bindings'][0]['creator']['value']})"
+    message = f"{creator} for train {train_id}: "
+    for i, item in enumerate(response["results"]["bindings"]):
+        creator = item["creator"]["value"]
+        name = item["name"]["value"]
+        if i == len(response["results"]["bindings"]) - 1:
+            message += f" {name} ({creator})."
+        else:
+            message += f" {name} ({creator}),"
+    return 2, message
+
+
+def get_train_publisher(train_id: str, publisher: str) -> Tuple[int, str]:
+    """
+        Queries blazegraph server for a train's publisher
+        train_id: train ID string
+        publisher: publisher or creator
+        returns: success_code, information as string or error_message
+    """
+    query_string = f"""
+        SELECT ?publisher ?name WHERE {{
+            {ont_pref}:{train_id} a pht:Train .
+            {ont_pref}:{train_id} pht:{publisher} ?publisher .
+            ?publisher foaf:name ?name . 
+        }}
+    """
+    response = blazegraph_query(query_string)
+    if not response:
+        logging.error(
+            "Query failed in module query function get_train_publisher")
+        return 0, "Something went wrong querying the server."
+    if not response["results"]["bindings"]:
+        return 1, f"No {publisher} for train {train_id} found."
+    # max one publisher
+    if publisher == "publisher":
+        return 2, f"👷 {publisher} for train {train_id}: {response['results']['bindings'][0]['name']['value']} ({response['results']['bindings'][0]['publisher']['value']})"
+    message = f"{publisher} for train {train_id}: "
+    for i, item in enumerate(response["results"]["bindings"]):
+        publisher = item["publisher"]["value"]
+        name = item["name"]["value"]
+        if i == len(response["results"]["bindings"]) - 1:
+            message += f" {name} ({publisher})."
+        else:
+            message += f" {name} ({publisher}),"
     return 2, message
 
 
@@ -427,7 +497,7 @@ def get_running_trains() -> Tuple[int, str]:
     return 2, message
 
 
-def get_current_station(train_id: str) -> Tuple[int, str]:
+def get_current_station(train_id: str, piece: str = None) -> Tuple[int, str]:
     """
         Queries blazegraph server for at what station a train is currently at
         train_id: train ID str
@@ -459,7 +529,7 @@ def get_current_station(train_id: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_current_trains(station_id: str) -> Tuple[int, str]:
+def get_current_trains(station_id: str, piece: str = None) -> Tuple[int, str]:
     """
         Queries blazegraph server for which train is currently at a station
         station_id: station ID str
@@ -500,7 +570,7 @@ def get_current_trains(station_id: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_station_errors(station_id: str) -> Tuple[int, str]:
+def get_station_errors(station_id: str, piece: str = None) -> Tuple[int, str]:
     """
         Queries blazegraph server for which errors occured at a station
         station_id: station ID str
@@ -534,7 +604,7 @@ def get_station_errors(station_id: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_train_errors(train_id: str) -> Tuple[int, str]:
+def get_train_errors(train_id: str, piece: str = None) -> Tuple[int, str]:
     """
         Queries blazegraph server for which errors occured at a train
         train_id: train ID str
@@ -566,7 +636,7 @@ def get_train_errors(train_id: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_train_rejections(train_id: str) -> Tuple[int, str]:
+def get_train_rejections(train_id: str, piece: str = None) -> Tuple[int, str]:
     """
         Queries blazegraph server for which stations rejected a given train
         train_id: train ID str
@@ -599,7 +669,7 @@ def get_train_rejections(train_id: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_station_rejections(station_id: str) -> Tuple[int, str]:
+def get_station_rejections(station_id: str, piece: str = None) -> Tuple[int, str]:
     """
         Queries blazegraph server for which trains a station rejected
         station_id: station ID str
@@ -634,7 +704,7 @@ def get_station_rejections(station_id: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_train_version(train_id: str) -> Tuple[int, str]:
+def get_train_version(train_id: str, piece: str = None) -> Tuple[int, str]:
     """
         Queries blazegraph server for a train's version
         train_id: train ID str
@@ -660,7 +730,7 @@ def get_train_version(train_id: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_station_dataset(station_id):
+def get_station_dataset(station_id: str, piece: str = None):
     """
         Queries blazegraph server for a station's dataset
         station_id: station ID str

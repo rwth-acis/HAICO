@@ -1,0 +1,33 @@
+{
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "🚂Please select a train."
+			},
+			"accessory": {
+				"type": "radio_buttons",
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Breast Cancer Study",
+							"emoji": true
+						},
+						"value": "train_breast_cancer"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Melanoma Study",
+							"emoji": true
+						},
+						"value": "train_melanoma"
+					}
+				],
+				"action_id": "train_selection"
+			}
+		}
+	]
+}

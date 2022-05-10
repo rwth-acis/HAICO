@@ -1,0 +1,101 @@
+{
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "🚉 So you want to know more about station {{ station_name }}!"
+			}
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "ℹ️ General info",
+						"emoji": true
+					},
+					"value": {{ station_id }},
+					"action_id": "station_info"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🚂 Current train @ station",
+						"emoji": true
+					},
+					"value": {{ station_id }},
+					"action_id": "current_at_station"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🕰 Next trains",
+						"emoji": true
+					},
+					"value": {{ station_id }},
+					"action_id": "upcomming_trains"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "📈 Average performance ",
+						"emoji": true
+					},
+					"value": {{ station_id }},
+					"action_id": "station_performance_avg"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "⛔️ Errors"
+					},
+					"value": {{ station_id }},
+					"action_id": "station_errors"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🗄 Dataset"
+					},
+					"value": {{ station_id }},
+					"action_id": "station_dataset"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "💻 Computational Environment"
+					},
+					"value": {{ station_id }},
+					"action_id": "comp_env"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "👷 Owner"
+					},
+					"value": {{ station_id }},
+					"action_id": "station_owner"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "🤵 Responsible"
+					},
+					"value": {{ station_id }},
+					"action_id": "station_responsible"
+				}
+			]
+		}
+	]
+}

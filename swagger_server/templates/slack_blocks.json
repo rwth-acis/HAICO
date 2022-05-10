@@ -17,8 +17,8 @@
 						"text": "🚉 Information about stations",
 						"emoji": true
 					},
-					"value": "click_me_123",
-					"action_id": "station"
+					"value": "info_about_stations",
+					"action_id": "info_about_stations"
 				},
 				{
 					"type": "button",
@@ -27,8 +27,8 @@
 						"text": "🚂 Information about trains",
 						"emoji": true
 					},
-					"value": "click_me_123",
-					"action_id": "train"
+					"value": "info_about_trains",
+					"action_id": "info_about_trains"
 				},
 				{
 					"type": "button",
@@ -37,7 +37,7 @@
 						"text": "ℹ️ Tell me more",
 						"emoji": true
 					},
-					"value": "click_me_123",
+					"value": "information",
 					"action_id": "information"
 				}
 			]
