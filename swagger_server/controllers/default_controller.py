@@ -10,10 +10,10 @@ from typing import Tuple
 
 import connexion
 
+from flask import render_template
 # from swagger_server import util
 from swagger_server.models.sbf import SBF  # noqa: E501
 #from swagger_server.models.sbf_res_img import SBFResImg  # noqa: E501
-from flask import render_template
 from . import plot, query, request_train
 
 # for me because I sometimes forget the quotation marks
@@ -162,7 +162,7 @@ def station_information(json_input: dict) -> Tuple[dict, int]:
     elif intent == "station_info":
         message = f"Information for station {station_id}: "
         one_datapoint = False
-        for func in station_info.items():
+        for func in station_info.values():
             code_success, sub_message = func(station_id, "Station")
             if code_success == 2:
                 one_datapoint = True
@@ -244,7 +244,7 @@ def train_information(json_input: dict) -> Tuple[dict, int]:
     elif intent == "train_info":
         message = f"Information for train {train_id}: "
         one_datapoint = False
-        for func in train_info.items():
+        for func in train_info.values():
             code_success, sub_message = func(train_id, "Train")
             if code_success == 2:
                 one_datapoint = True
@@ -389,7 +389,7 @@ def help_text(json_input: dict) -> Tuple[dict, int]:
             At which station is train train123 at the moment?
             Which train is currently at station station6 ? 
     """
-    return {"blocks": render_template("hello_buttons.json.jinja"), closeContext: true}, 200
+    return {"blocks": render_template("station_selection.json.jinja"), closeContext: true}, 200
 
 
 def get_performance(json_input: dict) -> Tuple[dict, int]:
