@@ -31,13 +31,13 @@ content-type: application/json
 		{
 			"type": "button",
 			"block_id": "eA9",
-			"action_id": "zgt7h",
+			"action_id": "info_about_stations",
 			"text": {
 				"type": "plain_text",
 				"text": "Farmhouse",
 				"emoji": true
 			},
-			"value": "click_me_123",
+			"value": "info_about_stations",
 			"action_ts": "1652130852.559563"
 		}
 	]
@@ -815,6 +815,33 @@ content-type: application/json
 }
 ###
 POST https://milki-psy.dbis.rwth-aachen.de/api/performance HTTP/1.1
+content-type: application/json
+
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "get_performance",
+    "entities": {"stationID": {"value": "station_cologne"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/buttonIntent HTTP/1.1
+content-type: application/json
+{
+    "msg":"TestMessage",
+    "botName": "TestBot",
+    "channel": "TestChannel",
+    "intent": "get_performance",
+    "entities": {"stationID": {"value": "station_cologne"}} ,
+    "email": "Test@email.com",
+    "user": "TestUser",
+    "time": "1644224769.807741"
+}
+###
+POST https://milki-psy.dbis.rwth-aachen.de/api/buttonIntent HTTP/1.1
 content-type: application/json
 
 {

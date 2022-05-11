@@ -514,8 +514,8 @@ def button(json_input: dict) -> Tuple[dict, int]:
         Handles button interactions
     """
     print(json_input)
-    if "actions" in json_input and "action_id" in json_input["actions"]:
-        action_id = json_input["actions"]["action_id"]
+    if "actions" in json_input and "action_id" in json_input["actions"][0]:
+        action_id = json_input["actions"][0]["action_id"]
         channel_id = ""
         if "channel" in json_input:
             channel_id = json_input["channel"]
@@ -558,4 +558,4 @@ def button(json_input: dict) -> Tuple[dict, int]:
             _, message = train_run[action_id](train_id, "Train")
             return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
 
-    return
+    return {"text": "Not found"}
