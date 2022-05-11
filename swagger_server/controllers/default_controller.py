@@ -791,5 +791,5 @@ def button(json_input: dict) -> Tuple[dict, int]:
             train_id = json_input["actions"]["selected_option"]["value"]
             _, message = train_run[action_id](train_id, "Train")
             return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
-
+    print("noting fitting found")
     return {"text": "Not found"}
