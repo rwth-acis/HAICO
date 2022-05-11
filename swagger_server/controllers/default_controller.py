@@ -747,6 +747,7 @@ def button(json_input: dict) -> Tuple[dict, int]:
     """
         Handles button interactions
     """
+    print("WE ARE HERE")
     print(json_input)
     if "actions" in json_input and "action_id" in json_input["actions"][0]:
         action_id = json_input["actions"][0]["action_id"]
