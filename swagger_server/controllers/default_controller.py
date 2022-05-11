@@ -464,7 +464,7 @@ def help_text(json_input: dict) -> Tuple[dict, int]:
         }
     ]
 
-    return {"blocks": block, closeContext: true}, 200
+    return {"blocks": block}, 200
 
 
 def get_performance(json_input: dict) -> Tuple[dict, int]:
