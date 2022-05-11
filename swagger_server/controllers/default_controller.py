@@ -21,6 +21,165 @@ text = "text"  # pylint: disable=C0103
 closeContext = "closeContext"  # pylint: disable=C0103
 true = "true"  # pylint: disable=C0103
 
+station_selection = {
+    "blocks": [
+        {
+            "type": "section",
+            "text": {
+                    "type": "mrkdwn",
+                    "text": "Please select a station."
+            },
+            "accessory": {
+                "type": "radio_buttons",
+                "options": [
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Bruegel",
+                            "emoji": true
+                        },
+                        "value": "station_bruegel"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Privat-Weber",
+                            "emoji": true
+                        },
+                        "value": "station_privat-weber"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Privat-TEST",
+                            "emoji": true
+                        },
+                        "value": "station_privat-test"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Private-Weber2",
+                            "emoji": true
+                        },
+                        "value": "station_privat-weber2"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Private-Welten",
+                            "emoji": true
+                        },
+                        "value": "station_privat-welten"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "HSMW",
+                            "emoji": true
+                        },
+                        "value": "station_HSMW"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Melanoma Station",
+                            "emoji": true
+                        },
+                        "value": "station_melanoma"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "MDS Station",
+                            "emoji": true
+                        },
+                        "value": "station_mds"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "PHT MDS Leipzig",
+                            "emoji": true
+                        },
+                        "value": "station_pht_leipzig"
+                    }
+                ],
+                "action_id": "station_selection_1"
+            }
+        },
+        {
+            "type": "section",
+            "text": {
+                    "type": "mrkdwn",
+                    "text": " "
+            },
+            "accessory": {
+                "type": "radio_buttons",
+                "options": [
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "PHT IMISE LEIPZIG",
+                            "emoji": true
+                        },
+                        "value": "station_imise_leipzig"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station-UKA",
+                            "emoji": true
+                        },
+                        "value": "station_uka"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station-UKK",
+                            "emoji": true
+                        },
+                        "value": "station_ukk"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station-UMG",
+                            "emoji": true
+                        },
+                        "value": "station_umg"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station-UMG_temp",
+                            "emoji": true
+                        },
+                        "value": "station_umg_tmp"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "aachenbeeck",
+                            "emoji": true
+                        },
+                        "value": "station_aachenbeeck"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "aachenmenzel",
+                            "emoji": true
+                        },
+                        "value": "station_aachenmenzel"
+                    }
+                ],
+                "action_id": "station_selection_2"
+            }
+        }
+    ]
+}
+
 station_info = {
     "station_owner": query.get_station_owner,
     "station_responsible": query.get_station_responsible,
@@ -595,7 +754,7 @@ def button(json_input: dict) -> Tuple[dict, int]:
         if "channel" in json_input:
             channel_id = json_input["channel"]
         if action_id == "info_about_stations":
-            return {"channel_id": channel_id, "blocks": render_template("station_selection.json.jinja")}
+            return {"channel_id": channel_id, "blocks": station_selection}
         elif action_id == "info_about_trains":
             return {"channel_id": channel_id, "blocks": render_template("train_selection.json.jinja")}
         elif action_id == "information":

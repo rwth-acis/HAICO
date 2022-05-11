@@ -230,7 +230,7 @@ paths:
           description: ""
           required: false
           schema:
-            $ref: "#/definitions/SlackReq"
+            type: "object"
       responses:
         "200":
           description: "OK."
@@ -296,15 +296,3 @@ definitions:
         type: "string"
       fileType:
         type: "string"
-  SlackReq:
-    type: "object"
-    properties:
-      user:
-        type: "object"
-        properties: {}
-      trigger_id:
-        type: "string"
-      response_url:
-        type: "string"
-      actions:
-        type: "array"

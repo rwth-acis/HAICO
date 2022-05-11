@@ -57,7 +57,7 @@ content-type: application/json
     "time": "1644224769.807741"
 }
 ###
-POST https://milki-psy.dbis.rwth-aachen.de/api/user HTTP/1.1
+POST https://milki-psy.dbis.rwth-aachen.de/api/help HTTP/1.1
 content-type: application/json
 
 {
