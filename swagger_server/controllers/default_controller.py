@@ -754,7 +754,7 @@ def button(json_input: dict) -> Tuple[dict, int]:
         if "channel" in json_input:
             channel_id = json_input["channel"]
         if action_id == "info_about_stations":
-            return {"channel_id": channel_id, "blocks": station_selection}
+            return {"channel": channel_id, "blocks": station_selection}
         elif action_id == "info_about_trains":
             return {"channel_id": channel_id, "blocks": render_template("train_selection.json.jinja")}
         elif action_id == "information":
