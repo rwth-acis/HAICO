@@ -221,7 +221,7 @@ paths:
       description: "Responds when a button is pressed."
       operationId: "button"
       consumes:
-        - "application/json"
+        - "application/x-www-form-urlencoded"
       produces:
         - "application/json"
       parameters:
