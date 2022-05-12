@@ -4,7 +4,7 @@ import datetime
 import logging
 import time
 from typing import Tuple
-
+import os
 import matplotlib
 import matplotlib.pyplot as plt
 from PIL import Image
@@ -63,7 +63,7 @@ def plot_train_cpu(train_id: str, response: dict) -> Tuple[int, str]:
     # return message
     image_title = draw_usage(order_values(
         response, "station"), f"CPU Usage in % for train {train_id}", True)
-    return 2, f"http://localhost:8081/api/performance/{image_title}"
+    return 2, f"http://{os.environ['HOST']}/api/performance/{image_title}"
 
 
 def plot_train_mem(train_id: str, response: str) -> Tuple[int, str]:
@@ -78,7 +78,7 @@ def plot_train_mem(train_id: str, response: str) -> Tuple[int, str]:
     # return message
     image_title = draw_usage(order_values(
         response, "station"), f"Memory Usage in MB for train {train_id}", True)
-    return 2, f"http://localhost:8081/api/performance/{image_title}"
+    return 2, f"http://{os.environ['HOST']}/api/performance/{image_title}"
 
 
 def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bool, response_mem: bool) -> Tuple[int, str]:
@@ -132,7 +132,7 @@ def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bo
         image_title = image_title_cpu if cpu else image_title_mem
     if image_title.endswith(".png"):
         image_title = image_title[:-4]
-    image_title = f"http://localhost:8081/api/performance/{image_title}"
+    image_title = f"http://{os.environ['HOST']}/api/performance/{image_title}"
     return 2, image_title
 
 
@@ -187,7 +187,7 @@ def plot_station_performance(station_id: str, cpu: str, mem: str, response_cpu: 
         image_title = image_title_cpu if cpu else image_title_mem
     if image_title.endswith(".png"):
         image_title = image_title[:-4]
-    image_title = f"http://localhost:8081/api/performance/{image_title}"
+    image_title = f"http://{os.environ['HOST']}/api/performance/{image_title}"
     return 2, image_title
 
 
