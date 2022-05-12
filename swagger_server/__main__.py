@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 
 import connexion
+from flask import request
 from swagger_server.controllers import poll
 from swagger_server import encoder
-import logging
-from flask import request
 
 
 def log_req():
-    print("New request")
     print(request.get_data())
+    print("New request")
 
 
 def main():

@@ -1069,7 +1069,6 @@ def get_train_performance(train_id: str) -> Tuple[int, str]:
     if mem and not response_mem["results"]["bindings"]:
         mem = False
     if not cpu and not mem:
-        #print(cpu, mem, response_cpu, response_mem)
         return 1, cpu, mem, {}, {}, f"No performance for train {train_id} found."
     return 2, cpu, mem, response_cpu, response_mem, ""
 

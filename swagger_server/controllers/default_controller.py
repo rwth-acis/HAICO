@@ -10,175 +10,17 @@ from typing import Tuple
 
 import connexion
 
-from flask import render_template
+from flask import send_from_directory
 # from swagger_server import util
 from swagger_server.models.sbf import SBF  # noqa: E501
 #from swagger_server.models.sbf_res_img import SBFResImg  # noqa: E501
-from . import plot, query, request_train
+from . import plot, query, request_train, blocks
 
 # for me because I sometimes forget the quotation marks
 text = "text"  # pylint: disable=C0103
 closeContext = "closeContext"  # pylint: disable=C0103
 true = "true"  # pylint: disable=C0103
 
-station_selection = {
-    "blocks": [
-        {
-            "type": "section",
-            "text": {
-                    "type": "mrkdwn",
-                    "text": "Please select a station."
-            },
-            "accessory": {
-                "type": "radio_buttons",
-                "options": [
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Bruegel",
-                            "emoji": true
-                        },
-                        "value": "station_bruegel"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Privat-Weber",
-                            "emoji": true
-                        },
-                        "value": "station_privat-weber"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Privat-TEST",
-                            "emoji": true
-                        },
-                        "value": "station_privat-test"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Private-Weber2",
-                            "emoji": true
-                        },
-                        "value": "station_privat-weber2"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Private-Welten",
-                            "emoji": true
-                        },
-                        "value": "station_privat-welten"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "HSMW",
-                            "emoji": true
-                        },
-                        "value": "station_HSMW"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Melanoma Station",
-                            "emoji": true
-                        },
-                        "value": "station_melanoma"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "MDS Station",
-                            "emoji": true
-                        },
-                        "value": "station_mds"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "PHT MDS Leipzig",
-                            "emoji": true
-                        },
-                        "value": "station_pht_leipzig"
-                    }
-                ],
-                "action_id": "station_selection_1"
-            }
-        },
-        {
-            "type": "section",
-            "text": {
-                    "type": "mrkdwn",
-                    "text": " "
-            },
-            "accessory": {
-                "type": "radio_buttons",
-                "options": [
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "PHT IMISE LEIPZIG",
-                            "emoji": true
-                        },
-                        "value": "station_imise_leipzig"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Station-UKA",
-                            "emoji": true
-                        },
-                        "value": "station_uka"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Station-UKK",
-                            "emoji": true
-                        },
-                        "value": "station_ukk"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Station-UMG",
-                            "emoji": true
-                        },
-                        "value": "station_umg"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Station-UMG_temp",
-                            "emoji": true
-                        },
-                        "value": "station_umg_tmp"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "aachenbeeck",
-                            "emoji": true
-                        },
-                        "value": "station_aachenbeeck"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "aachenmenzel",
-                            "emoji": true
-                        },
-                        "value": "station_aachenmenzel"
-                    }
-                ],
-                "action_id": "station_selection_2"
-            }
-        }
-    ]
-}
 
 station_info = {
     "station_owner": query.get_station_owner,
@@ -321,12 +163,24 @@ def station_information(json_input: dict) -> Tuple[dict, int]:
     elif intent == "station_info":
         message = f"Information for station {station_id}: "
         one_datapoint = False
+        # Add performance info
+        tmp = ""
+        code_query, cpu, mem, response_cpu, response_mem, message = query.get_station_performance(
+            station_id)
+        if code_query == 2:
+            if cpu:
+                tmp += plot.describe_usage(response_cpu,
+                                           "CPU Usage in %: ", False, True)
+            if mem:
+                tmp += plot.describe_usage(response_mem,
+                                           "Memory Usage in MB: ", False, False)
+
         for func in station_info.values():
             code_success, sub_message = func(station_id, "Station")
             if code_success == 2:
                 one_datapoint = True
                 message += sub_message
-
+        message += tmp
         if not one_datapoint:
             return {text: f"No information for station {station_id} found.", closeContext: true}, 200
     else:
@@ -403,11 +257,24 @@ def train_information(json_input: dict) -> Tuple[dict, int]:
     elif intent == "train_info":
         message = f"Information for train {train_id}: "
         one_datapoint = False
+        # Add performance info
+        code_query, cpu, mem, response_cpu, response_mem, message = query.get_train_performance(
+            train_id)
+        tmp = ""
+        if code_query == 2:
+            if cpu:
+                tmp += plot.describe_usage(response_cpu,
+                                           "CPU Usage in %: ", True, True)
+            if mem:
+                tmp += plot.describe_usage(response_mem,
+                                           "Memory Usage in MB: ", True, False)
         for func in train_info.values():
             code_success, sub_message = func(train_id, "Train")
             if code_success == 2:
                 one_datapoint = True
                 message += sub_message
+
+        message += tmp
         if not one_datapoint:
             return {text: f"No information for train {train_id} found.", closeContext: true}, 200
     else:
@@ -546,7 +413,7 @@ def help_text(json_input: dict) -> Tuple[dict, int]:
         🗄 Get information about a station's dataset
         🟢 Please make sure to include station or train IDs in your message, e.g.:
             At which station is train train123 at the moment?
-            Which train is currently at station station6 ? 
+            Which train is currently at station station6 ?
     """
     block = [
         {
@@ -646,101 +513,57 @@ def get_performance(json_input: dict) -> Tuple[dict, int]:
             text: "Something went wrong processing your request: Not intent provided",
             closeContext: true,
         }, 200
-    if intent == "get_performance":
-        if json_input._entities:
-            if "stationID" in json_input._entities:
-                code_id, station_id = get_id(json_input, "stationID")
-                if code_id != 2:
-                    return {
-                        text: f"Something went wrong processing your request: {station_id}",
-                        closeContext: true,
-                    }, 200
-                (
-                    code_query,
-                    cpu,
-                    mem,
-                    response_cpu,
-                    response_mem,
-                    message,
-                ) = query.get_station_performance(station_id)
-                if code_query == 2:
-                    code_plot, encoded_pdf = plot.plot_station_performance(
-                        station_id, cpu, mem, response_cpu, response_mem
-                    )
-                    if code_plot == 2:
-                        return {text: encoded_pdf, closeContext: true}
-                        # return {
-                        #     "fileBody": str(encoded_pdf),
-                        #     "fileName": "station_performance",
-                        #     "fileType": "pdf"
-                        # }, 200
-                return {text: message, closeContext: true}, 200
-            if "trainID" in json_input._entities:
-                code_id, train_id = get_id(json_input, "trainID")
-                if code_id != 2:
-                    return {
-                        text: f"Something went wrong processing your request: {train_id}",
-                        closeContext: true,
-                    }, 200
-                if (
-                    "amount" in json_input._entities
-                    and json_input._entities["amount"]["value"] == "average"
-                ):
-                    _, message = query.get_train_average(train_id)
-                    return {text: message, closeContext: true}, 200
-                # if "train_memory" in json_input._entities:
-                #     code_query, cpu, mem, response_cpu, response_mem, message = query.get_train_performance(
-                #         train_id)
-                #     if code_query == 2 and mem:
-                #         code_plot, encoded_pdf = plot.plot_train_mem(
-                #             train_id, response_mem)
-                #         if code_plot == 2:
-                #             return {
-                #                 "fileBody": str(encoded_pdf),
-                #                 "fileName": "train_memory",
-                #                 "fileType": "pdf"
-                #             }, 200
-                #     return {text: message, closeContext: true}, 200
-                # if "train_cpu" in json_input._entities:
-                #     code_query, cpu, mem, response_cpu, response_mem, message = query.get_train_performance(
-                #         train_id)
-                #     if code_query == 2 and cpu:
-                #         code_plot, encoded_pdf = plot.plot_train_cpu(
-                #             train_id, response_cpu)
-                #         if code_plot == 2:
-                #             return {
-                #                 "fileBody": str(encoded_pdf),
-                #                 "fileName": "train_cpu",
-                #                 "fileType": "pdf"
-                #             }, 200
-                #
-                #      return {text: message, closeContext: true}, 200
-                else:
-                    (
-                        code_query,
-                        cpu,
-                        mem,
-                        response_cpu,
-                        response_mem,
-                        message,
-                    ) = query.get_train_performance(train_id)
-                    if code_query == 2:
-                        code_plot, encoded_pdf = plot.plot_train_performance(
-                            train_id, cpu, mem, response_cpu, response_mem
-                        )
-                        if code_plot == 2:
-                            return {text: encoded_pdf, closeContext: true}
-                            # return {
-                            #     "fileBody": str(encoded_pdf),
-                            #     "fileName": "train_performance",
-                            #     "fileType": "png"
-                            # }, 200
+    if intent != "get_performance":
+        logging.error("Intent not recognized in get_performance.")
+        return {text: "Something went wrong: Intent not recognized", closeContext: true}, 200
 
-                    return {text: message, closeContext: true}, 200
+    if not json_input._entities:
+        logging.error("No entities in get_performance.")
+        return {text: "Something went wrong: Entities missing.", closeContext: true}, 200
 
-        else:
-            logging.error("Intent not recognized in get_performance.")
-    return {text: "Something went wrong: Intent not recognized", closeContext: true}, 200
+    if "stationID" in json_input._entities:
+        code_id, station_id = get_id(json_input, "stationID")
+        if code_id != 2:
+            return {
+                text: f"Something went wrong processing your request: {station_id}",
+                closeContext: true,
+            }, 200
+        (
+            code_query,
+            cpu,
+            mem,
+            response_cpu,
+            response_mem,
+            message,
+        ) = query.get_station_performance(station_id)
+        if not code_query == 2:
+            return {text: message, closeContext: true}, 200
+        code_plot, image_link = plot.plot_station_performance(
+            station_id, cpu, mem, response_cpu, response_mem
+        )
+        if not code_plot == 2:
+            return {text: "Something went wrong: Could not generate image.", closeContext: true}, 200
+        return {text: image_link, closeContext: true}
+    if "trainID" in json_input._entities:
+        code_id, train_id = get_id(json_input, "trainID")
+        if code_id != 2:
+            return {
+                text: f"Something went wrong processing your request: {train_id}",
+                closeContext: true,
+            }, 200
+        code_query, cpu, mem, response_cpu, response_mem, message = query.get_train_performance(
+            train_id)
+        if not code_query == 2:
+            return {text: message, closeContext: true}, 200
+        if not cpu and not mem:
+            return {text: f"No performance data for train {train_id} present.", closeContext: true}, 200
+        code_plot, image_link = plot.plot_train_performance(
+            train_id, cpu, mem, response_cpu, response_mem)
+        if not code_plot == 2:
+            return {text: "Something went wroung: Could not generate image.", closeContext: true}, 200
+        return {text: image_link, closeContext: true}, 200
+    else:
+        return {text: "Someting went wrong: Neither trainID nor stationID present.", closeContext: true}, 200
 
 
 def button(json_input: dict) -> Tuple[dict, int]:
@@ -755,42 +578,49 @@ def button(json_input: dict) -> Tuple[dict, int]:
         if "channel" in json_input:
             channel_id = json_input["channel"]
         if action_id == "info_about_stations":
-            return {"channel": channel_id, "blocks": station_selection}
+            return {"channel": channel_id, "blocks": blocks.station_selection()}
         elif action_id == "info_about_trains":
-            return {"channel_id": channel_id, "blocks": render_template("train_selection.json.jinja")}
+            return {"channel_id": channel_id, "blocks": blocks.train_selection()}
         elif action_id == "information":
             return
         elif action_id == "all_stations":
             _, message = query.get_all("Station")
-            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
         elif action_id == "all_trains":
             _, message = query.get_all("Train")
-            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
         elif action_id == "request_train":
-            return {"channel_id": channel_id, "blocks": render_template("route_selector.json.jinja")}
+            return {"channel_id": channel_id, "blocks": blocks.train_request_modal()}
         elif action_id == "station_selection":
             station_id = json_input["actions"]["selected_option"]["value"]
             station_name = json_input["actions"]["selected_option"]["text"]["text"]
-            return {"channel_id": channel_id, "blocks": render_template("station.json.jinja", station_id=station_id, station_name=station_name)}
+            return {"channel_id": channel_id, "blocks": blocks.station_block(station_name, station_id)}
         elif action_id == "train_selection":
             train_id = json_input["actions"]["selected_option"]["value"]
             train_name = json_input["actions"]["selected_option"]["text"]["text"]
-            return {"channel_id": channel_id, "blocks": render_template("train.json.jinja", train_id=train_id, train_name=train_name)}
+            return {"channel_id": channel_id, "blocks": blocks.train_block(train_name, train_id)}
         elif action_id in station_info:
             station_id = json_input["actions"]["selected_option"]["value"]
             _, message = station_info[action_id](station_id, "Station")
-            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
         elif action_id in station_exec:
             station_id = json_input["actions"]["selected_option"]["value"]
             _, message = station_exec[action_id](station_id, "Station")
-            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
         elif action_id in train_info:
             train_id = json_input["actions"]["selected_option"]["value"]
             _, message = train_info[action_id](train_id, "Train")
-            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
+            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
         elif action_id in train_run:
             train_id = json_input["actions"]["selected_option"]["value"]
             _, message = train_run[action_id](train_id, "Train")
-            return {"channel_id": channel_id, "blocks": render_template("simple_text.json.jinja", message=message)}
-    print("noting fitting found")
+            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
+    print("nothing fitting found")
     return {"text": "Not found"}
+
+
+def get_image(image_name: str):
+    print("here")
+    filename = f"{image_name}.png"
+    # return send_file(filename)
+    return send_from_directory("./controllers/images", filename)

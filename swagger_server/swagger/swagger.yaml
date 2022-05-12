@@ -212,7 +212,7 @@ paths:
         "200":
           description: "OK. Performance Plot."
           schema:
-            $ref: "#/definitions/SBFResImg"
+            $ref: "#/definitions/SBFRes"
         "500":
           description: "Internal Server error."
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
@@ -236,6 +236,21 @@ paths:
             $ref: "#/definitions/SBFRes"
         "500":
           description: "Internal Server error."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /performance/{image_name}:
+    get:
+      description: "Returns a png file of the performance data of a station."
+      operationId: "get_image"
+      produces:
+        - "application/png"
+      parameters:
+        - in: "path"
+          name: "image_name"
+          required: true
+          type: "string"
+      responses:
+        "200": # Response
+          description: OK
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
 definitions:
   SBF:
@@ -285,12 +300,3 @@ definitions:
     example:
       text: "text"
       closeContext: "closeContext"
-  SBFResImg:
-    type: "object"
-    properties:
-      fileBody:
-        type: "string"
-      fileName:
-        type: "string"
-      fileType:
-        type: "string"
