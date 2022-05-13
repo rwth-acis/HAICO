@@ -415,82 +415,8 @@ def help_text(json_input: dict) -> Tuple[dict, int]:
             At which station is train train123 at the moment?
             Which train is currently at station station6 ?
     """
-    block = [
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": "Hello there! 👋 What would you like to do? I can retrieve information about stations and trains for you."
-            }
-        },
-        {
-            "type": "actions",
-            "elements": [
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "🚉 Information about stations",
-                        "emoji": true
-                    },
-                    "value": "info_about_stations",
-                    "action_id": "info_about_stations"
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "🚂 Information about trains",
-                        "emoji": true
-                    },
-                    "value": "info_about_trains",
-                    "action_id": "info_about_trains"
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "🔍Show all stations",
-                        "emoji": true
-                    },
-                    "value": "get_all",
-                    "action_id": "all_stations"
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "🔍Show all trains",
-                        "emoji": true
-                    },
-                    "value": "get_all",
-                    "action_id": "all_trains"
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "🚇 Request train",
-                        "emoji": true
-                    },
-                    "value": "information",
-                    "action_id": "train_request"
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "ℹ️ Tell me more",
-                        "emoji": true
-                    },
-                    "value": "information",
-                    "action_id": "information"
-                }
-            ]
-        }
-    ]
 
-    return {"blocks": block}, 200
+    return {"blocks": blocks.hello_buttons()}, 200
 
 
 def get_performance(json_input: dict) -> Tuple[dict, int]:

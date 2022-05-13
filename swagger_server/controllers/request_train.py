@@ -69,6 +69,7 @@ def get_session_tokens() -> Union[Tuple[int, str, str], Tuple[int, str]]:
         return 0, "Request failed."
     token = json_response_token["access_token"]
     session_state = json_response_token["session_state"]
+    print(json_response_token)
     return 2, token, session_state
 
 
@@ -89,13 +90,13 @@ def post_train(station_route: str) -> Tuple[int, str]:
         'pht_central_service_session': 's%' + session_state
     }
 
-    if not train_class:
-        train_class = repositories[1]
+    # if not train_class:
+    train_class = repositories[1]
     if not station_route:
         station_route = stations[16]
     # FOR DEMO PURPOSES
-    if train_class not in repositories:
-        return 1, "The specified train repository does not exist"
+    # if train_class not in repositories:
+    #     return 1, "The specified train repository does not exist"
     # Does this make sense? There should be a better way lol
     stations_exists = False
     station_route = station_route.lower()
@@ -126,7 +127,7 @@ def post_train(station_route: str) -> Tuple[int, str]:
     except Exception:  # pylint: disable=broad-except
         logging.error("Response not in expected format. Module request_train.")
         return 0, "Train Request failed"
-
+    print(json_response)
     response_id = json_response["id"]
     pid = json_response["pid"]
     station_message = json_response["stationmessages"]

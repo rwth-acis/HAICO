@@ -145,6 +145,7 @@ def plot_station_performance(station_id: str, cpu: str, mem: str, response_cpu: 
         response_mem: memory usage response from blazegraph
         returns: success_code, base64 encoded png file or error message
     """
+    print(os.getcwd())
     if cpu:
         # title = f"CPU Usage in % for station {station_id}. "
         # message += describe_usage(order_values(response_cpu, "train"),
