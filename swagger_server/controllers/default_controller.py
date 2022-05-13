@@ -7,8 +7,9 @@
 # this is set for the whole file because of https://github.com/PyCQA/pylint/issues/3139
 import logging
 from typing import Tuple
-
+import os
 import connexion
+import string
 
 from flask import send_from_directory
 # from swagger_server import util
@@ -547,6 +548,10 @@ def button(json_input: dict) -> Tuple[dict, int]:
 
 def get_image(image_name: str):
     print("here")
+    allowed_chars = set(string.ascii_lowercase + string.digits + '_')
+    if not set(image_name <= allowed_chars):
+        return 404
     filename = f"{image_name}.png"
     # return send_file(filename)
-    return send_from_directory("./controllers/images", filename)
+    # TODO os.getcwd
+    return send_from_directory(f"{os.getcwd()}/controllers/images", filename)

@@ -69,7 +69,6 @@ def get_session_tokens() -> Union[Tuple[int, str, str], Tuple[int, str]]:
         return 0, "Request failed."
     token = json_response_token["access_token"]
     session_state = json_response_token["session_state"]
-    print(json_response_token)
     return 2, token, session_state
 
 

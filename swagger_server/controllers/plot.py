@@ -112,7 +112,7 @@ def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bo
             datetime.datetime.now(), '%d%m%y%f')
         image_title = f"{train_id}_performance_{current_date}"
         images = [Image.open(x) for x in [
-            f"./swagger_server/controllers/images/{image_title_mem}.png", f"./swagger_server/controllers/images/{image_title_cpu}.png"]]
+            f"{os.getcwd()}/swagger_server/controllers/images/{image_title_mem}.png", f"{os.getcwd()}/swagger_server/controllers/images/{image_title_cpu}.png"]]
         widths, heights = zip(*(i.size for i in images))
 
         total_width = sum(widths)
@@ -126,7 +126,7 @@ def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bo
             x_offset += image.size[0]
 
         new_image.save(
-            f"./swagger_server/controllers/images/{image_title}.png")
+            f"{os.getcwd()}/swagger_server/controllers/images/{image_title}.png")
 
     else:
         image_title = image_title_cpu if cpu else image_title_mem
@@ -168,7 +168,7 @@ def plot_station_performance(station_id: str, cpu: str, mem: str, response_cpu: 
             datetime.datetime.now(), '%d%m%y%f')
         image_title = f"{station_id}_performance_{current_date}"
         images = [Image.open(x) for x in [
-            f"./swagger_server/controllers/images/{image_title_mem}.png", f"./swagger_server/controllers/images/{image_title_cpu}.png"]]
+            f"{os.getcwd()}/swagger_server/controllers/images/{image_title_mem}.png", f"{os.getcwd()}/swagger_server/controllers/images/{image_title_cpu}.png"]]
         widths, heights = zip(*(i.size for i in images))
 
         total_width = sum(widths)
@@ -182,7 +182,7 @@ def plot_station_performance(station_id: str, cpu: str, mem: str, response_cpu: 
             x_offset += image.size[0]
 
         new_image.save(
-            f"./swagger_server/controllers/images/{image_title}.png")
+            f"{os.getcwd()}/swagger_server/controllers/images/{image_title}.png")
 
     else:
         image_title = image_title_cpu if cpu else image_title_mem
@@ -264,7 +264,7 @@ def draw_usage(values: dict, plot_title: str, train: bool) -> str:
 
     part = "train" if train else "station"
     image_title = f"{part}_{current_date}"
-    plt.savefig(f"./swagger_server/controllers/images/{image_title}.png",
+    plt.savefig(f"{os.getcwd()}/swagger_server/controllers/images/{image_title}.png",
                 bbox_inches='tight', dpi=500)
     plt.close()
 
