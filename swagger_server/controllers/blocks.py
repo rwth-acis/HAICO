@@ -1,4 +1,4 @@
-import json
+true = True
 
 
 def simple_text(message: str):
@@ -9,7 +9,7 @@ def simple_text(message: str):
                 'text': {
                     'type': 'plain_text',
                     'text': message,
-                    'emoji': "true",
+                    'emoji': true,
                 },
             },
         ],
@@ -34,7 +34,7 @@ def hello_buttons():
                     "text": {
                         "type": "plain_text",
                         "text": "🚉 Information about stations",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": "info_about_stations",
                     "action_id": "info_about_stations"
@@ -44,7 +44,7 @@ def hello_buttons():
                     "text": {
                         "type": "plain_text",
                         "text": "🚂 Information about trains",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": "info_about_trains",
                     "action_id": "info_about_trains"
@@ -54,7 +54,7 @@ def hello_buttons():
                     "text": {
                         "type": "plain_text",
                         "text": "🔍Show all stations",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": "get_all",
                     "action_id": "all_stations"
@@ -64,7 +64,7 @@ def hello_buttons():
                     "text": {
                         "type": "plain_text",
                         "text": "🔍Show all trains",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": "get_all",
                     "action_id": "all_trains"
@@ -74,7 +74,7 @@ def hello_buttons():
                     "text": {
                         "type": "plain_text",
                         "text": "🚇 Request train",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": "information",
                     "action_id": "train_request"
@@ -84,7 +84,7 @@ def hello_buttons():
                     "text": {
                         "type": "plain_text",
                         "text": "ℹ️ Tell me more",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": "information",
                     "action_id": "information"
@@ -110,7 +110,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Bruegel",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_bruegel"
                     },
@@ -118,7 +118,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Privat-Weber",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_privat-weber"
                     },
@@ -126,7 +126,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Privat-TEST",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_privat-test"
                     },
@@ -134,7 +134,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Private-Weber2",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_privat-weber2"
                     },
@@ -142,7 +142,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Private-Welten",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_privat-welten"
                     },
@@ -150,7 +150,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "HSMW",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_HSMW"
                     },
@@ -158,7 +158,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Melanoma Station",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_melanoma"
                     },
@@ -166,7 +166,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "MDS Station",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_mds"
                     },
@@ -174,7 +174,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "PHT MDS Leipzig",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_pht_leipzig"
                     }
@@ -195,7 +195,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "PHT IMISE LEIPZIG",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_imise_leipzig"
                     },
@@ -203,7 +203,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Station-UKA",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_uka"
                     },
@@ -211,7 +211,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Station-UKK",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_ukk"
                     },
@@ -219,7 +219,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Station-UMG",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_umg"
                     },
@@ -227,7 +227,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Station-UMG_temp",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_umg_tmp"
                     },
@@ -235,7 +235,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "aachenbeeck",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_aachenbeeck"
                     },
@@ -243,7 +243,7 @@ def station_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "aachenmenzel",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "station_aachenmenzel"
                     }
@@ -270,7 +270,7 @@ def train_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Breast Cancer Study",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "train_breast_cancer"
                     },
@@ -278,7 +278,7 @@ def train_selection():
                         "text": {
                             "type": "plain_text",
                             "text": "Melanoma Study",
-                            "emoji": "true"
+                            "emoji": true
                         },
                         "value": "train_melanoma"
                     }
@@ -307,7 +307,7 @@ def station_block(station_name: str, station_id: str):
                     "text": {
                         "type": "plain_text",
                         "text": "ℹ️ General info",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": station_id,
                     "action_id": "station_info"
@@ -317,7 +317,7 @@ def station_block(station_name: str, station_id: str):
                     "text": {
                         "type": "plain_text",
                         "text": "🚂 Current train @ station",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": station_id,
                     "action_id": "current_at_station"
@@ -327,7 +327,7 @@ def station_block(station_name: str, station_id: str):
                     "text": {
                         "type": "plain_text",
                         "text": "🕰 Next trains",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": station_id,
                     "action_id": "upcomming_trains"
@@ -337,7 +337,7 @@ def station_block(station_name: str, station_id: str):
                     "text": {
                         "type": "plain_text",
                         "text": "📈 Average performance ",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": station_id,
                     "action_id": "station_performance_avg"
@@ -410,7 +410,7 @@ def train_block(train_name: str, train_id: str):
                     "text": {
                         "type": "plain_text",
                         "text": "ℹ️ General info",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": train_id,
                     "action_id": "train_info"
@@ -420,7 +420,7 @@ def train_block(train_name: str, train_id: str):
                     "text": {
                         "type": "plain_text",
                         "text": "🚉 Current station",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": train_id,
                     "action_id": "current_station"
@@ -430,7 +430,7 @@ def train_block(train_name: str, train_id: str):
                     "text": {
                         "type": "plain_text",
                         "text": "🗺 Future route",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": train_id,
                     "action_id": "future_route"
@@ -440,7 +440,7 @@ def train_block(train_name: str, train_id: str):
                     "text": {
                         "type": "plain_text",
                         "text": "📈 Average performance ",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "value": train_id,
                     "action_id": "train_performance_avg"
@@ -501,17 +501,17 @@ def train_request_modal():
         "title": {
                 "type": "plain_text",
                 "text": "🚂 Request a new train",
-                "emoji": "true"
+                "emoji": true
         },
         "submit": {
             "type": "plain_text",
             "text": "Submit",
-            "emoji": "true"
+            "emoji": true
         },
         "close": {
             "type": "plain_text",
             "text": "Cancel",
-            "emoji": "true"
+            "emoji": true
         },
         "blocks": [
             {
@@ -528,14 +528,14 @@ def train_request_modal():
                     "placeholder": {
                         "type": "plain_text",
                         "text": "Select options",
-                        "emoji": "true"
+                        "emoji": true
                     },
                     "options": [
                         {
                             "text": {
                                 "type": "plain_text",
                                 "text": "Bruegel",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_bruegel"
                         },
@@ -543,7 +543,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "Privat-Weber",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_privat-weber"
                         },
@@ -551,7 +551,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "Privat-TEST",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_privat-test"
                         },
@@ -559,7 +559,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "Private-Weber2",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_privat-weber2"
                         },
@@ -567,7 +567,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "Private-Welten",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_privat-welten"
                         },
@@ -575,7 +575,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "HSMW",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_HSMW"
                         },
@@ -583,7 +583,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "Melanoma Station",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_melanoma"
                         },
@@ -591,7 +591,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "MDS Station",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_mds"
                         },
@@ -599,7 +599,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "PHT MDS Leipzig",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_pht_leipzig"
                         },
@@ -607,7 +607,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "PHT IMISE LEIPZIG",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_imise_leipzig"
                         },
@@ -615,7 +615,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "Station-UKA",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_uka"
                         },
@@ -623,7 +623,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "Station-UKK",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_ukk"
                         },
@@ -631,7 +631,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "Station-UMG",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_umg"
                         },
@@ -639,7 +639,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "Station-UMG_temp",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_umg_tmp"
                         },
@@ -647,7 +647,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "aachenbeeck",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_aachenbeeck"
                         },
@@ -655,7 +655,7 @@ def train_request_modal():
                             "text": {
                                 "type": "plain_text",
                                 "text": "aachenmenzel",
-                                "emoji": "true"
+                                "emoji": true
                             },
                             "value": "station_aachenmenzel"
                         }
@@ -665,7 +665,7 @@ def train_request_modal():
                 "label": {
                     "type": "plain_text",
                             "text": "Please select a train route:",
-                    "emoji": "true"
+                    "emoji": true
                 }
             }
         ]

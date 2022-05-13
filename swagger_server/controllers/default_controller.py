@@ -416,7 +416,6 @@ def help_text(json_input: dict) -> Tuple[dict, int]:
             At which station is train train123 at the moment?
             Which train is currently at station station6 ?
     """
-
     return {"blocks": blocks.hello_buttons()}, 200
 
 

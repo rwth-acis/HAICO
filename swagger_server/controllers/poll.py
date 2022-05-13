@@ -191,7 +191,7 @@ def poll_server():
                     ERROR_STATION_LAST[station_id].append(item)
                     station_error(station_id, item)
 
-    print("...done")
+    print("...done", flush=True)
 
 
 def train_error(train_id: str, error_message: str) -> None:
@@ -210,7 +210,7 @@ def send_notification(message: str):
     """
     headers = {}
     json_data = blocks.simple_text(message)
-    print("Notifying channel ... ")
+    print("Notifying channel ... ", flush=True)
     response = requests.post(
-        os.environ(['SLACK_HOOK']), headers=headers, json=json_data)
+        os.environ['SLACK_HOOK'], headers=headers, json=json_data)
     print(response)

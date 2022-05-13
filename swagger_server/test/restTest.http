@@ -688,7 +688,7 @@ POST http://localhost:8081/api/help HTTP/1.1
 content-type: application/json
 
 {
-    "msg":"TestMessage",
+    "msg":"H",
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "help",
@@ -721,7 +721,7 @@ content-type: application/json
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "get_performance",
-    "entities": {"trainID": {"value": "train2"}} ,
+    "entities": {"stationID": {"value": "station2"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
@@ -736,7 +736,7 @@ content-type: application/json
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "get_performance",
-    "entities": {"stationID": {"value": "station2"}} ,
+    "entities": {"stationID": {"value": "station_aachen"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
