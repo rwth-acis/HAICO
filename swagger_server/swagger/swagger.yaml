@@ -222,14 +222,16 @@ paths:
       description: "Responds when a button is pressed."
       operationId: "button"
       consumes:
-        - "application/x-www-form-urlencoded"
+        - "application/json"
       produces:
         - "application/json"
       parameters:
-        - name: "payload"
-          type: "string"
-          in: "query"
+        - in: "body"
+          name: "json_input"
           required: true
+          schema:
+            type: "object"
+            properties: {}
       responses:
         "200":
           description: "OK."
