@@ -549,9 +549,12 @@ def button(json_input: dict) -> Tuple[dict, int]:
 def get_image(image_name: str):
     print("here")
     allowed_chars = set(string.ascii_lowercase + string.digits + '_')
-    if not set(image_name <= allowed_chars):
+    if not set(image_name) <= allowed_chars:
+        print("here")
         return 404
+
     filename = f"{image_name}.png"
     # return send_file(filename)
     # TODO os.getcwd
-    return send_from_directory(f"{os.getcwd()}/controllers/images", filename)
+    print(f"{os.getcwd()}")
+    return send_from_directory(f"./controllers/images", filename)
