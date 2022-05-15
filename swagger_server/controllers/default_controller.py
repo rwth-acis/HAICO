@@ -460,13 +460,14 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
         channel_id = json_input["channel"]
     if "message" in json_input:
         name = json_input["message"]
-    if "actionInfo" in json_input and "action_id" in json_input["actionInfo"]:
-        action_info = json.loads(json_input["action_id"])
-        action_id = action_info["action_id"]
-        if "value" in json_input["actionInfo"]:
-            value = json_input["actionInfo"]["value"]
-        if "triggerId" in action_info["actionInfo"]:
-            trigger_id = json_input["actionInfo"]["triggerId"]
+    if "actionInfo" in json_input:
+        action_info = json.loads(json_input["actionInfo"])
+        if "actionId" in action_info:
+            action_id = action_info["actionId"]
+        if "value" in action_info:
+            value = action_info["value"]
+        if "triggerId" in action_info:
+            trigger_id = action_info["triggerId"]
         if action_id == "info_about_stations":
             return SBFResBlock(blocks=blocks.station_selection()), 200
         elif action_id == "info_about_trains":
