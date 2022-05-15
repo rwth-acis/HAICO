@@ -430,7 +430,7 @@ def get_performance(json_input: SBF) -> Tuple[SBFRes, int]:
         )
         if not code_plot == 2:
             return SBFRes(text="Something went wrong: Could not generate image.", close_context=true), 200
-        return SBFRes(text=image_link, close_context=true), 200
+        return SBFResBlock(blocks=blocks.image_block(image_link), close_context=true), 200
     if "trainID" in json_input._entities:
         code_id, train_id = get_id(json_input, "trainID")
         if code_id != 2:
@@ -446,7 +446,7 @@ def get_performance(json_input: SBF) -> Tuple[SBFRes, int]:
             train_id, cpu, mem, response_cpu, response_mem)
         if not code_plot == 2:
             return SBFRes(text="Something went wroung: Could not generate image.", close_context=true), 200
-        return SBFRes(text=image_link, close_context=true), 200
+        return SBFResBlock(blocks=blocks.image_block(image_link), close_context=true), 200
     return SBFRes(text="Someting went wrong: Neither trainID nor stationID present.", close_context=true), 200
 
 

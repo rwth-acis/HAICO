@@ -646,3 +646,20 @@ def train_request_modal() -> Dict[str, Collection[Collection[str]]]:
 
     }
     return modal
+
+
+def image_block(url: str) -> List[Dict[str, Collection[str]]]:
+    blocks = [
+        {
+            "type": "image",
+            "title": {
+                "type": "plain_text",
+                "text": "I Need a Marg",
+                "emoji": true
+            },
+            "image_url": url,
+            "alt_text": "marg"
+        }
+    ]
+
+    return blocks
