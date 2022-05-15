@@ -6,7 +6,7 @@
 # pylint: disable=W0212
 # this is set for the whole file because of https://github.com/PyCQA/pylint/issues/3139
 import logging
-from typing import Tuple
+from typing import Tuple, List
 import string
 import json
 import connexion  # type: ignore
@@ -26,6 +26,8 @@ closeContext = "closeContext"  # pylint: disable=C0103
 true = "true"  # pylint: disable=C0103
 
 
+# easier to iterate through functions that way
+# this is the reason some functions got an unused 'piece' parameter
 station_info = {
     "station_owner": query.get_station_owner,
     "station_responsible": query.get_station_responsible,
@@ -68,6 +70,26 @@ train_run = {
 }
 
 
+# sometimes there is no "values" attribute in a slack block payload
+# so this is a look up table
+stations = {
+    "Station UKA": "station_aachen",
+    "Station UKK": "station_cologne",
+    "Station Göttingen": "station_goettingen",
+    "Station Leipzig": "station_leipzig",
+    "Station Leipzig IMISE": "station_leipzig_imise",
+    "Station Mittweida": "station_mittweida",
+    "Station Beeck": "station_beeck",
+    "Station Menzel": "station_menzel"
+}
+
+trains = {
+    "Breast Cancer Study": "train_breast_cancer",
+    "Melanoma Study": "train_melanoma",
+    "Hello World Train": "train_hello_world"
+}
+
+
 def get_id(json_input: SBF, check_id: str) -> Tuple[int, str]:
     """
     Retrieves the ID value of check_id
@@ -97,6 +119,26 @@ def get_intent(json_input: SBF) -> Tuple[int, str]:
         logging.error("No intent provided in get_intent")
         return 0, "No intent provided."
     return 2, json_input._intent
+
+
+def get_route(json_data: ACTION) -> List[str]:
+    """
+        Retrieves route from a json payload when the route is selected in a Slack block. 
+        json_data: the incomming payload
+    """
+    action_info = json.loads(json_data["actionInfo"])
+    if "value" in action_info:
+        value = action_info["value"]
+        # we cant do json.loads(value) here because things in list aren't "str"
+        if value.startswith("["):
+            value = value[1:]
+        if value.endswith("]"):
+            value = value[:-1]
+        if value.endswith[","]:
+            value = value[:-1]
+        return value.split(",")
+    # we could also load from message here but so far that hasn't been necessary
+    return []
 
 
 def get_user(json_input: SBF) -> Tuple[SBFRes, int]:
@@ -464,10 +506,8 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
         action_info = json.loads(json_input["actionInfo"])
         if "actionId" in action_info:
             action_id = action_info["actionId"]
-        if "value" in action_info:
-            value = action_info["value"]
-        if "triggerId" in action_info:
-            trigger_id = action_info["triggerId"]
+        else:
+            return SBFResBlock(blocks=blocks.simple_text("Something went wrong: Could not find a actionID")), 200
         if action_id == "info_about_stations":
             return SBFResBlock(blocks=blocks.station_selection()), 200
         elif action_id == "info_about_trains":
@@ -483,26 +523,45 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
         elif action_id == "train_request":
             return {"blocks": blocks.train_request_block()}, 200
         elif action_id == "station_selection":
-            station_name = ""  # TODO
-            return SBFResBlock(blocks=blocks.station_block(station_name, value)), 200
+            station_name = json_input["msg"]
+            station_id = stations[station_name]
+            return SBFResBlock(blocks=blocks.station_block(station_name, station_id)), 200
         elif action_id == "train_selection":
-            train_name = ""  # TODO
-            return SBFResBlock(blocks=blocks.train_block(train_name, value)), 200
+            train_name = json_input["msg"]
+            train_id = trains[train_name]
+            return SBFResBlock(blocks=blocks.train_block(train_name, train_id)), 200
         elif action_id in station_info:
+            station_name = json_input["msg"]
+            station_id = stations[station_name]
             _, message = station_info[action_id](
-                value, "Station")  # type: ignore
+                station_id, "Station")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in station_exec:
+            station_name = json_input["msg"]
+            station_id = stations[station_name]
             _, message = station_exec[action_id](
-                value, "Station")  # type: ignore
+                station_id, "Station")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in train_info:
-            _, message = train_info[action_id](value, "Train")  # type: ignore
+            train_name = json_input["msg"]
+            train_id = trains[train_name]
+            _, message = train_info[action_id](
+                train_id, "Train")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in train_run:
-            _, message = train_run[action_id](value, "Train")  # type: ignore
+            train_name = json_input["msg"]
+            train_id = trains[train_name]
+            _, message = train_run[action_id](
+                train_id, "Train")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
-    print(f"ERRROR: Action ID not found", flush=True)
+        elif action_id == "train_route":
+            route = get_route(json_input)
+            if route:
+                request_train.post_train(route)
+            else:
+                return SBFResBlock(blocks=blocks.simple_text("Train request failed. Could not find stations")), 200
+
+    print("ERRROR: Action ID not found", flush=True)
     return {"text": "Not found"}
 
 

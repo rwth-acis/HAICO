@@ -8,23 +8,15 @@ from typing import Tuple
 
 import requests  # type: ignore
 
-stations = {
-    0: "Bruegel",
-    1: "Privat-Weber",
-    2: "Private_TEST",
-    3: "Private-Weber2",
-    4: "Private-Welten",
-    5: "HSMW",
-    6: "Melanoma Station",
-    7: "MDS Station",
-    8: "PHT MDS Leipzig",
-    9: "PHT IMISE LEIPZIG",
-    10: "Station-UKA",
-    11: "Station-UKK",
-    12: "Station-UMG",
-    13: "Station-UMG_temp",
-    14: "aachenbeeck",
-    15: "aachenmenzel"
+station_codes = {
+    "station_aachen": "fe31acff-683a-4535-9408-afe5af718171",
+    "station_cologne": "5e8a7b57-6cad-4336-a14c-859b8a0f5d13",
+    "station_goettingen": "e6dff3b3-f258-4326-b7b0-2568a6d9bd02",
+    "station_leipzig": "4ed9ed14-803a-4b82-9790-f168bbf353cb",
+    "station_leipzig_imise": "259ea219-0f4d-479a-ab62-b47d06268204",
+    "station_mittweida": "01059b0d-096f-4ea8-bb9b-993e0499e513",
+    "station_beeck": "aachenbeeck",
+    "station_menzel": "aachenmenzel"
 }
 
 repositories = {
@@ -72,11 +64,10 @@ def get_session_tokens() -> Tuple[int, str, str]:
     return 2, token, session_state
 
 
-def post_train(station_route: str) -> Tuple[int, str]:
+def post_train(station_route: list) -> Tuple[int, str]:
     """
         Sends train request to REQUESTURL:3005 with aquired token and session parameters.
-        station_route: Stations to visit MUST be separated by "," without space
-        example: station_route="station_1,station_2"
+        station_route: Stations to visit
         returns: success_code, message
     """
     if not station_route:
@@ -96,9 +87,16 @@ def post_train(station_route: str) -> Tuple[int, str]:
 
     # We currently only have one
     train_class = repositories[1]
-    error_message = ""
+    # translate station IDs to hard coded strings
+    # as only existing stations can be selected we don't need to check if they exist
+    final_route = ""
+    for stat in station_route:
+        if stat in station_codes:
+            final_route += station_codes[stat] + ","
+    # should not end in comma
+    final_route = final_route[:-1]
 
-    data = f"{{\n    \"trainclassid\": \"{train_class}\",\n    \"traininstanceid\": 1,\n    \"route\": \"{station_route}\"\n}}"
+    data = f"{{\n    \"trainclassid\": \"{train_class}\",\n    \"traininstanceid\": 1,\n    \"route\": \"{final_route}\"\n}}"
 
     try:
         response = requests.post(url, headers=headers,
@@ -115,20 +113,17 @@ def post_train(station_route: str) -> Tuple[int, str]:
         logging.error("Response not in expected format. Module request_train.")
         return 0, "Train Request failed"
     if response.status_code != 201:
+        # This means that the query was successful but the we probably got a 404
         print(f"Train could not be posted: {response.status_code}", flush=True)
         return 0, "Train request failed."
 
     response_id = json_response["id"]
-    #pid = json_response["pid"]
     station_message = json_response["stationmessages"]
-    route = json_response["route"]
-    print(json_response)
 
-    result = f"Successfully submitted train {train_class}. ID: {response_id}, route: "
-    for step in route:
-        result += step + " "
-    result += ". Station messages: "
+    result_message = f"Successfully submitted train {train_class}. ID: {response_id}, route: {station_route}"
+    result_message += ". Station messages: "
     for message in station_message:
-        result += message + " "
-    result += "."
-    return 2, result + error_message
+        result_message += message + " "
+    result_message = result_message[:-1]
+    result_message += "."
+    return 2, result_message
