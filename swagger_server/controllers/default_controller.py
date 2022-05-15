@@ -482,7 +482,7 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id == "train_request":
             return {"trigger_id": trigger_id, "blocks": blocks.train_request_modal()}, 200
-        elif action_id == "station_selection" or action_id == "station_selection_2":
+        elif action_id == "station_selection":
             station_name = ""  # TODO
             return SBFResBlock(blocks=blocks.station_block(station_name, value)), 200
         elif action_id == "train_selection":

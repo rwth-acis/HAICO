@@ -121,8 +121,8 @@ def station_selection() -> List[Dict[str, Collection[str]]]:
         {
             "type": "section",
             "text": {
-                    "type": "mrkdwn",
-                    "text": "Please select a station."
+                "type": "mrkdwn",
+                "text": "Please select a station."
             },
             "accessory": {
                 "type": "radio_buttons",
@@ -130,149 +130,73 @@ def station_selection() -> List[Dict[str, Collection[str]]]:
                     {
                         "text": {
                             "type": "plain_text",
-                            "text": "Bruegel",
+                            "text": "Station UKA",
                             "emoji": true
                         },
-                        "value": "station_bruegel"
+                        "value": "station_aachen"
                     },
                     {
                         "text": {
                             "type": "plain_text",
-                            "text": "Privat-Weber",
+                            "text": "Station UKK",
                             "emoji": true
                         },
-                        "value": "station_privat-weber"
+                        "value": "station_cologne"
                     },
                     {
                         "text": {
                             "type": "plain_text",
-                            "text": "Privat-TEST",
+                            "text": "Station Göttingen",
                             "emoji": true
                         },
-                        "value": "station_privat-test"
+                        "value": "station_goettingen"
                     },
                     {
                         "text": {
                             "type": "plain_text",
-                            "text": "Private-Weber2",
+                            "text": "Station Leipzig",
                             "emoji": true
                         },
-                        "value": "station_privat-weber2"
+                        "value": "station_leipzig"
                     },
                     {
                         "text": {
                             "type": "plain_text",
-                            "text": "Private-Welten",
+                            "text": "Station Leipzig IMISE",
                             "emoji": true
                         },
-                        "value": "station_privat-welten"
+                        "value": "station_leipzig_imise"
                     },
                     {
                         "text": {
                             "type": "plain_text",
-                            "text": "HSMW",
+                            "text": "Station Mittweida",
                             "emoji": true
                         },
-                        "value": "station_HSMW"
+                        "value": "station_mittweida"
                     },
                     {
                         "text": {
                             "type": "plain_text",
-                            "text": "Melanoma Station",
+                            "text": "Station Beeck",
                             "emoji": true
                         },
-                        "value": "station_melanoma"
+                        "value": "station_beeck"
                     },
                     {
                         "text": {
                             "type": "plain_text",
-                            "text": "MDS Station",
+                            "text": "Station Menzel",
                             "emoji": true
                         },
-                        "value": "station_mds"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "PHT MDS Leipzig",
-                            "emoji": true
-                        },
-                        "value": "station_pht_leipzig"
+                        "value": "station_menzel"
                     }
                 ],
-                "action_id": "station_selection_1"
-            }
-        },
-        {
-            "type": "section",
-            "text": {
-                    "type": "mrkdwn",
-                    "text": " "
-            },
-            "accessory": {
-                "type": "radio_buttons",
-                "options": [
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "PHT IMISE LEIPZIG",
-                            "emoji": true
-                        },
-                        "value": "station_imise_leipzig"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Station-UKA",
-                            "emoji": true
-                        },
-                        "value": "station_uka"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Station-UKK",
-                            "emoji": true
-                        },
-                        "value": "station_ukk"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Station-UMG",
-                            "emoji": true
-                        },
-                        "value": "station_umg"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Station-UMG_temp",
-                            "emoji": true
-                        },
-                        "value": "station_umg_tmp"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "aachenbeeck",
-                            "emoji": true
-                        },
-                        "value": "station_aachenbeeck"
-                    },
-                    {
-                        "text": {
-                            "type": "plain_text",
-                            "text": "aachenmenzel",
-                            "emoji": true
-                        },
-                        "value": "station_aachenmenzel"
-                    }
-                ],
-                "action_id": "station_selection_2"
+                "action_id": "station_selection"
             }
         }
     ]
+
     return block
 
 
@@ -306,6 +230,14 @@ def train_selection() -> List[Dict[str, Collection[str]]]:
                             "emoji": true
                         },
                         "value": "train_melanoma"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Hello World Train",
+                            "emoji": true
+                        },
+                        "value": "train_hello_world"
                     }
                 ],
                 "action_id": "train_selection"
