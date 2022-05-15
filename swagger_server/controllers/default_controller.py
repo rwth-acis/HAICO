@@ -455,6 +455,7 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
         Handles button interactions.
 
     """
+    print(json_input, flush=True)
     if "channel" in json_input:
         channel_id = json_input["channel"]
     if "message" in json_input:
@@ -500,7 +501,7 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
         elif action_id in train_run:
             _, message = train_run[action_id](value, "Train")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
-    print(f"ERRROR: Action ID not found {action_id}", flush=True)
+    print(f"ERRROR: Action ID not found", flush=True)
     return {"text": "Not found"}
 
 
