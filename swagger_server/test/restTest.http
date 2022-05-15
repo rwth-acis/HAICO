@@ -855,5 +855,34 @@ content-type: application/json
     "time": "1644224769.807741"
 }
 ###
-POST http://localhost:8081/api/buttonIntent?payload=%7B%22type%22%3A%22block_actions%22%2C%22user%22%3A%7B%22id%22%3A%22U02NSKNC2N7%22%2C%22username%22%3A%22juliakunz98%22%2C%22name%22%3A%22juliakunz98%22%2C%22team_id%22%3A%22T02NKTQHUFQ%22%7D%2C%22api_app_id%22%3A%22A03FBEJ2F89%22%2C%22token%22%3A%22ziZMq0wa4Jsm8wDphYOlJLmk%22%2C%22container%22%3A%7B%22type%22%3A%22message%22%2C%22message_ts%22%3A%221652287938.718169%22%2C%22channel_id%22%3A%22D03EJ95PKQF%22%2C%22is_ephemeral%22%3Afalse%7D%2C%22trigger_id%22%3A%223504826760054.2767942606534.fa432a93931e67e82d10f84d26abaf95%22%2C%22team%22%3A%7B%22id%22%3A%22T02NKTQHUFQ%22%2C%22domain%22%3A%22qwdworkspace%22%7D%2C%22enterprise%22%3Anull%2C%22is_enterprise_install%22%3Afalse%2C%22channel%22%3A%7B%22id%22%3A%22D03EJ95PKQF%22%2C%22name%22%3A%22directmessage%22%7D%2C%22message%22%3A%7B%22type%22%3A%22message%22%2C%22subtype%22%3A%22bot_message%22%2C%22text%22%3A%22This+content+can%27t+be+displayed.%22%2C%22ts%22%3A%221652287938.718169%22%2C%22username%22%3A%22heiko_bot%22%2C%22bot_id%22%3A%22B03ES7W4TU6%22%2C%22app_id%22%3A%22A03FBEJ2F89%22%2C%22blocks%22%3A%5B%7B%22type%22%3A%22section%22%2C%22block_id%22%3A%22WnvG%22%2C%22text%22%3A%7B%22type%22%3A%22mrkdwn%22%2C%22text%22%3A%22Hello+there%21+%3Awave%3A+What+would+you+like+to+do%3F+I+can+retrieve+information+about+stations+and+trains+for+you.%22%2C%22verbatim%22%3Afalse%7D%7D%2C%7B%22type%22%3A%22actions%22%2C%22block_id%22%3A%22UhO5%22%2C%22elements%22%3A%5B%7B%22type%22%3A%22button%22%2C%22action_id%22%3A%22info_about_stations%22%2C%22text%22%3A%7B%22type%22%3A%22plain_text%22%2C%22text%22%3A%22%3Astation%3A+Information+about+stations%22%2C%22emoji%22%3Atrue%7D%2C%22value%22%3A%22info_about_stations%22%7D%2C%7B%22type%22%3A%22button%22%2C%22action_id%22%3A%22info_about_trains%22%2C%22text%22%3A%7B%22type%22%3A%22plain_text%22%2C%22text%22%3A%22%3Asteam_locomotive%3A+Information+about+trains%22%2C%22emoji%22%3Atrue%7D%2C%22value%22%3A%22info_about_trains%22%7D%2C%7B%22type%22%3A%22button%22%2C%22action_id%22%3A%22all_stations%22%2C%22text%22%3A%7B%22type%22%3A%22plain_text%22%2C%22text%22%3A%22%3Amag%3AShow+all+stations%22%2C%22emoji%22%3Atrue%7D%2C%22value%22%3A%22get_all%22%7D%2C%7B%22type%22%3A%22button%22%2C%22action_id%22%3A%22all_trains%22%2C%22text%22%3A%7B%22type%22%3A%22plain_text%22%2C%22text%22%3A%22%3Amag%3AShow+all+trains%22%2C%22emoji%22%3Atrue%7D%2C%22value%22%3A%22get_all%22%7D%2C%7B%22type%22%3A%22button%22%2C%22action_id%22%3A%22train_request%22%2C%22text%22%3A%7B%22type%22%3A%22plain_text%22%2C%22text%22%3A%22%3Ametro%3A+Request+train%22%2C%22emoji%22%3Atrue%7D%2C%22value%22%3A%22information%22%7D%2C%7B%22type%22%3A%22button%22%2C%22action_id%22%3A%22information%22%2C%22text%22%3A%7B%22type%22%3A%22plain_text%22%2C%22text%22%3A%22%3Ainformation_source%3A+Tell+me+more%22%2C%22emoji%22%3Atrue%7D%2C%22value%22%3A%22information%22%7D%5D%7D%5D%7D%2C%22state%22%3A%7B%22values%22%3A%7B%7D%7D%2C%22response_url%22%3A%22https%3A%5C%2F%5C%2Fhooks.slack.com%5C%2Factions%5C%2FT02NKTQHUFQ%5C%2F3513823957668%5C%2F51MmA6bpZxFBrac1SpLpHukY%22%2C%22actions%22%3A%5B%7B%22action_id%22%3A%22info_about_stations%22%2C%22block_id%22%3A%22UhO5%22%2C%22text%22%3A%7B%22type%22%3A%22plain_text%22%2C%22text%22%3A%22%3Astation%3A+Information+about+stations%22%2C%22emoji%22%3Atrue%7D%2C%22value%22%3A%22info_about_stations%22%2C%22type%22%3A%22button%22%2C%22action_ts%22%3A%221652287941.217412%22%7D%5D%7D HTTP/1.1
-content-type:application/x-www-form-urlencoded
+POST http://localhost:8081/api/buttonIntent HTTP/1.1
+content-type:application/json
+
+{"msg": ":station: Information about stations", 
+"entities": {}, 
+"botName": "5faf4fe5b0ddc38dd7c867885640d2b6745055c25621b88a5076aec935a92602568a236c7dccafb723fa3d8177145f490dc866c77ca50d7a1e7e5bbb99b7501f", 
+"channel": "D03EJ95PKQF", 
+"actionInfo": "{"triggerId":"3527488813570.2767942606534.85b8299a2a5ea18238c3ee3b8bae8c33","actionId":"info_about_stations","value":"info_about_stations"}", 
+"message_id": "{"triggerId":"3527488813570.2767942606534.85b8299a2a5ea18238c3ee3b8bae8c33","actionId":"info_about_stations","value":"info_about_stations"}", 
+"time": "1652628779.239179", 
+"user": "U02NSKNC2N7", 
+"intent": "buttonIntent", 
+"email": "U02NSKNC2N7", 
+"contextOn": true}
+###
+POST http://localhost:8081/api/buttonIntent HTTP/1.1
+content-type:application/json
+
+{
+  "msg": "string",
+  "botName": "string",
+  "channel": "string",
+  "intent": "string",
+  "entities": {},
+  "email": "string",
+  "user": "string",
+  "time": "string",
+  "contextOn": true,
+  "actionInfo": "{}",
+  "message_id": "string"
+}

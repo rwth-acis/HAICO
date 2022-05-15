@@ -318,40 +318,29 @@ definitions:
       - "channel"
       - "actionInfo"
     properties:
-      mgs:
-        type: "string"
-      botName:
-        type: "string"
-      channel:
-        type: "string"
-      intent:
+      msg:
         type: "string"
       entities:
         type: "object"
         properties: {}
-      email:
+      botName:
         type: "string"
-      user:
+      channel:
         type: "string"
-      time:
-        type: "string"
-      contextOn:
-        type: "boolean"
       actionInfo:
         type: "object"
         properties: {}
       message_id:
         type: "object"
         properties: {}
-    example:
-      entities: "entities"
-      botName: "abcdefghij"
-      mgs: "This is an example message."
-      channel: "A12B34CD56E"
-      time: "1652555219.9155562"
-      intent: "station_info"
-      user: "X09Y87ZU65V"
-      email: "X09Y87ZU65V"
+      user:
+        type: "string"
+      time:
+        type: "string"
+      intent:
+        type: "string"
+      email:
+        type: "string"
   SBFRes:
     type: "object"
     properties:
