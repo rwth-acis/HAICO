@@ -8,6 +8,7 @@
 import logging
 from typing import Tuple
 import string
+import json
 import connexion  # type: ignore
 
 from flask import send_from_directory
@@ -459,10 +460,11 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
     if "message" in json_input:
         name = json_input["message"]
     if "actionInfo" in json_input and "action_id" in json_input["actionInfo"]:
-        action_id = json_input["actionInfo"]
+        action_info = json.loads(json_input["action_id"])
+        action_id = action_info["action_id"]
         if "value" in json_input["actionInfo"]:
             value = json_input["actionInfo"]["value"]
-        if "triggerId" in json_input["actionInfo"]:
+        if "triggerId" in action_info["actionInfo"]:
             trigger_id = json_input["actionInfo"]["triggerId"]
         if action_id == "info_about_stations":
             return SBFResBlock(blocks=blocks.station_selection()), 200
