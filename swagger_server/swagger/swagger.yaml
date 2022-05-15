@@ -328,11 +328,9 @@ definitions:
       channel:
         type: "string"
       actionInfo:
-        type: "object"
-        properties: {}
+        type: "string"
       message_id:
-        type: "object"
-        properties: {}
+        type: "string"
       user:
         type: "string"
       time:
