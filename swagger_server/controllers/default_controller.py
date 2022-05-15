@@ -129,6 +129,7 @@ def get_route(json_data: ACTION) -> List[str]:
     action_info = json.loads(json_data["actionInfo"])
     if "value" in action_info:
         value = action_info["value"]
+        print(value, flush=True)
         # we cant do json.loads(value) here because things in list aren't "str"
         if value.startswith("["):
             value = value[1:]
@@ -531,25 +532,25 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
             train_id = trains[train_name]
             return SBFResBlock(blocks=blocks.train_block(train_name, train_id)), 200
         elif action_id in station_info:
-            station_name = json_input["msg"]
+            station_name = action_info["value"]
             station_id = stations[station_name]
             _, message = station_info[action_id](
                 station_id, "Station")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in station_exec:
-            station_name = json_input["msg"]
+            station_name = action_info["value"]
             station_id = stations[station_name]
             _, message = station_exec[action_id](
                 station_id, "Station")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in train_info:
-            train_name = json_input["msg"]
+            train_name = action_info["value"]
             train_id = trains[train_name]
             _, message = train_info[action_id](
                 train_id, "Train")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in train_run:
-            train_name = json_input["msg"]
+            train_name = action_info["value"]
             train_id = trains[train_name]
             _, message = train_run[action_id](
                 train_id, "Train")  # type: ignore
