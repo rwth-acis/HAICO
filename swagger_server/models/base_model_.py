@@ -1,3 +1,6 @@
+# type: ignore
+# pylint: disable-all
+
 import pprint
 
 import six

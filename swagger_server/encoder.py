@@ -1,3 +1,6 @@
+# type: ignore
+# pylint: disable-all
+
 from connexion.apps.flask_app import FlaskJSONEncoder
 import six
 

@@ -5,17 +5,27 @@ import logging
 import time
 from typing import Tuple
 import os
-import matplotlib
-import matplotlib.pyplot as plt
-from PIL import Image
+import matplotlib  # type: ignore
+import matplotlib.pyplot as plt  # type: ignore
+from PIL import Image  # type: ignore
 
 # no GUI backend -> plt.show() etc will not work
 matplotlib.use('Agg')
 
 
-def describe_usage(values: dict, title: str, train: bool, cpu: bool):
+# HOST: current accessible server this is running on so retrieving images will work.
+# note that here we don't have relative but absolute file paths so os.getchw()
+# (get current working dir) must be used to save images
+
+def describe_usage(values: dict, title: str, train: bool, cpu: bool) -> str:
     """
-     Describes the resource usage. 
+     Describes the resource usage.
+     values: The resource consumption returned by the Blazegraph query.
+     title: How the desciription should start
+     train: Indicates whether we currently desciribe a train's (True) or station's usage data
+     cpu: Indicates whether CPU usage (True) or memory usage (False) should be described.
+
+     returns: A string of the resource usage description.
     """
     if train:
         piece = "station"
@@ -24,6 +34,7 @@ def describe_usage(values: dict, title: str, train: bool, cpu: bool):
         piece = "train"
         where = "By"
     values = order_values(values, piece)
+    # dicts to check how the plot should be generated - this is a little hacky.
     single_value = {}
     multi_value = {}
     for key, item in values.items():
@@ -36,17 +47,16 @@ def describe_usage(values: dict, title: str, train: bool, cpu: bool):
     else:
         unit = "MB"
     description = title
-    # print(single_value)
     if single_value:
         for key, item in single_value.items():
             usage = item[0][1]
             description += f"{where} {key} : {usage}{unit}. "
     if multi_value:
         for key, item in multi_value.items():
-            values = []
-            for date, val in item:
-                values.append(float(val))
-            avg = (sum(values) / (len(values)))
+            values_tmp = []
+            for _, val in item:
+                values_tmp.append(float(val))
+            avg = (sum(values_tmp) / (len(values_tmp)))
             description += f"{where} {key} : {avg}{unit}. "
     return description
 
@@ -54,53 +64,42 @@ def describe_usage(values: dict, title: str, train: bool, cpu: bool):
 def plot_train_cpu(train_id: str, response: dict) -> Tuple[int, str]:
     """
         Plots the a train's CPU usage
+        train_id: The train's ID
         response: CPU usage response from blazegraph
-        returns: success_code, base64 encoded png file or error message
+        returns: success_code, link to generated png file or error message
     """
-    title = f"CPU Usage in % for train {train_id}. "
-    # message = describe_usage(order_values(
-    #     response, "station"), title, True, True)
-    # return message
     image_title = draw_usage(order_values(
         response, "station"), f"CPU Usage in % for train {train_id}", True)
     return 2, f"{os.environ['HOST']}/api/performance/{image_title}"
 
 
-def plot_train_mem(train_id: str, response: str) -> Tuple[int, str]:
+def plot_train_mem(train_id: str, response: dict) -> Tuple[int, str]:
     """
         Plots the a train's memory usage
-        response: memory usage response from blazegraph
-        returns: success_code, base64 encoded png file or error message
+        train_id: The train's ID
+        response: Memory usage response from blazegraph
+        returns: success_code, link to generated png file or error message
     """
-    title = f"Memory Usage in MB for train {train_id}. "
-    # message = describe_usage(order_values(
-    #     response, "station"), title, True, False)
-    # return message
     image_title = draw_usage(order_values(
         response, "station"), f"Memory Usage in MB for train {train_id}", True)
     return 2, f"{os.environ['HOST']}/api/performance/{image_title}"
 
 
-def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bool, response_mem: bool) -> Tuple[int, str]:
+def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: dict, response_mem: dict) -> Tuple[int, str]:  # pylint: disable=line-too-long
     """
         Plots the a train's performance.
-        cpu: flag if CPU usage is present
-        mem: flag if memory usage is present
+        train_id: ID of the train
+        cpu: Flag if CPU usage is present
+        mem: Flag if memory usage is present
         response_cpu: CPU usage response from blazegraph
         response_mem: memory usage response from blazegraph
-        returns: success_code, base64 encoded png file or error message
+        returns: success_code, link to generated png file or error message
     """
     if cpu:
-        #title = f"CPU Usage in % for train {train_id}. "
-        # message += describe_usage(order_values(response_cpu, "station"),
-        #                           title, True, True)
         image_title_cpu = image_title = draw_usage(order_values(
             response_cpu, "station"), f"CPU Usage in % for train {train_id}", True)
 
     if mem:
-        title = f"Memory Usage in MB for train {train_id}. "
-        # message += describe_usage(order_values(response_mem, "station"),
-        #                           title, True, False)
         image_title_mem = draw_usage(order_values(response_mem, "station"),
                                      f"Memory Usage in MB for train {train_id}", True)
 
@@ -108,11 +107,14 @@ def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bo
         return 0, "No information about CPU and Memory Usage present."
 
     if cpu and mem:
+        # This part is here to sort of append images after another.
+        # Plotting usage data can get very ugly when the values are far apart (in time).
+        # So we are doing it like this here generating the plots for each piece and then merging the images.
         current_date = datetime.datetime.strftime(
             datetime.datetime.now(), '%d%m%y%f')
         image_title = f"{train_id}_performance_{current_date}"
         images = [Image.open(x) for x in [
-            f"{os.getcwd()}/swagger_server/controllers/images/{image_title_mem}.png", f"{os.getcwd()}/swagger_server/controllers/images/{image_title_cpu}.png"]]
+            f"{os.getcwd()}/swagger_server/controllers/images/{image_title_mem}.png", f"{os.getcwd()}/swagger_server/controllers/images/{image_title_cpu}.png"]]  # pylint: disable=line-too-long
         widths, heights = zip(*(i.size for i in images))
 
         total_width = sum(widths)
@@ -136,27 +138,21 @@ def plot_train_performance(train_id: str, cpu: bool, mem: bool, response_cpu: bo
     return 2, image_title
 
 
-def plot_station_performance(station_id: str, cpu: str, mem: str, response_cpu: str, response_mem: str) -> Tuple[int, str]:
+def plot_station_performance(station_id: str, cpu: bool, mem: bool, response_cpu: dict, response_mem: dict) -> Tuple[int, str]:  # pylint: disable=line-too-long
     """
         Plots the a station's performance.
+        station_id: ID of the station
         cpu: flag if CPU usage is present
         mem: flag if memory usage is present
         response_cpu: CPU usage response from blazegraph
         response_mem: memory usage response from blazegraph
-        returns: success_code, base64 encoded png file or error message
+        returns: success_code, link to generated png file or error message
     """
-    print(os.getcwd())
     if cpu:
-        # title = f"CPU Usage in % for station {station_id}. "
-        # message += describe_usage(order_values(response_cpu, "train"),
-        #                           title, False, True)
         image_title_cpu = draw_usage(order_values(response_cpu, "train"),
                                      f"CPU Usage in % on station {station_id}", False)
 
     if mem:
-        # title = f"CPU Usage in % for station {station_id}. "
-        # message += describe_usage(order_values(response_mem, "train"),
-        #                           title, False, False)
         image_title_mem = draw_usage(order_values(response_mem, "train"),
                                      f"Memory Usage in MB on station {station_id}", False)
 
@@ -164,11 +160,14 @@ def plot_station_performance(station_id: str, cpu: str, mem: str, response_cpu: 
         return 0, "No information about CPU and Memory Usage present."
 
     if cpu and mem:
+        # This part is here to sort of append images after another.
+        # Plotting usage data can get very ugly when the values are far apart (in time).
+        # So we are doing it like this here generating the plots for each piece and then merging the images.
         current_date = datetime.datetime.strftime(
             datetime.datetime.now(), '%d%m%y%f')
         image_title = f"{station_id}_performance_{current_date}"
         images = [Image.open(x) for x in [
-            f"{os.getcwd()}/swagger_server/controllers/images/{image_title_mem}.png", f"{os.getcwd()}/swagger_server/controllers/images/{image_title_cpu}.png"]]
+            f"{os.getcwd()}/swagger_server/controllers/images/{image_title_mem}.png", f"{os.getcwd()}/swagger_server/controllers/images/{image_title_cpu}.png"]]  # pylint: disable=line-too-long
         widths, heights = zip(*(i.size for i in images))
 
         total_width = sum(widths)
@@ -225,7 +224,7 @@ def draw_usage(values: dict, plot_title: str, train: bool) -> str:
     # axs[0,0] is the only plot with multiple lines
     if multi_value:
         axs[0, 0].set_title(plot_title)
-        axs[0, 0].set_ylabel("Usage")  # TODO
+        axs[0, 0].set_ylabel("Usage")
         for key, item in multi_value.items():
             x_values = []
             y_values = []
@@ -245,13 +244,13 @@ def draw_usage(values: dict, plot_title: str, train: bool) -> str:
         # we do not need labels here
         label = ["", "", ""]
         # 50% of the donut shall be blanc
-        values = [rest, usage, rest + usage]
+        values_tmp = [rest, usage, rest + usage]
 
         # color = [rest(lightgrey), usage(darkgreen), blanc(white)]
         color = ['#d3d3d3', '#006b3c', 'w']
         axs[row_index, col_index].set_title(
             f"{plot_title} for {key} ({usage})", fontsize=10)
-        wedges, labels = axs[row_index, col_index].pie(values, wedgeprops=dict(
+        wedges, labels = axs[row_index, col_index].pie(values_tmp, wedgeprops=dict(
             width=0.3, edgecolor='w'), labels=label, colors=color)
         wedges[-1].set_visible(False)
         if row_index == rows:
@@ -278,7 +277,6 @@ def order_values(response: dict, target_str: str) -> dict:
         reponse: blazegraph response
         target_str: station if a train's usage is ploted, train if a station's usage is plotted
         returns: a dict ordered by timestamps
-
     """
     values = {}
     tmp = response["results"]["bindings"]

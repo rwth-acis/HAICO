@@ -8,15 +8,15 @@ import logging
 import time
 import os
 # pylint: disable=E1136  # pylint/issues/3139
-from typing import Tuple, Optional
+from typing import Tuple
 
-from SPARQLWrapper import JSON, SPARQLWrapper
+from SPARQLWrapper import JSON, SPARQLWrapper  # type: ignore
 
 # ex only used in tests
 ont_pref = "ex"  # pylint: disable=C0103
 
 
-def blazegraph_query(query_str: str) -> Optional[dict]:
+def blazegraph_query(query_str: str) -> dict:
     """
         Queries the blazegraph server.
         query_str: the query. prefix is added
@@ -53,8 +53,8 @@ def blazegraph_query(query_str: str) -> Optional[dict]:
         return response
     except Exception as exc:  # pylint: disable=broad-except
         logging.error("Query failed in query blazegraph_query")
-        print(exc)
-        return
+        print(exc, flush=True)
+        return {}
 
 
 def get_user_info(user_id: str) -> Tuple[int, str]:
@@ -153,7 +153,7 @@ def get_description(target_id: str, piece: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_location(station_id: str, piece: str = None) -> Tuple[int, str]:
+def get_location(station_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for a station's location
         station_id: station ID string
@@ -172,11 +172,11 @@ def get_location(station_id: str, piece: str = None) -> Tuple[int, str]:
         return 0, "Something went wrong querying the server."
     if not response["results"]["bindings"]:
         return 1, f"No location for {station_id} found."
-    message = f"Longitude: {response['results']['bindings'][0]['long']['value']}, latitude: {response['results']['bindings'][0]['lat']['value']}"
+    message = f"Longitude: {response['results']['bindings'][0]['long']['value']}, latitude: {response['results']['bindings'][0]['lat']['value']}"  # pylint: disable=line-too-long
     return 2, message
 
 
-def get_comp_env(station_id: str, piece: str = None) -> Tuple[int, str]:
+def get_comp_env(station_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for a station's computational environment
         station_id: station ID string
@@ -269,7 +269,7 @@ def get_all(piece: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_station_owner(station_id: str, piece: str = None) -> Tuple[int, str]:
+def get_station_owner(station_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for a station owner
         station_id: station ID string
@@ -301,7 +301,7 @@ def get_station_owner(station_id: str, piece: str = None) -> Tuple[int, str]:
     return 2, message
 
 
-def get_station_responsible(station_id: str, piece: str = None) -> Tuple[int, str]:
+def get_station_responsible(station_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for a station responsible
         station_id: station ID string
@@ -366,7 +366,7 @@ def get_train_creator(train_id: str, creator: str) -> Tuple[int, str]:
     return 2, message
 
 
-def get_train_publisher(train_id: str, piece: str = None) -> Tuple[int, str]:
+def get_train_publisher(train_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for a train's publisher
         train_id: train ID string
@@ -388,7 +388,7 @@ def get_train_publisher(train_id: str, piece: str = None) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"No publisher for train {train_id} found."
     # max one publisher
-    return 2, f"👷 Publisher for train {train_id}: {response['results']['bindings'][0]['name']['value']} ({response['results']['bindings'][0]['publisher']['value']})"
+    return 2, f"👷 Publisher for train {train_id}: {response['results']['bindings'][0]['name']['value']} ({response['results']['bindings'][0]['publisher']['value']})"  # pylint: disable=line-too-long
 
 
 def get_certificate(target_id: str, piece: str) -> Tuple[int, str]:
@@ -483,7 +483,7 @@ def get_running_trains() -> Tuple[int, str]:
     return 2, message
 
 
-def get_current_station(train_id: str, piece: str = None) -> Tuple[int, str]:
+def get_current_station(train_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for at what station a train is currently at
         train_id: train ID str
@@ -511,11 +511,11 @@ def get_current_station(train_id: str, piece: str = None) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"The train with ID {train_id} is currently not running at any station."
 
-    message = f"🚉 The train {train_id} is currently running at station {response['results']['bindings'][0]['station']['value']}."
+    message = f"🚉 The train {train_id} is currently running at station {response['results']['bindings'][0]['station']['value']}."  # pylint: disable=line-too-long
     return 2, message
 
 
-def get_current_trains(station_id: str, piece: str = None) -> Tuple[int, str]:
+def get_current_trains(station_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for which train is currently at a station
         station_id: station ID str
@@ -556,7 +556,7 @@ def get_current_trains(station_id: str, piece: str = None) -> Tuple[int, str]:
     return 2, message
 
 
-def get_station_errors(station_id: str, piece: str = None) -> Tuple[int, str]:
+def get_station_errors(station_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for which errors occured at a station
         station_id: station ID str
@@ -590,7 +590,7 @@ def get_station_errors(station_id: str, piece: str = None) -> Tuple[int, str]:
     return 2, message
 
 
-def get_train_errors(train_id: str, piece: str = None) -> Tuple[int, str]:
+def get_train_errors(train_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for which errors occured at a train
         train_id: train ID str
@@ -622,7 +622,7 @@ def get_train_errors(train_id: str, piece: str = None) -> Tuple[int, str]:
     return 2, message
 
 
-def get_train_rejections(train_id: str, piece: str = None) -> Tuple[int, str]:
+def get_train_rejections(train_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for which stations rejected a given train
         train_id: train ID str
@@ -645,17 +645,18 @@ def get_train_rejections(train_id: str, piece: str = None) -> Tuple[int, str]:
         return 0, "Something went wrong querying the server."
     if not response["results"]["bindings"]:
         return 1, f"No rejections for train {train_id} found."
+    message = f"Train {train_id} rejections: "
     for i, current in enumerate(response["response"]["bindings"]):
         station = current["station"]["value"]
         reason = current["reason"]["value"]
         if i == len(response["response"]["bindings"]) - 1:
-            message += f" {station} with reason {reason}."
+            message += f" by {station} with reason {reason}."
         else:
-            message += f" {station} with reason {reason},"
+            message += f" by {station} with reason {reason},"
     return 2, message
 
 
-def get_station_rejections(station_id: str, piece: str = None) -> Tuple[int, str]:
+def get_station_rejections(station_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for which trains a station rejected
         station_id: station ID str
@@ -690,7 +691,7 @@ def get_station_rejections(station_id: str, piece: str = None) -> Tuple[int, str
     return 2, message
 
 
-def get_train_version(train_id: str, piece: str = None) -> Tuple[int, str]:
+def get_train_version(train_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for a train's version
         train_id: train ID str
@@ -716,7 +717,7 @@ def get_train_version(train_id: str, piece: str = None) -> Tuple[int, str]:
     return 2, message
 
 
-def get_station_dataset(station_id: str, piece: str = None):
+def get_station_dataset(station_id: str, piece: str = None):  # pylint: disable=unused-argument
     """
         Queries blazegraph server for a station's dataset
         station_id: station ID str
@@ -840,7 +841,7 @@ def get_station_dataset(station_id: str, piece: str = None):
         if "access" in result:
             message += "Access Constrain: "
             access_constrain = result["access"]["value"]
-            message += "Request needed. " if access_constrain == "R" else ("No Access. " if access_constrain == "N" else (
+            message += "Request needed. " if access_constrain == "R" else ("No Access. " if access_constrain == "N" else (  # pylint: disable=line-too-long
                 "Unconstrained. " if access_constrain == "U" else "Not Specified. "))
         if "privacy" in result:
             message += "Used Differential Privacy: "
@@ -851,7 +852,7 @@ def get_station_dataset(station_id: str, piece: str = None):
     return 2, message
 
 
-def get_train_model(train_id: str, piece: str = None) -> Tuple[int, str]:
+def get_train_model(train_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for a train's model
         train_id: train ID str
@@ -946,24 +947,14 @@ def get_train_model(train_id: str, piece: str = None) -> Tuple[int, str]:
                 message += f"Train {train_id} expects the data set format File Data Set."
             if "type" in response_data["results"]["bindings"][0]:
                 file_type = response_data["results"]["bindings"][0]["type"]["value"]
-                message += f"Train {train_id} expects the data set format File Data Set with the expected file type {file_type}."
+                message += f"Train {train_id} expects the data set format File Data Set with the expected file type {file_type}."  # pylint: disable=line-too-long
 
         if result_data == "tabular":
-            # TODO
             message += f"Train {train_id} expects the data set format Tabular Data Set."
-            # response_data_tab = blazegraph_query(query_data_tab)
-            # if not response_data_tab or not response_data_tab["results"]["bindings"]:
-            #     return {"text": f"Train {train_id} expects the data set format Tabular Data Set.",
-            #         "closeContext": "true"}, 200
-            # if "type" in response_data["results"]["bindings"][0]:
-            #     file_type = response_data["results"]["bindings"][0]["type"]["value"]
-            #     return {"text": f"Train {train_id} expects the data set format Tabular Data Set with the expected file type {file_type}.",
-            #         "closeContext": "true"}, 200
-
     return 2, message
 
 
-def get_station_performance(station_id: str) -> Tuple[int, str]:
+def get_station_performance(station_id: str) -> Tuple[int, bool, bool, dict, dict, str]:
     """
         Queries blazegraph server for memory and CPU usage on a station
         station_id: station ID str
@@ -1020,7 +1011,7 @@ def get_station_performance(station_id: str) -> Tuple[int, str]:
     return 2, cpu, mem, response_cpu, response_mem, ""
 
 
-def get_train_performance(train_id: str) -> Tuple[int, str]:
+def get_train_performance(train_id: str) -> Tuple[int, bool, bool, dict, dict, str]:
     """
         Queries blazegraph server for memory and CPU usage of a train
         train_id: train ID str
@@ -1237,12 +1228,12 @@ def get_train_average(train_id: str) -> Tuple[int, str]:
                 if station not in visited:
                     non_visited.append(station)
             if non_visited:
-                message += f"The following stations were scheduled but the train did not run on them (yet): {' '.join(non_visited)}"
+                message += f"The following stations were scheduled but the train did not run on them (yet): {' '.join(non_visited)}"  # pylint: disable=line-too-long
 
     return 2, message
 
 
-def get_station_rights(station_id: str, piece: str = None) -> Tuple[int, str]:
+def get_station_rights(station_id: str, piece: str = None) -> Tuple[int, str]:  # pylint: disable=unused-argument
     """
         Queries blazegraph server for a station's rights
         station_id: station ID str

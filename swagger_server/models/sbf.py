@@ -1,5 +1,6 @@
 # coding: utf-8
-
+# type: ignore
+# pylint: disable-all
 from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
@@ -15,7 +16,7 @@ class SBF(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, mgs: str=None, bot_name: str=None, channel: str=None, intent: str=None, entities: object=None, email: str=None, user: str=None, time: str=None):  # noqa: E501
+    def __init__(self, mgs: str = None, bot_name: str = None, channel: str = None, intent: str = None, entities: object = None, email: str = None, user: str = None, time: str = None):  # noqa: E501
         """SBF - a model defined in Swagger
 
         :param mgs: The mgs of this SBF.  # noqa: E501

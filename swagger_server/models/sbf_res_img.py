@@ -1,5 +1,6 @@
 # coding: utf-8
-
+# type: ignore
+# pylint: disable-all
 from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
@@ -15,7 +16,7 @@ class SBFResImg(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, file_body: str=None, file_name: str=None, file_type: str=None):  # noqa: E501
+    def __init__(self, file_body: str = None, file_name: str = None, file_type: str = None):  # noqa: E501
         """SBFResImg - a model defined in Swagger
 
         :param file_body: The file_body of this SBFResImg.  # noqa: E501

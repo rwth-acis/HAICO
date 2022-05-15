@@ -1,3 +1,5 @@
+# type: ignore
+# pylint: disable-all
 import datetime
 
 import six

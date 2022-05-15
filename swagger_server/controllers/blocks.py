@@ -1,23 +1,40 @@
-true = True
+# pylint: disable=line-too-long
+"""
+     Stores Slack "interactive" blocks to be returned.
+"""
+# For some reason jinja didn't really work.
+# I also kinda prefer this tbh.
+
+# This made it easier to simply copy the Slack blocks from the block kit.
+from typing import List, Dict, Collection
+true = True  # pylint: disable=invalid-name
 
 
-def simple_text(message: str):
-    block = {
-        'blocks': [
-            {
-                'type': 'section',
-                'text': {
+def simple_text(message: str) -> List[Dict[str, Collection[str]]]:
+    """
+        No decorations or anything just a simple text block.
+        returns: Block as list
+    """
+    block = [
+        {
+            'type': 'section',
+            'text': {
                     'type': 'plain_text',
                     'text': message,
                     'emoji': true,
-                },
             },
-        ],
-    }
+        },
+    ]
+
     return block
 
 
-def hello_buttons():
+def hello_buttons() -> List[object]:
+    """
+        Overview buttons.
+        To be returned with an intent at the beginning of the conversation.
+        returns: Block as list
+    """
     block = [
         {
             "type": "section",
@@ -95,7 +112,11 @@ def hello_buttons():
     return block
 
 
-def station_selection():
+def station_selection() -> List[Dict[str, Collection[str]]]:
+    """
+        Radio buttons to select a station.
+        returns: Block as list
+    """
     block = [
         {
             "type": "section",
@@ -255,7 +276,11 @@ def station_selection():
     return block
 
 
-def train_selection():
+def train_selection() -> List[Dict[str, Collection[str]]]:
+    """
+        Radio buttons to select a train.
+        returns: Block as list
+    """
     block = [
         {
             "type": "section",
@@ -290,13 +315,19 @@ def train_selection():
     return block
 
 
-def station_block(station_name: str, station_id: str):
+def station_block(station_id: str, station_name: str = "") -> List[object]:
+    """
+        Buttons to select which station information (in action_id) to retrieve.
+        station_name: Name of the station, can be empty
+        station_id: Station ID, will be set as value so it is necessary
+        returns: blocks as dict
+    """
     block = [
         {
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": f"🚉 So you want to know more about station {station_name}!"
+                "text": f"🚉 So you want to know more about the station {station_name}!"
             }
         },
         {
@@ -393,7 +424,13 @@ def station_block(station_name: str, station_id: str):
     return block
 
 
-def train_block(train_name: str, train_id: str):
+def train_block(train_id: str, train_name: str = "") -> List[object]:
+    """
+        Buttons to select which train information (in action_id) to retrieve.
+        train_name: Name of the train, can be empty
+        train_id: Train ID, will be set as value so it is necessary
+        returns: blocks as dict
+    """
     blocks = [
         {
             "type": "section",
@@ -493,9 +530,14 @@ def train_block(train_name: str, train_id: str):
             ]
         }
     ]
+    return blocks
 
 
-def train_request_modal():
+def train_request_modal() -> Dict[str, Collection[Collection[str]]]:
+    """
+        Modal block of the train request
+        returns: Block as list
+    """
     modal = {
         "type": "modal",
         "title": {

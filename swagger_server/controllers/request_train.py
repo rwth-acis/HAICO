@@ -4,9 +4,9 @@
 import json
 import logging
 import os
-from typing import Tuple, Union
+from typing import Tuple
 
-import requests
+import requests  # type: ignore
 
 stations = {
     0: "Bruegel",
@@ -32,7 +32,7 @@ repositories = {
 }
 
 
-def get_session_tokens() -> Union[Tuple[int, str, str], Tuple[int, str]]:
+def get_session_tokens() -> Tuple[int, str, str]:
     """
         Returns the session token and session state from REQUESTURL
         returns: success_code, token, session_state or success_code, failed_message
@@ -57,16 +57,16 @@ def get_session_tokens() -> Union[Tuple[int, str, str], Tuple[int, str]]:
     except Exception:  # pylint: disable=broad-except
         logging.error(
             f"Couldn't sent request to {url_token}. Module train_request.")
-        return 0, "Request Failed."
+        return 0, "Request Failed.", ""
 
     try:
         json_response_token = json.loads(response_token.content)
     except Exception:  # pylint: disable=broad-except
         logging.error("Response not in expected format. Module train_request.")
-        return 0, "Request failed."
-    if not json_response_token["access_token"] or not json_response_token["session_state"]:
+        return 0, "Request failed.", ""
+    if not "access_token" in json_response_token or not "session_state" in json_response_token:
         logging.error("No auth token and/or no session state were provided.")
-        return 0, "Request failed."
+        return 0, "Request failed.", ""
     token = json_response_token["access_token"]
     session_state = json_response_token["session_state"]
     return 2, token, session_state
@@ -75,8 +75,13 @@ def get_session_tokens() -> Union[Tuple[int, str, str], Tuple[int, str]]:
 def post_train(station_route: str) -> Tuple[int, str]:
     """
         Sends train request to REQUESTURL:3005 with aquired token and session parameters.
+        station_route: Stations to visit MUST be separated by "," without space
+        example: station_route="station_1,station_2"
         returns: success_code, message
     """
+    if not station_route:
+        return 1, "No route specified."
+
     success_code, token, session_state = get_session_tokens()
     if success_code != 2:
         return 1, "Something went wrong requesting the train."
@@ -89,50 +94,37 @@ def post_train(station_route: str) -> Tuple[int, str]:
         'pht_central_service_session': 's%' + session_state
     }
 
-    # if not train_class:
+    # We currently only have one
     train_class = repositories[1]
-    if not station_route:
-        station_route = stations[16]
-    # FOR DEMO PURPOSES
-    # if train_class not in repositories:
-    #     return 1, "The specified train repository does not exist"
-    # Does this make sense? There should be a better way lol
-    stations_exists = False
-    station_route = station_route.lower()
-    final_route = ""
     error_message = ""
 
-    for cur in stations.values():
-        if cur.lower() in station_route:
-            final_route += cur
-            stations_exists = True
-            station_route = station_route.replace(cur.lower(), '')
-    if not stations_exists:
-        return 1, "The provided station route does not contain any existing stations."
-    if not station_route.strip():
-        error_message = f" I couldn't find the following stations so I excluded them from the route: {' '.join(station_route.split())}"
-
-    data = f"{{\n    \"trainclassid\": \"{train_class}\",\n    \"traininstanceid\": 1,\n    \"route\": \"{final_route}\"\n}}"
+    data = f"{{\n    \"trainclassid\": \"{train_class}\",\n    \"traininstanceid\": 1,\n    \"route\": \"{station_route}\"\n}}"
 
     try:
-        response = requests.post(url,
-                                 headers=headers, data=data, allow_redirects=True)
+        response = requests.post(url, headers=headers,
+                                 data=data, allow_redirects=True)
     except Exception:  # pylint: disable=broad-except
         logging.error(f"Couldn't send request to {url}. Module request_train.")
         return 0, "Train Request failed"
 
     try:
+        print("Requestion train...", flush=True)
         json_response = json.loads(response.content)
+        print(json_response, flush=True)
     except Exception:  # pylint: disable=broad-except
         logging.error("Response not in expected format. Module request_train.")
         return 0, "Train Request failed"
-    print(json_response)
+    if response.status_code != 201:
+        print(f"Train could not be posted: {response.status_code}", flush=True)
+        return 0, "Train request failed."
+
     response_id = json_response["id"]
-    pid = json_response["pid"]
+    #pid = json_response["pid"]
     station_message = json_response["stationmessages"]
     route = json_response["route"]
+    print(json_response)
 
-    result = f"Successfully submitted train {train_class}. ID: {response_id}, pid: {pid}, route: "
+    result = f"Successfully submitted train {train_class}. ID: {response_id}, route: "
     for step in route:
         result += step + " "
     result += ". Station messages: "

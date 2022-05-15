@@ -6,23 +6,24 @@
 import threading
 from typing import Callable, List
 import os
-import requests
+import requests  # type: ignore
 
 from . import query, blocks
 
-ont_pref = "ex"
+ont_pref = "ex"  # pylint: disable=invalid-name
 
 # all stations and trains
-STATIONS = []
-TRAINS = []
+STATIONS: list = []
+TRAINS: list = []
 # list of encountered errors
-ERROR_TRAIN_LAST = {}
-ERROR_STATION_LAST = {}
+ERROR_TRAIN_LAST: dict = {}
+ERROR_STATION_LAST: dict = {}
 
 
-def start_polling(interval_sec: int):
-    print(f"Started polling. Interval: every {interval_sec} seconds.")
-    set_interval(poll_server, interval_sec)
+def start_polling(interval_sec: int) -> None:
+    print(
+        f"Started polling. Interval: every {interval_sec} seconds.", flush=True)
+    set_interval(poll_server, interval_sec)  # type: ignore
     return
 
 
@@ -51,14 +52,13 @@ def get_id(piece: str):
     return piece.split('#')[-1]
 
 
-def poll_server():
+def poll_server() -> None:
     """
         Polls the blazegraph database to check if any errors have occured.
     """
-    print("Polling...")
     # Initialize
     if not STATIONS and not TRAINS:
-        print("Initializing...")
+        print("Initializing...", flush=True)
         query_stations = """
             SELECT ?station WHERE {
                 ?station a pht:Station .
@@ -113,7 +113,7 @@ def poll_server():
                 response_error_station, "train", True)
             for item in list_error_station:
                 ERROR_STATION_LAST[station_id].append(item)
-        print("Finished initialization.")
+        print("Finished initialization.", flush=True)
         return
 
     # Check if we have any new stations or trains
@@ -191,8 +191,6 @@ def poll_server():
                     ERROR_STATION_LAST[station_id].append(item)
                     station_error(station_id, item)
 
-    print("...done", flush=True)
-
 
 def train_error(train_id: str, error_message: str) -> None:
     message = f"🚫🚂 Train {train_id} just encountered the following error on {error_message}"
@@ -204,13 +202,13 @@ def station_error(station_id: str, error_message: str) -> None:
     send_notification(message)
 
 
-def send_notification(message: str):
+def send_notification(message: str) -> None:
     """
-        Sends a message to the channel the webhook belongs to. 
+        Sends a message to the channel the webhook belongs to.
     """
-    headers = {}
+    headers: dict = {}
     json_data = blocks.simple_text(message)
     print("Notifying channel ... ", flush=True)
     response = requests.post(
         os.environ['SLACK_HOOK'], headers=headers, json=json_data)
-    print(response)
+    print(response, flush=True)

@@ -1,5 +1,6 @@
 # coding: utf-8
-
+# type: ignore
+# pylint: disable-all
 from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
@@ -15,7 +16,7 @@ class SBFRes(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, text: str=None, close_context: str=None):  # noqa: E501
+    def __init__(self, text: str = None, close_context: str = None):  # noqa: E501
         """SBFRes - a model defined in Swagger
 
         :param text: The text of this SBFRes.  # noqa: E501

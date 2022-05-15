@@ -56,6 +56,29 @@ paths:
         "500":
           description: "Internal Server error."
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /greeting:
+    post:
+      description: "Returns help text about the bot's abilities."
+      operationId: "greeting"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "json_input"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/SBF"
+      responses:
+        "200":
+          description: "OK. Greeting buttons."
+          schema:
+            $ref: "#/definitions/SBFResBlock"
+        "500":
+          description: "Internal Server error."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
   /station/information:
     post:
       description: "Returns the queried information about a station given its ID."
@@ -230,13 +253,12 @@ paths:
           name: "json_input"
           required: true
           schema:
-            type: "object"
-            properties: {}
+            $ref: "#/definitions/ACTION"
       responses:
         "200":
           description: "OK."
           schema:
-            $ref: "#/definitions/SBFRes"
+            $ref: "#/definitions/SBFResBlock"
         "500":
           description: "Internal Server error."
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
@@ -259,13 +281,8 @@ definitions:
   SBF:
     type: "object"
     required:
-      - "botName"
-      - "channel"
-      - "email"
       - "entities"
       - "intent"
-      - "time"
-      - "user"
     properties:
       mgs:
         type: "string"
@@ -286,18 +303,70 @@ definitions:
         type: "string"
     example:
       entities: "entities"
-      botName: "botName"
-      mgs: "mgs"
-      channel: "channel"
-      time: "time"
-      intent: "intent"
-      user: "user"
-      email: "email"
+      botName: "abcdefghij"
+      mgs: "This is an example message."
+      channel: "A12B34CD56E"
+      time: "1652555219.9155562"
+      intent: "station_info"
+      user: "X09Y87ZU65V"
+      email: "X09Y87ZU65V"
+  ACTION:
+    type: "object"
+    required:
+      - "entities"
+      - "intent"
+      - "channel"
+      - "actionInfo"
+    properties:
+      mgs:
+        type: "string"
+      botName:
+        type: "string"
+      channel:
+        type: "string"
+      intent:
+        type: "string"
+      entities:
+        type: "object"
+        properties: {}
+      email:
+        type: "string"
+      user:
+        type: "string"
+      time:
+        type: "string"
+      contextOn:
+        type: "boolean"
+      actionInfo:
+        type: "object"
+        properties: {}
+      message_id:
+        type: "object"
+        properties: {}
+    example:
+      entities: "entities"
+      botName: "abcdefghij"
+      mgs: "This is an example message."
+      channel: "A12B34CD56E"
+      time: "1652555219.9155562"
+      intent: "station_info"
+      user: "X09Y87ZU65V"
+      email: "X09Y87ZU65V"
   SBFRes:
     type: "object"
     properties:
       text:
         type: "string"
+      closeContext:
+        type: "string"
+    example:
+      text: "text"
+      closeContext: "closeContext"
+  SBFResBlock:
+    type: "object"
+    properties:
+      blocks:
+        type: "object"
       closeContext:
         type: "string"
     example:

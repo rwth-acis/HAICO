@@ -1,5 +1,6 @@
 # coding: utf-8
-
+# type: ignore
+# pylint: disable-all
 import sys
 from setuptools import setup, find_packages
 
@@ -32,4 +33,3 @@ setup(
     API for the parser microservice
     """
 )
-

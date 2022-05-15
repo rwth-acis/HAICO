@@ -7,14 +7,16 @@
 # this is set for the whole file because of https://github.com/PyCQA/pylint/issues/3139
 import logging
 from typing import Tuple
-import os
-import connexion
 import string
+import connexion  # type: ignore
 
 from flask import send_from_directory
 # from swagger_server import util
-from swagger_server.models.sbf import SBF  # noqa: E501
-#from swagger_server.models.sbf_res_img import SBFResImg  # noqa: E501
+from swagger_server.models.sbf import SBF  # type: ignore
+from swagger_server.models.sbf_res import SBFRes  # type: ignore
+from swagger_server.models.sbf_res_img import SBFResImg  # type: ignore
+from swagger_server.models.sbf_res_block import SBFResBlock  # type: ignore
+from swagger_server.models.action import ACTION  # type: ignore
 from . import plot, query, request_train, blocks
 
 # for me because I sometimes forget the quotation marks
@@ -64,11 +66,8 @@ train_run = {
     "train_average": query.get_train_average
 }
 
-# def validate(check_id):
-#     return check_id.isalnum()
 
-
-def get_id(json_input: dict, check_id: str) -> Tuple[int, str]:
+def get_id(json_input: SBF, check_id: str) -> Tuple[int, str]:
     """
     Retrieves the ID value of check_id
     json_input: JSON body of request.
@@ -84,12 +83,10 @@ def get_id(json_input: dict, check_id: str) -> Tuple[int, str]:
         return 0, f"No {check_id} was provided."
     id_value = json_input._entities[check_id]["value"].strip()
 
-    # if not validate(id_value):
-    #     return 1, f"Malformed {check_id}: {id_value}"
     return 2, id_value
 
 
-def get_intent(json_input: dict) -> Tuple[int, str]:
+def get_intent(json_input: SBF) -> Tuple[int, str]:
     """
     Retrieves the intent
     json_input: JSON body of request.
@@ -101,63 +98,56 @@ def get_intent(json_input: dict) -> Tuple[int, str]:
     return 2, json_input._intent
 
 
-def get_user(json_input: dict) -> Tuple[dict, int]:
+def get_user(json_input: SBF) -> Tuple[SBFRes, int]:
     """
     Handles queries for user information.
-    returns: {text: retrieved_information, closeContext: true}, 200
+    returns: retrieved user information
     """
     if not connexion.request.is_json:
-        return {
-            text: "Something went wrong. Not a JSON request",
-            closeContext: true,
-        }, 200
+        resp = SBFRes(
+            text="Something went wrong. Not a JSON request", close_context=true)
+        return resp, 200
 
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
     code_id, user_id = get_id(json_input, "userID")
     if code_id != 2:
-        return {
-            text: f"Something went wrong processing your request: {user_id}",
-            closeContext: true,
-        }, 200
+        resp = SBFRes(
+            text=f"Something went wrong processing your request: {user_id}", close_context=true)
+        return resp, 200
     _, message = query.get_user_info(user_id)
-    return {text: message, closeContext: true}, 200
+    resp = SBFRes(text=message, close_context=true)
+    return resp, 200
 
 
-def get_coffee():  # noqa: E501
-    """get_coffee
-
-    Get coffee # noqa: E501
-
-
-    :rtype: None
+def get_coffee() -> Tuple[SBFRes, int]:   # noqa: E501
     """
-    return {text: "I'm a teapot", closeContext: true}, 418
+        🫖
+    """
+    return SBFRes(text="I'm a teapot!", close_context=true), 418
 
 
-def station_information(json_input: dict) -> Tuple[dict, int]:
+def station_information(json_input: SBF) -> Tuple[SBFRes, int]:
     """
     Handles queries for station_information information.
-    returns: {text: retrieved_information, closeContext: true}, 200
+    returns: retrieved station information
     """
     if not connexion.request.is_json:
         logging.error("No JSON request in station_information")
-        return {
-            text: "Something went wrong processing your request: Not a JSON request",
-            closeContext: true,
-        }, 200
+        return SBFRes(
+            text="Something went wrong processing your request: Not a JSON request",
+            close_context=true), 200
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
-    print(json_input)
     code_intent, intent = get_intent(json_input)
     if code_intent == 0:
-        return {
-            text: "Something went wrong processing your request: Not intent provided",
-            closeContext: true,
-        }, 200
+        return SBFRes(
+            text="Something went wrong processing your request: Not intent provided",
+            close_context=true), 200
     code_id, station_id = get_id(json_input, "stationID")
     if code_id != 2:
-        return {text: f"Something went wrong processing your request: {station_id}", closeContext: true}, 200
+        return SBFRes(text=f"Something went wrong processing your request: {station_id}", close_context=true), 200
     if intent in station_info:
-        code_success, message = station_info[intent](station_id, "Station")
+        code_success, message = station_info[intent](
+            station_id, "Station")  # type: ignore
         if intent == "station_loc" and code_success == 2:
             message = f"🏡 Location for station {station_id}: {message}"
 
@@ -177,84 +167,71 @@ def station_information(json_input: dict) -> Tuple[dict, int]:
                                            "Memory Usage in MB: ", False, False)
 
         for func in station_info.values():
-            code_success, sub_message = func(station_id, "Station")
+            code_success, sub_message = func(
+                station_id, "Station")  # type: ignore
             if code_success == 2:
                 one_datapoint = True
                 message += sub_message
         message += tmp
         if not one_datapoint:
-            return {text: f"No information for station {station_id} found.", closeContext: true}, 200
+            return SBFRes(text=f"No information for station {station_id} found.", close_context=true), 200
     else:
         logging.error("Intent not recognized in station_information")
-        print(json_input)
-        return {
-            text: "Something went wrong processing your request: Unrecognized Intent.",
-            closeContext: true,
-        }, 200
-    return {text: message, closeContext: true}, 200
+        return SBFRes(text="Something went wrong processing your request: Unrecognized Intent.",
+                      close_context=true), 200
+    return SBFRes(text=message, close_context=true), 200
 
 
-def station_execution(json_input: dict) -> Tuple[dict, int]:
+def station_execution(json_input: SBF) -> Tuple[SBFRes, int]:
     """
     Handles queries for station exeuction information.
-    returns: {text: retrieved_information, closeContext: true}, 200
+    returns: retrieved station exec information
     """
     if not connexion.request.is_json:
         logging.error("No JSON request in station_execution")
-        return {
-            text: "Something went wrong processing your request: Not a JSON request",
-            closeContext: true,
-        }, 200
+        return SBFRes(text="Something went wrong processing your request: Not a JSON request",
+                      close_context=true), 200
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
 
     code_intent, intent = get_intent(json_input)
     if code_intent == 0:
-        return {
-            text: "Something went wrong processing your request: Not intent provided",
-            closeContext: true,
-        }, 200
+        return SBFRes(text="Something went wrong processing your request: Not intent provided",
+                      close_context=true), 200
     code_id, station_id = get_id(json_input, "stationID")
     if code_id != 2:
-        return {text: f"Something went wrong processing your request: {station_id}", closeContext: true}, 200
+        return SBFRes(text=f"Something went wrong processing your request: {station_id}", close_context=true), 200
     if intent in station_exec:
-        _, message = station_exec[intent](station_id, "Station")
+        _, message = station_exec[intent](
+            station_id, "Station")  # type: ignore
     else:
         logging.error("Intent not recognized in station_execution")
-        return {
-            text: "Something went wrong processing your request: Unrecognized Intent.",
-            closeContext: true,
-        }, 200
-    return {text: message, closeContext: true}, 200
+        return SBFRes(text="Something went wrong processing your request: Unrecognized Intent.",
+                      close_context=true), 200
+    return SBFRes(text=message, close_context=true), 200
 
 
-def train_information(json_input: dict) -> Tuple[dict, int]:
+def train_information(json_input: SBF) -> Tuple[SBFRes, int]:
     """
     Handles queries for train business information.
-    returns: {text: retrieved_information, closeContext: true}, 200
+    returns: retrieved train information
     """
     if not connexion.request.is_json:
         logging.error("No JSON request in train_information")
-        return {
-            text: "Something went wrong processing your request: Not a JSON request",
-            closeContext: true,
-        }, 200
+        return SBFRes(text="Something went wrong processing your request: Not a JSON request",
+                      close_context=true), 200
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
 
     code_intent, intent = get_intent(json_input)
     if code_intent == 0:
-        return {
-            text: "Something went wrong processing your request: Not intent provided",
-            closeContext: true,
-        }, 200
+        return SBFRes(text="Something went wrong processing your request: Not intent provided",
+                      close_context=true), 200
     code_id, train_id = get_id(json_input, "trainID")
     if code_id != 2:
-        return {
-            text: f"Something went wrong processing your request: {train_id}",
-            closeContext: true,
-        }, 200
+        return SBFRes(text=f"Something went wrong processing your request: {train_id}",
+                      close_context=true), 200
     # TODO publication date
     if intent in train_info:
-        _, message = train_info[intent](train_id, "Train")
+        _, message = train_info[intent](train_id, "Train")  # type: ignore
     elif intent == "train_info":
         message = f"Information for train {train_id}: "
         one_datapoint = False
@@ -270,71 +247,59 @@ def train_information(json_input: dict) -> Tuple[dict, int]:
                 tmp += plot.describe_usage(response_mem,
                                            "Memory Usage in MB: ", True, False)
         for func in train_info.values():
-            code_success, sub_message = func(train_id, "Train")
+            code_success, sub_message = func(train_id, "Train")  # type: ignore
             if code_success == 2:
                 one_datapoint = True
                 message += sub_message
 
         message += tmp
         if not one_datapoint:
-            return {text: f"No information for train {train_id} found.", closeContext: true}, 200
+            return SBFRes(text=f"No information for train {train_id} found.", close_context=true), 200
     else:
         logging.error("Intent not recognized in train_information")
-        return {
-            text: "Something went wrong processing your request: Unrecognized Intent.",
-            closeContext: true,
-        }, 200
-    return {text: message, closeContext: true}, 200
+        return SBFRes(text="Something went wrong processing your request: Unrecognized Intent.",
+                      close_context=true), 200
+    return SBFRes(text=message, close_context=true), 200
 
 
-def train_runtime(json_input: dict) -> Tuple[dict, int]:
+def train_runtime(json_input: SBF) -> Tuple[SBFRes, int]:
     """
     Handles queries for train execution/ runtime information.
-    returns: {text: retrieved_information, closeContext: true}, 200
+    returns: retrieved train runtime information
     """
     if not connexion.request.is_json:
         logging.error("No JSON request in train_runtimecution")
-        return {
-            text: "Something went wrong processing your request: Not a JSON request",
-            closeContext: true,
-        }, 200
+        return SBFRes(text="Something went wrong processing your request: Not a JSON request",
+                      close_context=true), 200
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
 
     code_intent, intent = get_intent(json_input)
     if code_intent == 0:
-        return {
-            text: "Something went wrong processing your request: Not intent provided",
-            closeContext: true,
-        }, 200
+        return SBFRes(text="Something went wrong processing your request: Not intent provided",
+                      close_context=true), 200
     code_id, train_id = get_id(json_input, "trainID")
     if code_id != 2:
-        return {
-            text: f"Something went wrong processing your request: {train_id}",
-            closeContext: true,
-        }, 200
+        return SBFRes(text=f"Something went wrong processing your request: {train_id}",
+                      close_context=true), 200
     # TODO  comp env seperate?
     if intent in train_run:
-        _, message = train_run[intent](train_id)
+        _, message = train_run[intent](train_id)  # type: ignore
     else:
         logging.error("Intent not recognized in train_runtimecution")
-        return {
-            text: "Something went wrong processing your request: Unrecognized Intent.",
-            closeContext: true,
-        }, 200
-    return {text: message, closeContext: true}, 200
+        return SBFRes(text="Something went wrong processing your request: Unrecognized Intent.",
+                      close_context=true), 200
+    return SBFRes(text=message, close_context=true), 200
 
 
-def train_request(json_input: dict) -> Tuple[dict, int]:
+def train_request(json_input: SBF) -> Tuple[SBFRes, int]:
     """
     Handles train requests.
     returns: {text: success_message, closeContext: true}, 200
     """
     # TODO: via slack blocks
     if not connexion.request.is_json:
-        return {
-            text: "Something went wrong. Not a JSON request",
-            closeContext: true,
-        }, 200
+        return SBFRes(text="Something went wrong. Not a JSON request",
+                      close_context=true), 200
 
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
     print(json_input)
@@ -357,47 +322,45 @@ def train_request(json_input: dict) -> Tuple[dict, int]:
     return {text: response, closeContext: true}, 200
 
 
-def get_all(json_input: dict) -> Tuple[dict, int]:
+def get_all(json_input: SBF) -> Tuple[SBFRes, int]:
     """
     Handles queries to retrieve all trains or stations.
-    returns: {text: retrieved_information, closeContext: true}, 200
+    returns: all trains/ stations
     """
     if not connexion.request.is_json:
         logging.error("No JSON request in get_all")
-        return {
-            text: "Something went wrong processing your request: Not a JSON request",
-            closeContext: true,
-        }, 200
+        resp = SBFRes(
+            text="Something went wrong processing your request: Not a JSON request", close_context=true)
+        return resp, 200
+    # TODO ???
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
 
     code, intent = get_intent(json_input)
     if code == 0:
-        return {
-            text: "Something went wrong processing your request: Not intent provided",
-            closeContext: true,
-        }, 200
+        resp = SBFRes(
+            text="Something went wrong processing your request: Not intent provided", close_context=true)
+        return resp, 200
     if intent == "all_stations":
         code, message = query.get_all("Station")
     elif intent == "all_trains":
         code, message = query.get_all("Train")
     else:
         logging.error("Intent not recognized in get_all")
-        return {
-            text: "Something went wrong processing your request: Unrecognized Intent.",
-            closeContext: true,
-        }, 200
-    return {text: message, closeContext: true}, 200
+        resp = SBFRes(
+            text="Something went wrong processing your request: Unrecognized Intent.", close_context=true)
+        return resp, 200
+    resp = SBFRes(text=message, close_context=true)
+    return resp, 200
 
 
-def help_text(json_input: dict) -> Tuple[dict, int]:
+def help_text(json_input: SBF) -> Tuple[SBFRes, int]:
     """Simply returns a help/ general information text.
-    returns: {text: help_text, closeContext: true}, 200"""
+    returns: Help text
+    """
     if not connexion.request.is_json:
         logging.error("No JSON request in help_text")
-        return {
-            text: "Something went wrong processing your request: Not a JSON request",
-            closeContext: true,
-        }, 200
+        return SBFRes(text="Something went wrong processing your request: Not a JSON request",
+                      close_context=true), 200
     message = """
         Hello 👋
         Here are some examples of what I can do:
@@ -416,44 +379,41 @@ def help_text(json_input: dict) -> Tuple[dict, int]:
             At which station is train train123 at the moment?
             Which train is currently at station station6 ?
     """
-    return {"blocks": blocks.hello_buttons()}, 200
+    return SBFRes(text=message, close_context=true), 200
 
 
-def get_performance(json_input: dict) -> Tuple[dict, int]:
+def greeting(json_input: SBF) -> Tuple[SBFResBlock, int]:
+    return SBFResBlock(blocks=blocks.hello_buttons(), close_context=true), 200
+
+
+def get_performance(json_input: SBF) -> Tuple[SBFRes, int]:
     """
     Handles queries for performance information and visualistations.
     Does return an error if visualistation failed.
-    returns: {fileBody: base64 encoded png, fileName: png_name, fileType: "png"}, 200
-    or {text: message, closeContext: true}, 200
+    returns: link to the generated image or error message
     """
     if not connexion.request.is_json:
         logging.error("No JSON request in get_performance")
-        return {
-            text: "Something went wrong processing your request: Not a JSON request",
-            closeContext: true,
-        }, 200
+        return SBFRes(text="Something went wrong processing your request: Not a JSON request",
+                      close_context=true), 200
     json_input = SBF.from_dict(connexion.request.get_json())  # noqa: E501
     code, intent = get_intent(json_input)
     if code == 0:
-        return {
-            text: "Something went wrong processing your request: Not intent provided",
-            closeContext: true,
-        }, 200
+        return SBFRes(text="Something went wrong processing your request: Not intent provided",
+                      close_context=true), 200
     if intent != "get_performance":
         logging.error("Intent not recognized in get_performance.")
-        return {text: "Something went wrong: Intent not recognized", closeContext: true}, 200
+        return SBFRes(text="Something went wrong: Intent not recognized", close_context=true), 200
 
     if not json_input._entities:
         logging.error("No entities in get_performance.")
-        return {text: "Something went wrong: Entities missing.", closeContext: true}, 200
+        return SBFRes(text="Something went wrong: Entities missing.", close_context=true), 200
 
     if "stationID" in json_input._entities:
         code_id, station_id = get_id(json_input, "stationID")
         if code_id != 2:
-            return {
-                text: f"Something went wrong processing your request: {station_id}",
-                closeContext: true,
-            }, 200
+            return SBFRes(text=f"Something went wrong processing your request: {station_id}",
+                          close_context=true), 200
         (
             code_query,
             cpu,
@@ -463,97 +423,92 @@ def get_performance(json_input: dict) -> Tuple[dict, int]:
             message,
         ) = query.get_station_performance(station_id)
         if not code_query == 2:
-            return {text: message, closeContext: true}, 200
+            return SBFRes(text=message, close_context=true), 200
         code_plot, image_link = plot.plot_station_performance(
             station_id, cpu, mem, response_cpu, response_mem
         )
         if not code_plot == 2:
-            return {text: "Something went wrong: Could not generate image.", closeContext: true}, 200
-        return {text: image_link, closeContext: true}
+            return SBFRes(text="Something went wrong: Could not generate image.", close_context=true), 200
+        return SBFRes(text=image_link, close_context=true), 200
     if "trainID" in json_input._entities:
         code_id, train_id = get_id(json_input, "trainID")
         if code_id != 2:
-            return {
-                text: f"Something went wrong processing your request: {train_id}",
-                closeContext: true,
-            }, 200
+            return SBFRes(text=f"Something went wrong processing your request: {train_id}",
+                          close_context=true), 200
         code_query, cpu, mem, response_cpu, response_mem, message = query.get_train_performance(
             train_id)
         if not code_query == 2:
-            return {text: message, closeContext: true}, 200
+            return SBFRes(text=message, close_context=true), 200
         if not cpu and not mem:
-            return {text: f"No performance data for train {train_id} present.", closeContext: true}, 200
+            return SBFRes(text=f"No performance data for train {train_id} present.", close_context=true), 200
         code_plot, image_link = plot.plot_train_performance(
             train_id, cpu, mem, response_cpu, response_mem)
         if not code_plot == 2:
-            return {text: "Something went wroung: Could not generate image.", closeContext: true}, 200
-        return {text: image_link, closeContext: true}, 200
-    else:
-        return {text: "Someting went wrong: Neither trainID nor stationID present.", closeContext: true}, 200
+            return SBFRes(text="Something went wroung: Could not generate image.", close_context=true), 200
+        return SBFRes(text=image_link, close_context=true), 200
+    return SBFRes(text="Someting went wrong: Neither trainID nor stationID present.", close_context=true), 200
 
 
-def button(json_input: dict) -> Tuple[dict, int]:
+def button(json_input: ACTION) -> Tuple[SBFRes, int]:
     """
-        Handles button interactions
+        Handles button interactions.
+
     """
-    print("WE ARE HERE")
-    print(json_input)
-    if "actions" in json_input and "action_id" in json_input["actions"][0]:
-        action_id = json_input["actions"][0]["action_id"]
-        channel_id = ""
-        if "channel" in json_input:
-            channel_id = json_input["channel"]
+    if "channel" in json_input:
+        channel_id = json_input["channel"]
+    if "message" in json_input:
+        name = json_input["message"]
+    if "actionInfo" in json_input and "action_id" in json_input["actionInfo"]:
+        action_id = json_input["actionInfo"]
+        if "value" in json_input["actionInfo"]:
+            value = json_input["actionInfo"]["value"]
+        if "triggerId" in json_input["actionInfo"]:
+            trigger_id = json_input["actionInfo"]["triggerId"]
         if action_id == "info_about_stations":
-            return {"channel": channel_id, "blocks": blocks.station_selection()}
+            return SBFResBlock(blocks=blocks.station_selection()), 200
         elif action_id == "info_about_trains":
-            return {"channel_id": channel_id, "blocks": blocks.train_selection()}
+            return SBFResBlock(blocks=blocks.train_selection()), 200
         elif action_id == "information":
             return
         elif action_id == "all_stations":
             _, message = query.get_all("Station")
-            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
+            return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id == "all_trains":
             _, message = query.get_all("Train")
-            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
+            return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id == "request_train":
-            return {"channel_id": channel_id, "blocks": blocks.train_request_modal()}
+            return {"trigger_id": trigger_id, "blocks": blocks.train_request_modal()}, 200
         elif action_id == "station_selection":
-            station_id = json_input["actions"]["selected_option"]["value"]
-            station_name = json_input["actions"]["selected_option"]["text"]["text"]
-            return {"channel_id": channel_id, "blocks": blocks.station_block(station_name, station_id)}
+            station_name = ""  # TODO
+            return SBFResBlock(blocks=blocks.station_block(station_name, value)), 200
         elif action_id == "train_selection":
-            train_id = json_input["actions"]["selected_option"]["value"]
-            train_name = json_input["actions"]["selected_option"]["text"]["text"]
-            return {"channel_id": channel_id, "blocks": blocks.train_block(train_name, train_id)}
+            train_name = ""  # TODO
+            return SBFResBlock(blocks=blocks.train_block(train_name, value)), 200
         elif action_id in station_info:
-            station_id = json_input["actions"]["selected_option"]["value"]
-            _, message = station_info[action_id](station_id, "Station")
-            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
+            _, message = station_info[action_id](
+                value, "Station")  # type: ignore
+            return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in station_exec:
-            station_id = json_input["actions"]["selected_option"]["value"]
-            _, message = station_exec[action_id](station_id, "Station")
-            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
+            _, message = station_exec[action_id](
+                value, "Station")  # type: ignore
+            return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in train_info:
-            train_id = json_input["actions"]["selected_option"]["value"]
-            _, message = train_info[action_id](train_id, "Train")
-            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
+            _, message = train_info[action_id](value, "Train")  # type: ignore
+            return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in train_run:
-            train_id = json_input["actions"]["selected_option"]["value"]
-            _, message = train_run[action_id](train_id, "Train")
-            return {"channel_id": channel_id, "blocks": blocks.simple_text(message)}
-    print("nothing fitting found")
+            _, message = train_run[action_id](value, "Train")  # type: ignore
+            return SBFResBlock(blocks=blocks.simple_text(message)), 200
+    print(f"ERRROR: Action ID not found {action_id}", flush=True)
     return {"text": "Not found"}
 
 
 def get_image(image_name: str):
-    print("here")
+    """
+        Returns the png file with the filename image_name.
+    """
     allowed_chars = set(string.ascii_lowercase + string.digits + '_')
     if not set(image_name) <= allowed_chars:
-        print("here")
         return 404
-
     filename = f"{image_name}.png"
-    # return send_file(filename)
-    # TODO os.getcwd
-    print(f"{os.getcwd()}")
-    return send_from_directory(f"./controllers/images", filename)
+    # uses relative file path
+    return send_from_directory("./controllers/images", filename)
