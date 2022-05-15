@@ -465,187 +465,96 @@ def train_block(train_id: str, train_name: str = "") -> List[object]:
     return blocks
 
 
-def train_request_modal() -> Dict[str, Collection[Collection[str]]]:
+def train_request_block() -> List[Dict[str, Collection[str]]]:
     """
         Modal block of the train request
         returns: Block as list
     """
-    modal = {
-        "type": "modal",
-        "title": {
-                "type": "plain_text",
-                "text": "🚂 Request a new train",
-                "emoji": true
-        },
-        "submit": {
-            "type": "plain_text",
-            "text": "Submit",
-            "emoji": true
-        },
-        "close": {
-            "type": "plain_text",
-            "text": "Cancel",
-            "emoji": true
-        },
-        "blocks": [
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Please note: currently you can only select a train route. \n Requesting a different train than the default is not yet supported."
-                }
+    blocks = [
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "🚏 Please select a route for the train Hello World. "
             },
-            {
-                "type": "input",
-                "element": {
-                    "type": "multi_static_select",
-                    "placeholder": {
-                        "type": "plain_text",
-                        "text": "Select options",
-                        "emoji": true
-                    },
-                    "options": [
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Bruegel",
-                                "emoji": true
-                            },
-                            "value": "station_bruegel"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Privat-Weber",
-                                "emoji": true
-                            },
-                            "value": "station_privat-weber"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Privat-TEST",
-                                "emoji": true
-                            },
-                            "value": "station_privat-test"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Private-Weber2",
-                                "emoji": true
-                            },
-                            "value": "station_privat-weber2"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Private-Welten",
-                                "emoji": true
-                            },
-                            "value": "station_privat-welten"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "HSMW",
-                                "emoji": true
-                            },
-                            "value": "station_HSMW"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Melanoma Station",
-                                "emoji": true
-                            },
-                            "value": "station_melanoma"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "MDS Station",
-                                "emoji": true
-                            },
-                            "value": "station_mds"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "PHT MDS Leipzig",
-                                "emoji": true
-                            },
-                            "value": "station_pht_leipzig"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "PHT IMISE LEIPZIG",
-                                "emoji": true
-                            },
-                            "value": "station_imise_leipzig"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Station-UKA",
-                                "emoji": true
-                            },
-                            "value": "station_uka"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Station-UKK",
-                                "emoji": true
-                            },
-                            "value": "station_ukk"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Station-UMG",
-                                "emoji": true
-                            },
-                            "value": "station_umg"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Station-UMG_temp",
-                                "emoji": true
-                            },
-                            "value": "station_umg_tmp"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "aachenbeeck",
-                                "emoji": true
-                            },
-                            "value": "station_aachenbeeck"
-                        },
-                        {
-                            "text": {
-                                "type": "plain_text",
-                                "text": "aachenmenzel",
-                                "emoji": true
-                            },
-                            "value": "station_aachenmenzel"
-                        }
-                    ],
-                    "action_id": "multi_static_select-action"
-                },
-                "label": {
+            "accessory": {
+                "type": "multi_static_select",
+                "placeholder": {
                     "type": "plain_text",
-                            "text": "Please select a train route:",
+                    "text": "Select options",
                     "emoji": true
-                }
+                },
+                "options": [
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station UKA",
+                            "emoji": true
+                        },
+                        "value": "station_aachen"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station UKK",
+                            "emoji": true
+                        },
+                        "value": "station_cologne"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station Göttingen",
+                            "emoji": true
+                        },
+                        "value": "station_goettingen"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station Leipzig",
+                            "emoji": true
+                        },
+                        "value": "station_leipzig"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station Leipzig IMISE",
+                            "emoji": true
+                        },
+                        "value": "station_leipzig_imise"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station Mittweida",
+                            "emoji": true
+                        },
+                        "value": "station_mittweida"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station Beeck",
+                            "emoji": true
+                        },
+                        "value": "station_beeck"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station Menzel",
+                            "emoji": true
+                        },
+                        "value": "station_menzel"
+                    }
+                ],
+                "action_id": "train_route"
             }
-        ]
-
-    }
-    return modal
+        }
+    ]
+    return blocks
 
 
 def image_block(url: str) -> List[Dict[str, Collection[str]]]:
