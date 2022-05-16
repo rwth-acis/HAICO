@@ -382,19 +382,17 @@ def get_all(json_input: SBF) -> Tuple[SBFRes, int]:
     return resp, 200
 
 
-def help_text(json_input: SBF) -> Tuple[SBFRes, int]:  # pylint: disable=unused-argument
+def help_text(json_input: SBF) -> Tuple[SBFResBlock, int]:  # pylint: disable=unused-argument
     """Simply returns a help/ general information text.
     returns: Help text
     """
     message = """
-        Hello 👋
         Here are some examples of what I can do:
+        💡 Retrieve information about a station or a train
         🚉 Get the trains that are currently at a station
         🧭 Tell you where a train is currently at
         🗺 Get a train's route
         📈 Get performance details for a train or station
-        🧮 Tell you average performance information about a train
-        💡 Retrieve information about a station or a train
         🚂 Request a train
         🛑 Get errors a train encountered
         🙅‍♀️ Ask if a train was rejected
@@ -404,7 +402,7 @@ def help_text(json_input: SBF) -> Tuple[SBFRes, int]:  # pylint: disable=unused-
             At which station is train train123 at the moment?
             Which train is currently at station station6 ?
     """
-    return SBFRes(text=message, close_context=true), 200
+    return SBFResBlock(blocks=blocks.help_buttons(message)), 200
 
 
 def greeting(json_input: SBF) -> Tuple[SBFResBlock, int]:
@@ -529,6 +527,7 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
             channel = json_input["channel"]
             poll.update_notifications(
                 piece_id, get_selected(json_input), channel)
+            return SBFResBlock(blocks=blocks.simple_text("✅ I updated your notification settings.")), 200
         elif action_id == "notifications_station":
             station_id = action_info["value"]
             return SBFResBlock(blocks=blocks.update_notifications_station(station_id)), 200
@@ -551,8 +550,8 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
                 station_id, "Station")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in train_info:
-            station_id = action_info["value"]
-            station_name = stations_rev[station_id]
+            train_id = action_info["value"]
+            train_name = trains_rev[station_id]
             _, message = train_info[action_id](
                 train_id, "Train")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
@@ -563,6 +562,7 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
                 train_id, "Train")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id == "train_info":
+            train_id = action_info["value"]
             message = f"Information for train {train_id}: "
             one_datapoint = False
             # Add performance info
@@ -588,6 +588,7 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
                 return SBFResBlock(blocks.simple_text(f"No information for train {train_id} found.")), 200
             return SBFResBlock(blocks.simple_text(message)), 200
         elif action_id == "station_info":
+            station_id = action_info["value"]
             message = f"Information for station {station_id}: "
             one_datapoint = False
             # Add performance info

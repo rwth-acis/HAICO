@@ -112,6 +112,79 @@ def hello_buttons() -> List[object]:
     return block
 
 
+def help_buttons(message=str) -> List[object]:
+    """
+        Overview buttons.
+        To be returned with an intent at the beginning of the conversation.
+        returns: Block as list
+    """
+    block = [
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": message,
+            }
+        },
+        {
+            "type": "actions",
+            "elements": [
+                {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "🚉 Information about stations",
+                        "emoji": true
+                    },
+                    "value": "info_about_stations",
+                    "action_id": "info_about_stations"
+                },
+                {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "🚂 Information about trains",
+                        "emoji": true
+                    },
+                    "value": "info_about_trains",
+                    "action_id": "info_about_trains"
+                },
+                {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "🔍Show all stations",
+                        "emoji": true
+                    },
+                    "value": "get_all",
+                    "action_id": "all_stations"
+                },
+                {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "🔍Show all trains",
+                        "emoji": true
+                    },
+                    "value": "get_all",
+                    "action_id": "all_trains"
+                },
+                {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "🚇 Request train",
+                        "emoji": true
+                    },
+                    "value": "information",
+                    "action_id": "train_request"
+                }
+            ]
+        }
+    ]
+    return block
+
+
 def station_selection() -> List[Dict[str, Collection[str]]]:
     """
         Radio buttons to select a station.
@@ -644,6 +717,14 @@ def update_notifications_train(train_id: str) -> List[Dict[str, Collection[str]]
                             "emoji": true
                         },
                         "value": "train_finished"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Train Rejected",
+                            "emoji": true
+                        },
+                        "value": "train_rejections"
                     }
                 ],
                 "action_id": f"update_notifications_{train_id}"

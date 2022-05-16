@@ -224,11 +224,11 @@ def poll_server() -> None:
                         ?station a pht:Train .
                         ?train pht:execution ?exec .
                         ?exec pht:plannedRouteStep ?step .
-                        ?step pht:station {ont_pref}:{station_id} .
+                        ?step pht:station ?station .
                         FILTER NOT EXISTS {{
                             ?exec pht:event ?ev .
                             ?ev a pht:StartedTransmissionEvent .
-                            ?ev pht:station {ont_pref}:{station_id} .
+                            ?ev pht:station ?station .
                         }}
                         
                 }}
