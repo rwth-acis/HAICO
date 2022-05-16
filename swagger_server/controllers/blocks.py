@@ -219,7 +219,7 @@ def station_selection() -> List[Dict[str, Collection[str]]]:
                     {
                         "text": {
                             "type": "plain_text",
-                            "text": "Station Göttingen",
+                            "text": "Station Goettingen",
                             "emoji": true
                         },
                         "value": "station_goettingen"
@@ -559,7 +559,7 @@ def train_request_block() -> List[Dict[str, Collection[str]]]:
                     {
                         "text": {
                             "type": "plain_text",
-                            "text": "Station Göttingen",
+                            "text": "Station Goettingen",
                             "emoji": true
                         },
                         "value": "station_goettingen"

@@ -137,9 +137,9 @@ def poll_server() -> None:
         return
     # Check if we have any new stations or trains
     query_stations = """
-        SELECT ?station WHERE {{
+        SELECT ?station WHERE {
             ?station a pht:Station .
-        }}
+        }
     """
     response_stations = query.blazegraph_query(query_stations)
     list_stations = get_response(response_stations, "station", False)
@@ -215,7 +215,6 @@ def poll_server() -> None:
                     {ont_pref}:{train_id} pht:event ?ev .
                     ?ev a pht:FinishedRunningAtStationEvent .
                     ?ev pht:station ?station .
-                    ?station
                 }}
         """
         query_tmp_fin = f"""

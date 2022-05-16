@@ -74,7 +74,7 @@ train_run = {
 stations = {
     "Station UKA": "station_aachen",
     "Station UKK": "station_cologne",
-    "Station Göttingen": "station_goettingen",
+    "Station Goettingen": "station_goettingen",
     "Station Leipzig": "station_leipzig",
     "Station Leipzig IMISE": "station_leipzig_imise",
     "Station Mittweida": "station_mittweida",
@@ -85,7 +85,7 @@ stations = {
 stations_rev = {
     "station_aachen": "Station UKA",
     "station_cologne": "Station UKK",
-    "station_goettingen": "Station Göttingen",
+    "station_goettingen": "Station Goettingen",
     "station_leipzig": "Station Leipzig",
     "station_leipzig_imise": "Station Leipzig IMISE",
     "station_mittweida": "Station Mittweida",
@@ -405,6 +405,7 @@ def help_text(json_input: SBF) -> Tuple[SBFResBlock, int]:  # pylint: disable=un
     return SBFResBlock(blocks=blocks.help_buttons(message)), 200
 
 
+# pyling : disable=unused-argument
 def greeting(json_input: SBF) -> Tuple[SBFResBlock, int]:
     return SBFResBlock(blocks=blocks.hello_buttons(), close_context=true), 200
 
@@ -551,7 +552,7 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in train_info:
             train_id = action_info["value"]
-            train_name = trains_rev[station_id]
+            train_name = trains_rev[train_id]
             _, message = train_info[action_id](
                 train_id, "Train")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
