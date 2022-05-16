@@ -237,7 +237,7 @@ def poll_server() -> None:
 
         query_tmp_fin_2 = f"""
                 SELECT ?station WHERE {{
-                    {ont_pref}:{train_id} a pht:Train 
+                    {ont_pref}:{train_id} a pht:Train .
                     {ont_pref}:{train_id} pht:event ?ev .
                     ?ev a pht:StationRejectedEvent .
                     ?ev pht:station ?station .

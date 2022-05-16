@@ -437,8 +437,7 @@ def get_running_trains() -> Tuple[int, str]:
     query_string = """
         SELECT ?train WHERE {
             ?train a pht:Train .
-            ?train pht:execution ?exec .
-            ?exec pht:event pht:StartedRunningAtStationEvent .
+            ?train pht:event pht:StartedRunningAtStationEvent .
             FILTER NOT EXISTS {
                 ?exec pht:event ?ev .
                 ?ev a pht:FinishedRunningAtStationEvent .
