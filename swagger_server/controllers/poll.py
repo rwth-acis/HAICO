@@ -103,6 +103,7 @@ def poll_server() -> None:
             query_error_train = f"""
                 SELECT ?station ?error WHERE {{
                     {ont_pref}:{train_id} a pht:Train .
+                    {ont_pref}:{train_id} pht:event ?ev .
                     ?ev a pht:StationErrorEvent .
                     ?ev pht:station ?station .
                     ?ev pht:message ?error .
@@ -119,6 +120,7 @@ def poll_server() -> None:
                 SELECT ?error ?train WHERE {{
                     {ont_pref}:{station_id} a pht:Station .
                     ?train a pht:Train .
+                    ?train pht:event ?ev .
                     ?ev a pht:StationErrorEvent .
                     ?ev pht:station {ont_pref}:{station_id} .
                     ?ev pht:message ?error .
@@ -169,17 +171,18 @@ def poll_server() -> None:
     # Check if an error occured
     for train_id in TRAINS:
         query_error_train = f"""
-            SELECT ?station ?error WHERE {{
-                {ont_pref}:{train_id} a pht:Train .
-                {ont_pref}:{train_id} pht:event ?ev .
-                ?ev a pht:StationErrorEvent .
-                ?ev pht:station ?station .
-                ?ev pht:message ?error .
-            }}
+                SELECT ?station ?error WHERE {{
+                    {ont_pref}:{train_id} a pht:Train .
+                    {ont_pref}:{train_id} pht:event ?ev .
+                    ?ev a pht:StationErrorEvent .
+                    ?ev pht:station ?station .
+                    ?ev pht:message ?error .
+                }}
         """
         response_error_train = query.blazegraph_query(query_error_train)
         list_error_train = get_response(
             response_error_train, "station", True, "error")
+
         for item in list_error_train:
             if train_id not in ERR_TRAIN_LAST:
                 ERR_TRAIN_LAST[train_id] = [item]
@@ -189,14 +192,14 @@ def poll_server() -> None:
                 notify_train_er(train_id, item)
 
         query_rej_train = f"""
-                SELECT ?station ?reason WHERE {{
-                    {ont_pref}:{train_id} a pht:Train .
-                    {ont_pref}:{train_id} pht:execution ?exec .
-                    ?exec pht:event ?ev .
-                    ?ev a pht:StationRejectedEvent .
-                    ?ev pht:station ?station .
-                    ?ev pht:message ?reason .
-                }}
+            SELECT ?station ?reason WHERE {{
+                {ont_pref}:{train_id} a pht:Train .
+                {ont_pref}:{train_id} pht:execution ?exec .
+                ?exec pht:event ?ev .
+                ?ev a pht:StationRejectedEvent .
+                ?ev pht:station ?station .
+                ?ev pht:message ?reason .
+            }}
         """
         response_rej_train = query.blazegraph_query(query_rej_train)
         list_rej_train = get_response(
@@ -212,8 +215,8 @@ def poll_server() -> None:
         query_fin_train = f"""
                 SELECT ?station WHERE {{
                     {ont_pref}:{train_id} a pht:Train .
-                    {ont_pref}:{train_id} pht:event ?ev .
-                    ?ev a pht:FinishedRunningAtStationEvent .
+                    {ont_pref}:{train_id} pht:exection ?exec .
+                    ?exec pht:FinishedRunningAtStationEvent ?ev.
                     ?ev pht:station ?station .
                 }}
         """
@@ -236,12 +239,13 @@ def poll_server() -> None:
         list_tmp_fin = get_response(response_tmp_fin, "station", False)
 
         query_tmp_fin_2 = f"""
-                SELECT ?station WHERE {{
-                    {ont_pref}:{train_id} a pht:Train .
-                    {ont_pref}:{train_id} pht:event ?ev .
-                    ?ev a pht:StationRejectedEvent .
-                    ?ev pht:station ?station .
-                }}
+            SELECT ?station ?reason WHERE {{
+                {ont_pref}:{train_id} a pht:Train .
+                {ont_pref}:{train_id} pht:execution ?exec .
+                ?exec pht:event ?ev .
+                ?ev a pht:StationRejectedEvent .
+                ?ev pht:station ?station .
+            }}
         """
         response_tmp_fin_2 = query.blazegraph_query(query_tmp_fin_2)
         list_tmp_fin_2 = get_response(response_tmp_fin_2, "station", False)
@@ -262,12 +266,13 @@ def poll_server() -> None:
             SELECT ?error ?train WHERE {{
                 {ont_pref}:{station_id} a pht:Station .
                 ?train a pht:Train .
+                ?train pht:event ?ev .
                 ?ev a pht:StationErrorEvent .
                 ?ev pht:station {ont_pref}:{station_id} .
                 ?ev pht:message ?error .
-                ?train pht:event ?ev .
             }}
         """
+
         response_error_station = query.blazegraph_query(
             query_error_station)
         list_error_station = get_response(
@@ -311,8 +316,7 @@ def poll_server() -> None:
                     ?train pht:event ?ev .
                     ?ev a pht:FinishedRunningAtStationEvent .
                     ?ev pht:station {ont_pref}:{station_id} .
-                }}
-        """
+                """
         response_fin_station = query.blazegraph_query(query_fin_station)
         list_fin_station = get_response(response_fin_station, "train", False)
         for item in list_fin_station:
@@ -429,7 +433,7 @@ def update_notifications(piece_id: str, events: List[str], channel: str) -> None
             if piece_id not in TRAINS_SUB:
                 TRAINS_SUB.append(piece_id)
         elif event == "train_rejections":
-            if channel not in TRAIN_FIN:
+            if channel not in TRAIN_REJ:
                 TRAIN_REJ[channel] = [piece_id]
             elif piece_id not in TRAIN_REJ[channel]:
                 TRAIN_REJ[channel].append(piece_id)
