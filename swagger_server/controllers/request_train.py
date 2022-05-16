@@ -96,7 +96,7 @@ def post_train(station_route: list) -> Tuple[int, str]:
     # should not end in comma
     final_route = final_route[:-1]
 
-    data = f"{{\n    \"trainclassid\": \"{train_class}\",\n    \"traininstanceid\": 1,\n    \"route\": \"{final_route}\"\n}}"
+    data = f"{{\n    \"trainclassid\": \"{train_class}\",\n    \"traininstanceid\": 1,\n    \"route\": \"{final_route}\"\n}}"  # pylint: disable=line-too-long
 
     try:
         response = requests.post(url, headers=headers,

@@ -299,11 +299,11 @@ def station_block(station_id: str, station_name: str = "") -> List[object]:
                     "type": "button",
                     "text": {
                         "type": "plain_text",
-                        "text": "📈 Average performance ",
+                        "text": "📈 Performance ",
                         "emoji": true
                     },
                     "value": station_id,
-                    "action_id": "station_performance_avg"
+                    "action_id": "station_performance"
                 },
                 {
                     "type": "button",
@@ -408,11 +408,11 @@ def train_block(train_id: str, train_name: str = "") -> List[object]:
                     "type": "button",
                     "text": {
                         "type": "plain_text",
-                        "text": "📈 Average performance ",
+                        "text": "📈 Performance ",
                         "emoji": true
                     },
                     "value": train_id,
-                    "action_id": "train_performance_avg"
+                    "action_id": "train_performance"
                 },
                 {
                     "type": "button",
@@ -557,17 +557,17 @@ def train_request_block() -> List[Dict[str, Collection[str]]]:
     return blocks
 
 
-def image_block(url: str) -> List[Dict[str, Collection[str]]]:
+def image_block(url: str, piece_id: str) -> List[Dict[str, Collection[str]]]:
     blocks = [
         {
             "type": "image",
             "title": {
                 "type": "plain_text",
-                "text": "I Need a Marg",
+                "text": f"Performance details for {piece_id}",
                 "emoji": true
             },
             "image_url": url,
-            "alt_text": "marg"
+            "alt_text": "performance graph"
         }
     ]
 
