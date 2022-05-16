@@ -1381,6 +1381,11 @@ def get_upcomming_trains(station_id: str, piece: str = None) -> Tuple[int, str]:
                     ?ev a pht:StationRejectedEvent .
                     ?ev pht:station {ont_pref}:{station_id} .
                 }}
+                FILTER NOT EXISTS {{
+                            ?exec pht:event ?ev .
+                            ?ev a pht:FinishedRunningAtStationEvent . 
+                            ?ev pht:station {ont_pref}:{station_id} .
+                }}
                 
         }}
     """
@@ -1395,7 +1400,7 @@ def get_upcomming_trains(station_id: str, piece: str = None) -> Tuple[int, str]:
         return 1, f"No scheduled trains for station {station_id} found."
 
     not_rej = []
-    for i, current in enumerate(response["results"]["bindings"]):
+    for i, current in enumerate(response_rej["results"]["bindings"]):
         train = current["train"]["value"]
         not_rej.append(train)
     unique = False

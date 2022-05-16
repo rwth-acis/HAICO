@@ -137,12 +137,13 @@ def poll_server() -> None:
                 REJ_TRAIN_LAST[train_id].append(item)
 
             query_fin_train = f"""
-                SELECT ?station WHERE {{
-                    {ont_pref}:{train_id} a pht:Train .
-                    {ont_pref}:{train_id} pht:exection ?exec .
-                    ?exec pht:FinishedRunningAtStationEvent ?ev.
-                    ?ev pht:station ?station .
-                }}
+                    SELECT ?station WHERE {{
+                        {ont_pref}:{train_id} a pht:Train .
+                        {ont_pref}:{train_id} pht:execution ?exec .
+                        ?exec pht:event ?ev .
+                        ?ev a pht:FinishedRunningAtStationEvent .
+                        ?ev pht:station ?station .
+                    }}
             """
             response_fin_train = query.blazegraph_query(query_fin_train)
             list_fin_train = get_response(response_fin_train, "station", False)
@@ -178,6 +179,11 @@ def poll_server() -> None:
                         FILTER NOT EXISTS {{
                             ?exec pht:event ?ev .
                             ?ev a pht:StartedTransmissionEvent .
+                            ?ev pht:station {ont_pref}:{station_id} .
+                        }}
+                        FILTER NOT EXISTS {{
+                            ?exec pht:event ?ev .
+                            ?ev a pht:FinishedRunningAtStationEvent . 
                             ?ev pht:station {ont_pref}:{station_id} .
                         }}
                         
@@ -306,51 +312,21 @@ def poll_server() -> None:
         query_fin_train = f"""
                 SELECT ?station WHERE {{
                     {ont_pref}:{train_id} a pht:Train .
-                    {ont_pref}:{train_id} pht:exection ?exec .
-                    ?exec pht:FinishedRunningAtStationEvent ?ev.
+                    {ont_pref}:{train_id} pht:execution ?exec .
+                    ?exec pht:event ?ev .
+                    ?ev a pht:FinishedRunningAtStationEvent .
                     ?ev pht:station ?station .
                 }}
         """
-        query_tmp_fin = f"""
-                SELECT ?station WHERE {{
-                        {ont_pref}:{train_id} a pht:Train .
-                        ?station a pht:Train .
-                        ?train pht:execution ?exec .
-                        ?exec pht:plannedRouteStep ?step .
-                        ?step pht:station ?station .
-                        FILTER NOT EXISTS {{
-                            ?exec pht:event ?ev .
-                            ?ev a pht:StartedTransmissionEvent .
-                            ?ev pht:station ?station .
-                        }}
-                        
-                }}
-        """
-        response_tmp_fin = query.blazegraph_query(query_tmp_fin)
-        list_tmp_fin = get_response(response_tmp_fin, "station", False)
-
-        query_tmp_fin_2 = f"""
-            SELECT ?station ?reason WHERE {{
-                {ont_pref}:{train_id} a pht:Train .
-                {ont_pref}:{train_id} pht:execution ?exec .
-                ?exec pht:event ?ev .
-                ?ev a pht:StationRejectedEvent .
-                ?ev pht:station ?station .
-            }}
-        """
-        response_tmp_fin_2 = query.blazegraph_query(query_tmp_fin_2)
-        list_tmp_fin_2 = get_response(response_tmp_fin_2, "station", False)
-
-        if not list_tmp_fin_2 and not list_tmp_fin:
-            response_fin_train = query.blazegraph_query(query_fin_train)
-            list_fin_train = get_response(response_fin_train, "station", False)
-            for item in list_fin_train:
-                if train_id not in REJ_TRAIN_LAST:
-                    FIN_TRAIN_LAST[train_id] = [item]
-                    notify_train_fin(train_id)
-                elif item not in FIN_TRAIN_LAST[train_id]:
-                    FIN_TRAIN_LAST[train_id].append(item)
-                    notify_train_fin(train_id)
+        response_fin_train = query.blazegraph_query(query_fin_train)
+        list_fin_train = get_response(response_fin_train, "station", False)
+        for item in list_fin_train:
+            if train_id not in REJ_TRAIN_LAST:
+                FIN_TRAIN_LAST[train_id] = [item]
+                notify_train_fin(train_id)
+            elif item not in FIN_TRAIN_LAST[train_id]:
+                FIN_TRAIN_LAST[train_id].append(item)
+                notify_train_fin(train_id)
 
     for station_id in STATIONS:
         query_error_station = f"""
@@ -387,6 +363,11 @@ def poll_server() -> None:
                         FILTER NOT EXISTS {{
                             ?exec pht:event ?ev .
                             ?ev a pht:StartedTransmissionEvent .
+                            ?ev pht:station {ont_pref}:{station_id} .
+                        }}
+                        FILTER NOT EXISTS {{
+                            ?exec pht:event ?ev .
+                            ?ev a pht:FinishedRunningAtStationEvent . 
                             ?ev pht:station {ont_pref}:{station_id} .
                         }}
                         
