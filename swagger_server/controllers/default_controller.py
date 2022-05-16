@@ -17,7 +17,7 @@ from swagger_server.models.sbf import SBF  # type: ignore
 from swagger_server.models.sbf_res import SBFRes  # type: ignore
 from swagger_server.models.sbf_res_block import SBFResBlock  # type: ignore
 from swagger_server.models.action import ACTION  # type: ignore
-from . import plot, query, request_train, blocks
+from . import plot, query, request_train, blocks, poll
 
 # for me because I sometimes forget the quotation marks
 text = "text"  # pylint: disable=C0103
@@ -82,10 +82,27 @@ stations = {
     "Station Menzel": "station_menzel"
 }
 
+stations_rev = {
+    "station_aachen": "Station UKA",
+    "station_cologne": "Station UKK",
+    "station_goettingen": "Station Göttingen",
+    "station_leipzig": "Station Leipzig",
+    "station_leipzig_imise": "Station Leipzig IMISE",
+    "station_mittweida": "Station Mittweida",
+    "station_beeck": "Station Beeck",
+    "station_menzel": "Station Menzel"
+}
+
 trains = {
     "Breast Cancer Study": "train_breast_cancer",
     "Melanoma Study": "train_melanoma",
     "Hello World Train": "train_hello_world"
+}
+
+trains_rev = {
+    "train_breast_cancer": "Breast Cancer Study",
+    "train_melanoma": "Melanoma Study",
+    "train_hello_world": "Hello World Train"
 }
 
 
@@ -120,7 +137,7 @@ def get_intent(json_input: SBF) -> Tuple[int, str]:
     return 2, json_input._intent
 
 
-def get_route(json_data: ACTION) -> List[str]:
+def get_selected(json_data: ACTION) -> List[str]:
     """
         Retrieves route from a json payload when the route is selected in a Slack block.
         json_data: the incomming payload
@@ -488,48 +505,113 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id == "train_request":
             return {"blocks": blocks.train_request_block()}, 200
+        elif action_id == "train_route":
+            route = get_selected(json_input)
+            if route:
+                _, message = request_train.post_train(route)
+                return SBFResBlock(blocks=blocks.simple_text(message)), 200
+            else:
+                return SBFResBlock(blocks=blocks.simple_text("Train request failed. Could not find stations")), 200
         elif action_id == "station_selection":
+            # For some reason the value part here is null
             station_name = json_input["msg"]
             station_id = stations[station_name]
             return SBFResBlock(blocks=blocks.station_block(station_name=station_name, station_id=station_id)), 200
         elif action_id == "train_selection":
+            # For some reason the value part here is null
             train_name = json_input["msg"]
             train_id = trains[train_name]
             return SBFResBlock(blocks=blocks.train_block(train_id, train_name)), 200
+        elif action_id == "notifications":
+            piece_id = action_info["value"]
+        elif action_id.startswith("update_notifications_"):
+            piece_id = action_id.strip("update_notifications_")
+            channel = json_input["channel"]
+            poll.update_notifications(
+                piece_id, get_selected(json_input), channel)
+        elif action_id == "notifications_station":
+            station_id = action_info["value"]
+            return SBFResBlock(blocks=blocks.update_notifications_station(station_id)), 200
+        elif action_id == "notifications_train":
+            train_id = action_info["value"]
+            return SBFResBlock(blocks=blocks.update_notifications_train(train_id)), 200
+        elif action_id == "station_performance" or action_id == "train_performance":
+            piece_id = action_info["value"]
+            return get_performance(json_input={}, intent=action_id, piece_id=piece_id)
         elif action_id in station_info:
-            station_name = action_info["value"]
-            station_id = stations[station_name]
+            station_id = action_info["value"]
+            station_name = stations_rev[station_id]
             _, message = station_info[action_id](
                 station_id, "Station")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in station_exec:
-            station_name = action_info["value"]
-            station_id = stations[station_name]
+            station_id = action_info["value"]
+            station_name = stations_rev[station_id]
             _, message = station_exec[action_id](
                 station_id, "Station")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in train_info:
-            train_name = action_info["value"]
-            train_id = trains[train_name]
+            station_id = action_info["value"]
+            station_name = stations_rev[station_id]
             _, message = train_info[action_id](
                 train_id, "Train")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id in train_run:
-            train_name = action_info["value"]
-            train_id = trains[train_name]
+            train_id = action_info["value"]
+            train_name = trains_rev[train_id]
             _, message = train_run[action_id](
                 train_id, "Train")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
-        elif action_id == "station_performance" or action_id == "train_performance":
-            piece_name = action_info["value"]
-            piece_id = stations[piece_name]
-            return get_performance(json_input={}, intent=action_id, piece_id=piece_id)
-        elif action_id == "train_route":
-            route = get_route(json_input)
-            if route:
-                request_train.post_train(route)
-            else:
-                return SBFResBlock(blocks=blocks.simple_text("Train request failed. Could not find stations")), 200
+        elif action_id == "train_info":
+            message = f"Information for train {train_id}: "
+            one_datapoint = False
+            # Add performance info
+            code_query, cpu, mem, response_cpu, response_mem, message = query.get_train_performance(
+                train_id)
+            tmp = ""
+            if code_query == 2:
+                if cpu:
+                    tmp += plot.describe_usage(response_cpu,
+                                               "CPU Usage in %: ", True, True)
+                if mem:
+                    tmp += plot.describe_usage(response_mem,
+                                               "Memory Usage in MB: ", True, False)
+            for func in train_info.values():
+                code_success, sub_message = func(
+                    train_id, "Train")  # type: ignore
+                if code_success == 2:
+                    one_datapoint = True
+                    message += sub_message
+
+            message += tmp
+            if not one_datapoint:
+                return SBFResBlock(blocks.simple_text(f"No information for train {train_id} found.")), 200
+            return SBFResBlock(blocks.simple_text(message)), 200
+        elif action_id == "station_info":
+            message = f"Information for station {station_id}: "
+            one_datapoint = False
+            # Add performance info
+            tmp = ""
+            code_query, cpu, mem, response_cpu, response_mem, message = query.get_station_performance(
+                station_id)
+            if code_query == 2:
+                if cpu:
+                    tmp += plot.describe_usage(response_cpu,
+                                               "CPU Usage in %: ", False, True)
+                if mem:
+                    tmp += plot.describe_usage(response_mem,
+                                               "Memory Usage in MB: ", False, False)
+
+            for func in station_info.values():
+                code_success, sub_message = func(
+                    station_id, "Station")  # type: ignore
+                if code_success == 2:
+                    one_datapoint = True
+                    message += sub_message
+            message += tmp
+            if not one_datapoint:
+                return SBFResBlock(blocks=blocks.simple_text(f"No information for station {station_id} found.")), 200
+            return SBFResBlock(blocks=blocks.simple_text(message)), 200
 
     print("ERRROR: Action ID not found", flush=True)
     return SBFRes(text="Something went wrong: I could not find the action_id in my list", close_context=true), 200

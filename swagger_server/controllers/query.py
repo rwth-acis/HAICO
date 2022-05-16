@@ -241,7 +241,7 @@ def get_all(piece: str) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"No {piece}s found"
     body = response["results"]["bindings"]
-    print(body)
+    print(body, flush=True)
     if len(body) == 1:
         return 2, f"I found one {piece}: {body[0][{piece}]['value']}."
     if len(body) == 2:
@@ -1535,8 +1535,7 @@ def get_station_finished_runs(station_id: str, piece: str = None) -> Tuple[int, 
     query_string = f"""
         SELECT * WHERE {{
             {ont_pref}:{station_id} a pht:Station .
-            ?train pht:execution ?exec .
-            ?exec pht:event ?ev .
+            ?train pht:event ?ev .
             ?ev a pht:FinishedRunningAtStationEvent .
             ?ev pht:station {ont_pref}:{station_id} .
             OPTIONAL {{ ?ev pht:timestamp ?time . }}
@@ -1564,8 +1563,7 @@ def get_train_finished_runs(train_id: str, piece: str = None) -> Tuple[int, str]
     query_string = f"""
         SELECT * WHERE {{
             {ont_pref}:{train_id} a pht:Train .
-            {ont_pref}:{train_id} pht:execution ?exec .
-            ?exec pht:event ?ev .
+            {ont_pref}:{train_id} pht:event ?ev .
             ?ev a pht:FinishedRunningAtStationEvent .
             ?ev pht:station ?station .
             OPTIONAL {{ ?ev pht:timestamp ?time . }}

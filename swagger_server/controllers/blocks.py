@@ -279,6 +279,15 @@ def station_block(station_id: str, station_name: str = "") -> List[object]:
                     "type": "button",
                     "text": {
                         "type": "plain_text",
+                        "text": "🛠 Notifications"
+                    },
+                    "value": station_id,
+                    "action_id": "notifications_station"
+                },
+                {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
                         "text": "🚂 Current train @ station",
                         "emoji": true
                     },
@@ -312,7 +321,7 @@ def station_block(station_id: str, station_name: str = "") -> List[object]:
                         "text": "⛔️ Errors"
                     },
                     "value": station_id,
-                    "action_id": "station_errors"
+                    "action_id": "station_error"
                 },
                 {
                     "type": "button",
@@ -331,24 +340,6 @@ def station_block(station_id: str, station_name: str = "") -> List[object]:
                     },
                     "value": station_id,
                     "action_id": "comp_env"
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "👷 Owner"
-                    },
-                    "value": station_id,
-                    "action_id": "station_owner"
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "🤵 Responsible"
-                    },
-                    "value": station_id,
-                    "action_id": "station_responsible"
                 }
             ]
         }
@@ -388,6 +379,15 @@ def train_block(train_id: str, train_name: str = "") -> List[object]:
                     "type": "button",
                     "text": {
                         "type": "plain_text",
+                        "text": "🛠 Notifications"
+                    },
+                    "value": train_id,
+                    "action_id": "notifications_train"
+                },
+                {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
                         "text": "🚉 Current station",
                         "emoji": true
                     },
@@ -421,7 +421,7 @@ def train_block(train_id: str, train_name: str = "") -> List[object]:
                         "text": "⛔️ Errors"
                     },
                     "value": train_id,
-                    "action_id": "train_errors"
+                    "action_id": "train_error"
                 },
                 {
                     "type": "button",
@@ -440,24 +440,6 @@ def train_block(train_id: str, train_name: str = "") -> List[object]:
                     },
                     "value": train_id,
                     "action_id": "train_log"
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "👷 Creator"
-                    },
-                    "value": train_id,
-                    "action_id": "train_creator"
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "🤵 Publisher"
-                    },
-                    "value": train_id,
-                    "action_id": "train_publisher"
                 }
             ]
         }
@@ -467,7 +449,7 @@ def train_block(train_id: str, train_name: str = "") -> List[object]:
 
 def train_request_block() -> List[Dict[str, Collection[str]]]:
     """
-        Modal block of the train request
+        Block of the train request
         returns: Block as list
     """
     blocks = [
@@ -481,7 +463,7 @@ def train_request_block() -> List[Dict[str, Collection[str]]]:
                 "type": "multi_static_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Select options",
+                    "text": "Stations...",
                     "emoji": true
                 },
                 "options": [
@@ -568,6 +550,104 @@ def image_block(url: str, piece_id: str) -> List[Dict[str, Collection[str]]]:
             },
             "image_url": url,
             "alt_text": "performance graph"
+        }
+    ]
+
+    return blocks
+
+
+def update_notifications_station(station_id: str) -> List[Dict[str, Collection[str]]]:
+    """
+        Block to update station notification settings
+        returns: Block as list
+    """
+    blocks = [
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "🛎 Please select an event you want to be notified about. "
+            },
+            "accessory": {
+                "type": "multi_static_select",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Events...",
+                    "emoji": true
+                },
+                "options": [
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Station Errors",
+                            "emoji": true
+                        },
+                        "value": "station_errors"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Upcomming Trains",
+                            "emoji": true
+                        },
+                        "value": "station_upcomming"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Finished Trains",
+                            "emoji": true
+                        },
+                        "value": "station_finished"
+                    }
+                ],
+                "action_id": f"update_notifications_{station_id}"
+            }
+        }
+    ]
+
+    return blocks
+
+
+def update_notifications_train(train_id: str) -> List[Dict[str, Collection[str]]]:
+    """
+        Block to update train notification settings
+        returns: Block as list
+    """
+    blocks = [
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "🛎 Please select an event you want to be notified about. "
+            },
+            "accessory": {
+                "type": "multi_static_select",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Events...",
+                    "emoji": true
+                },
+                "options": [
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Train Errors",
+                            "emoji": true
+                        },
+                        "value": "train_errors"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Train Finished Route",
+                            "emoji": true
+                        },
+                        "value": "train_finished"
+                    }
+                ],
+                "action_id": f"update_notifications_{train_id}"
+            }
         }
     ]
 
