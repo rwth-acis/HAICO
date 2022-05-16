@@ -232,7 +232,7 @@ def draw_usage(values: dict, plot_title: str, train: bool) -> str:
             for date, val in sorted_date_values:
                 x_values.append(date)
                 y_values.append(val)
-            axs[0, 0].plot(x_values, y_values, '-o', label=f'{key}')
+            axs[0, 0].plot(x_values, y_values, label=f'{key}')
         axs[0, 0].legend(prop={'size': 6})
 
     row_index = 1 if multi_value else 0

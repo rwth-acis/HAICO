@@ -1369,22 +1369,47 @@ def get_upcomming_trains(station_id: str, piece: str = None) -> Tuple[int, str]:
         }}
     """
 
-    response = blazegraph_query(query_string)
+    query_rej_station = f"""
+        SELECT ?train WHERE {{
+                {ont_pref}:{station_id} a pht:Station .
+                ?train a pht:Train .
+                ?train pht:execution ?exec .
+                ?exec pht:plannedRouteStep ?step .
+                ?step pht:station {ont_pref}:{station_id} .
+                FILTER NOT EXISTS {{
+                    ?exec pht:event ?ev .
+                    ?ev a pht:StationRejectedEvent .
+                    ?ev pht:station {ont_pref}:{station_id} .
+                }}
+                
+        }}
+    """
 
-    if not response:
+    response = blazegraph_query(query_string)
+    response_rej = blazegraph_query(query_rej_station)
+    if not response or not response_rej:
         logging.error(
             "Query failed in module query function get_upcomming_trains")
         return 0, "Something went wrong querying the server."
     if not response["results"]["bindings"]:
         return 1, f"No scheduled trains for station {station_id} found."
 
+    not_rej = []
+    for i, current in enumerate(response["results"]["bindings"]):
+        train = current["train"]["value"]
+        not_rej.append(train)
+    unique = False
     message = f"Upcoming trains for station {station_id}:"
     for i, current in enumerate(response["results"]["bindings"]):
         train = current["train"]["value"]
-        if i == len(response["results"]["bindings"]) - 1:
-            message += f" {train}."
-        else:
-            message += f" {train},"
+        if train in not_rej:
+            unique = True
+            if i == len(response["results"]["bindings"]) - 1:
+                message += f" {train}."
+            else:
+                message += f" {train},"
+    if not unique:
+        return 1, f"No scheduled trains for station {station_id} found."
     return 2, message
 
 

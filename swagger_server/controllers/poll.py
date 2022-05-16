@@ -87,6 +87,8 @@ def poll_server() -> None:
             station = get_id(station)
             STATIONS.append(station)
             ERR_STATION_LAST[station] = []
+            UP_STATION_LAST[station] = []
+            FIN_STATION_LAST[station] = []
 
         query_trains = """
             SELECT ?train WHERE {
@@ -99,6 +101,8 @@ def poll_server() -> None:
             train = get_id(train)
             TRAINS.append(train)
             ERR_TRAIN_LAST[train] = []
+            REJ_TRAIN_LAST[train] = []
+            FIN_TRAIN_LAST[train] = []
         for train_id in TRAINS:
             query_error_train = f"""
                 SELECT ?station ?error WHERE {{
@@ -115,6 +119,35 @@ def poll_server() -> None:
                 response_error_train, "station", True, 'error')
             for item in list_error_train:
                 ERR_TRAIN_LAST[train_id].append(item)
+
+            query_rej_train = f"""
+                SELECT ?station ?reason WHERE {{
+                    {ont_pref}:{train_id} a pht:Train .
+                    {ont_pref}:{train_id} pht:execution ?exec .
+                    ?exec pht:event ?ev .
+                    ?ev a pht:StationRejectedEvent .
+                    ?ev pht:station ?station .
+                    ?ev pht:message ?reason .
+                }}
+            """
+            response_rej_train = query.blazegraph_query(query_rej_train)
+            list_rej_train = get_response(
+                response_rej_train, "station", True, "reason")
+            for item in list_rej_train:
+                REJ_TRAIN_LAST[train_id].append(item)
+
+            query_fin_train = f"""
+                SELECT ?station WHERE {{
+                    {ont_pref}:{train_id} a pht:Train .
+                    {ont_pref}:{train_id} pht:exection ?exec .
+                    ?exec pht:FinishedRunningAtStationEvent ?ev.
+                    ?ev pht:station ?station .
+                }}
+            """
+            response_fin_train = query.blazegraph_query(query_fin_train)
+            list_fin_train = get_response(response_fin_train, "station", False)
+            for item in list_fin_train:
+                FIN_TRAIN_LAST[train_id].append(item)
 
         for station_id in STATIONS:
             query_error_station = f"""
@@ -134,7 +167,62 @@ def poll_server() -> None:
                 response_error_station, "train", True, 'error')
             for item in list_error_station:
                 ERR_STATION_LAST[station_id].append(item)
+
+            query_up_station = f"""
+                SELECT ?train WHERE {{
+                        {ont_pref}:{station_id} a pht:Station .
+                        ?train a pht:Train .
+                        ?train pht:execution ?exec .
+                        ?exec pht:plannedRouteStep ?step .
+                        ?step pht:station {ont_pref}:{station_id} .
+                        FILTER NOT EXISTS {{
+                            ?exec pht:event ?ev .
+                            ?ev a pht:StartedTransmissionEvent .
+                            ?ev pht:station {ont_pref}:{station_id} .
+                        }}
+                        
+                }}
+            """
+            response_up_station = query.blazegraph_query(query_up_station)
+            list_up_station = get_response(response_up_station, "train", False)
+            query_rej_station = f"""
+                    SELECT ?train WHERE {{
+                            {ont_pref}:{station_id} a pht:Station .
+                            ?train a pht:Train .
+                            ?train pht:execution ?exec .
+                            ?exec pht:plannedRouteStep ?step .
+                            ?step pht:station {ont_pref}:{station_id} .
+                            FILTER NOT EXISTS {{
+                                ?exec pht:event ?ev .
+                                ?ev a pht:StationRejectedEvent .
+                                ?ev pht:station {ont_pref}:{station_id} .
+                            }}
+                            
+                    }}
+            """
+            response_rej_station = query.blazegraph_query(query_rej_station)
+            list_rej_station = get_response(
+                response_rej_station, "train", False)
+            for item in list_up_station:
+                if item in list_rej_station:
+                    UP_STATION_LAST[station_id].append(item)
+            query_fin_station = f"""
+                SELECT ?train WHERE {{
+                    {ont_pref}:{station_id} a pht:Station .
+                    ?train pht:execution ?exec .
+                    ?exec pht:event ?ev .
+                    ?ev a pht:FinishedRunningAtStationEvent .
+                    ?ev pht:station {ont_pref}:{station_id} .
+                }}
+                """
+            response_fin_station = query.blazegraph_query(query_fin_station)
+            list_fin_station = get_response(
+                response_fin_station, "train", False)
+            for item in list_fin_station:
+                FIN_STATION_LAST[station_id].append(item)
         print("Finished initialization.", flush=True)
+        print("station errors", ERR_STATION_LAST, "train errors", ERR_TRAIN_LAST, "train rejections", REJ_TRAIN_LAST,
+              "station upcomming", UP_STATION_LAST, "station finished", FIN_STATION_LAST, "train finished", FIN_TRAIN_LAST, flush=True)
         return
 
     if not STATIONS_SUB and not TRAINS_SUB:
@@ -317,9 +405,11 @@ def poll_server() -> None:
         query_fin_station = f"""
                 SELECT ?train WHERE {{
                     {ont_pref}:{station_id} a pht:Station .
-                    ?train pht:event ?ev .
+                    ?train pht:execution ?exec .
+                    ?exec pht:event ?ev .
                     ?ev a pht:FinishedRunningAtStationEvent .
                     ?ev pht:station {ont_pref}:{station_id} .
+                }}
                 """
         response_fin_station = query.blazegraph_query(query_fin_station)
         list_fin_station = get_response(response_fin_station, "train", False)
