@@ -556,7 +556,8 @@ def get_station_errors(station_id: str, piece: str = None) -> Tuple[int, str]:
         SELECT ?error ?train WHERE {{
             {ont_pref}:{station_id} a pht:Station .
             ?train a pht:Train .
-            ?train pht:event ?ev .
+            ?train pht:execution ?exec .
+            ?exec pht:event ?ev .
             ?ev a pht:StationErrorEvent .
             ?ev pht:station {ont_pref}:{station_id} .
             ?ev pht:message ?error .
@@ -588,7 +589,8 @@ def get_train_errors(train_id: str, piece: str = None) -> Tuple[int, str]:
     query_string = f"""
         SELECT ?station ?error WHERE {{
             {ont_pref}:{train_id} a pht:Train .
-            {ont_pref}:{train_id} pht:event ?ev .
+            {ont_pref}:{train_id} pht:execution ?exec .
+            ?exec pht:event ?ev .
             ?ev a pht:StationErrorEvent .
             ?ev pht:station ?station .
             ?ev pht:message ?error .

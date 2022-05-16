@@ -103,7 +103,8 @@ def poll_server() -> None:
             query_error_train = f"""
                 SELECT ?station ?error WHERE {{
                     {ont_pref}:{train_id} a pht:Train .
-                    {ont_pref}:{train_id} pht:event ?ev .
+                    {ont_pref}:{train_id} pht:execution ?exec .
+                    ?exec pht:event ?ev .
                     ?ev a pht:StationErrorEvent .
                     ?ev pht:station ?station .
                     ?ev pht:message ?error .
@@ -120,7 +121,8 @@ def poll_server() -> None:
                 SELECT ?error ?train WHERE {{
                     {ont_pref}:{station_id} a pht:Station .
                     ?train a pht:Train .
-                    ?train pht:event ?ev .
+                    ?train pht:execution ?exec .
+                    ?exec pht:event ?ev .
                     ?ev a pht:StationErrorEvent .
                     ?ev pht:station {ont_pref}:{station_id} .
                     ?ev pht:message ?error .
@@ -171,13 +173,14 @@ def poll_server() -> None:
     # Check if an error occured
     for train_id in TRAINS:
         query_error_train = f"""
-                SELECT ?station ?error WHERE {{
-                    {ont_pref}:{train_id} a pht:Train .
-                    {ont_pref}:{train_id} pht:event ?ev .
-                    ?ev a pht:StationErrorEvent .
-                    ?ev pht:station ?station .
-                    ?ev pht:message ?error .
-                }}
+            SELECT ?station ?error WHERE {{
+                {ont_pref}:{train_id} a pht:Train .
+                {ont_pref}:{train_id} pht:execution ?exec .
+                ?exec pht:event ?ev .
+                ?ev a pht:StationErrorEvent .
+                ?ev pht:station ?station .
+                ?ev pht:message ?error .
+            }}
         """
         response_error_train = query.blazegraph_query(query_error_train)
         list_error_train = get_response(
@@ -266,7 +269,8 @@ def poll_server() -> None:
             SELECT ?error ?train WHERE {{
                 {ont_pref}:{station_id} a pht:Station .
                 ?train a pht:Train .
-                ?train pht:event ?ev .
+                ?train pht:execution ?exec .
+                ?exec pht:event ?ev .
                 ?ev a pht:StationErrorEvent .
                 ?ev pht:station {ont_pref}:{station_id} .
                 ?ev pht:message ?error .
