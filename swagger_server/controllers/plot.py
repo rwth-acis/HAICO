@@ -57,7 +57,7 @@ def describe_usage(values: dict, title: str, train: bool, cpu: bool) -> str:
             for _, val in item:
                 values_tmp.append(float(val))
             avg = (sum(values_tmp) / (len(values_tmp)))
-            description += f"{where} {key} : {avg}{unit}. "
+            description += f"{where} {key} : {avg:.2f}{unit}. "
     return description
 
 

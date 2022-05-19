@@ -513,6 +513,15 @@ def train_block(train_id: str, train_name: str = "") -> List[object]:
                     },
                     "value": train_id,
                     "action_id": "train_log"
+                },
+                {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "📊 Average"
+                    },
+                    "value": train_id,
+                    "action_id": "train_avg"
                 }
             ]
         }

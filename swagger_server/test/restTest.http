@@ -107,7 +107,7 @@ content-type: application/json
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "station_owner",
-    "entities": {"stationID": {"value": "station1"}} ,
+    "entities": {"stationID": {"value": "station_leipzig"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"
@@ -315,7 +315,7 @@ content-type: application/json
     "botName": "TestBot",
     "channel": "TestChannel",
     "intent": "upcomming_trains",
-    "entities": {"stationID": {"value": "stationMinimal"}} ,
+    "entities": {"stationID": {"value": "station_cologne"}} ,
     "email": "Test@email.com",
     "user": "TestUser",
     "time": "1644224769.807741"

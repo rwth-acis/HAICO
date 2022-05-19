@@ -227,8 +227,18 @@ def poll_server() -> None:
             for item in list_fin_station:
                 FIN_STATION_LAST[station_id].append(item)
         print("Finished initialization.", flush=True)
-        print("station errors", ERR_STATION_LAST, "train errors", ERR_TRAIN_LAST, "train rejections", REJ_TRAIN_LAST,
-              "station upcomming", UP_STATION_LAST, "station finished", FIN_STATION_LAST, "train finished", FIN_TRAIN_LAST, flush=True)
+        print("Station errors:", flush=True)
+        print(json.dumps(ERR_STATION_LAST, indent=4), flush=True)
+        print("Train errors:", flush=True)
+        print(json.dumps(ERR_TRAIN_LAST, indent=4), flush=True)
+        print("Train rejections:", flush=True)
+        print(json.dumps(REJ_TRAIN_LAST, indent=4), flush=True)
+        print("Station upcomming:", flush=True)
+        print(json.dumps(UP_STATION_LAST, indent=4), flush=True)
+        print("Train finished:", flush=True)
+        print(json.dumps(FIN_TRAIN_LAST, indent=4), flush=True)
+        print("Station finished:", flush=True)
+        print(json.dumps(FIN_STATION_LAST, indent=4), flush=True)
         return
 
     if not STATIONS_SUB and not TRAINS_SUB:

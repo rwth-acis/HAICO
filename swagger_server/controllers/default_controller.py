@@ -221,7 +221,7 @@ def station_information(json_input: SBF) -> Tuple[SBFRes, int]:
                 station_id, "Station")  # type: ignore
             if code_success == 2:
                 one_datapoint = True
-                message += sub_message
+                message += sub_message + "\n"
         message += tmp
         if not one_datapoint:
             return SBFRes(text=f"No information for station {station_id} found.", close_context=true), 200
@@ -292,7 +292,7 @@ def train_information(json_input: SBF) -> Tuple[SBFRes, int]:
             code_success, sub_message = func(train_id, "Train")  # type: ignore
             if code_success == 2:
                 one_datapoint = True
-                message += sub_message
+                message += sub_message + "\n"
 
         message += tmp
         if not one_datapoint:
@@ -503,7 +503,7 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
             _, message = query.get_all("Train")
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
         elif action_id == "train_request":
-            return {"blocks": blocks.train_request_block()}, 200
+            return SBFResBlock(blocks=blocks.train_request_block()), 200
         elif action_id == "train_route":
             route = get_selected(json_input)
             if route:
@@ -556,6 +556,10 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
             _, message = train_info[action_id](
                 train_id, "Train")  # type: ignore
             return SBFResBlock(blocks=blocks.simple_text(message)), 200
+        elif action_id == "train_avg":
+            train_id = action_info["value"]
+            _, message = query.get_train_average(train_id)
+            return SBFResBlock(blocks.simple_text(message)), 200
         elif action_id in train_run:
             train_id = action_info["value"]
             train_name = trains_rev[train_id]
@@ -582,7 +586,7 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
                     train_id, "Train")  # type: ignore
                 if code_success == 2:
                     one_datapoint = True
-                    message += sub_message
+                    message += sub_message + "\n"
 
             message += tmp
             if not one_datapoint:
@@ -609,7 +613,7 @@ def button(json_input: ACTION) -> Tuple[SBFRes, int]:
                     station_id, "Station")  # type: ignore
                 if code_success == 2:
                     one_datapoint = True
-                    message += sub_message
+                    message += sub_message + "\n"
             message += tmp
             if not one_datapoint:
                 return SBFResBlock(blocks=blocks.simple_text(f"No information for station {station_id} found.")), 200
