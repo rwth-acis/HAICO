@@ -231,7 +231,7 @@ def get_all(piece: str) -> Tuple[int, str]:
     if len(body) == 2:
         return 2, f"{emoji} I found two {piece}s: {body[0][{piece}]['value']} and {body[1][{piece}]['value']}."
     else:
-        message = f"{emoji}  I found {(len(body))} {piece}s: "
+        message = f"{emoji}  I found {(len(body))} {piece}s: \n•"
         # ensuring a grammatically correct message
         for i, item in enumerate(body):
             message += item[f"{piece}"]["value"]
@@ -583,7 +583,7 @@ def get_station_errors(station_id: str, piece: str = None) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"No error logs for station {station_id} found."
     # TODO ?
-    message = f"🚫 Error logs for station {station_id}: "
+    message = f"🚫 Error logs for station {station_id}: \n"
     for current in response["results"]["bindings"]:
         train = current["train"]["value"]
         error = current["error"]["value"]
@@ -615,7 +615,7 @@ def get_station_rejections(station_id: str, piece: str = None) -> Tuple[int, str
         return 0, "Something went wrong querying the server."
     if not response["results"]["bindings"]:
         return 1, f"No rejections for station {station_id} found."
-    message = f"⛔️ Rejections on station {station_id}:"
+    message = f"⛔️ Rejections on station {station_id}: \n"
     for i, current in enumerate(response["results"]["bindings"]):
         train = current["train"]["value"]
         reason = current["reason"]["value"]
@@ -655,7 +655,7 @@ def get_current_trains(station_id: str, piece: str = None) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"No trains at station {station_id} found."
 
-    message = f"🚆 Trains at station {station_id}:"
+    message = f"🚆 Trains at station {station_id}:\n"
 
     for i, current in enumerate(response["results"]["bindings"]):
         train = current["train"]["value"]
@@ -729,7 +729,7 @@ def get_upcomming_trains(station_id: str, piece: str = None) -> Tuple[int, str]:
         train = current["train"]["value"]
         not_rej.append(train)
     unique = False
-    message = f"🧭 Upcoming trains for station {station_id}:"
+    message = f"🧭 Upcoming trains for station {station_id}:\n"
     for i, current in enumerate(response["results"]["bindings"]):
         train = current["train"]["value"]
         if train in not_rej:
@@ -769,7 +769,7 @@ def get_station_log(station_id: str, piece: str = None) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"No logs for station {station_id} found."
 
-    message = f"📚 Logs for station {station_id}:"
+    message = f"📚 Logs for station {station_id}:\n"
     for i, current in enumerate(response["results"]["bindings"]):
         train = current["train"]["value"]
         log = current["log"]["value"]
@@ -863,7 +863,7 @@ def get_train_creator(train_id: str, piece: str = None) -> Tuple[int, str]:
         return 0, "Something went wrong querying the server."
     if not response["results"]["bindings"]:
         return 1, f"No creator for train {train_id} found."
-    message = f"👷 Creator for train {train_id}: "
+    message = f"👷 Creator for train {train_id}:\n"
     for i, item in enumerate(response["results"]["bindings"]):
         creator = item["creator"]["value"]
         name = item["name"]["value"]
@@ -1082,7 +1082,7 @@ def get_train_errors(train_id: str, piece: str = None) -> Tuple[int, str]:
     if not response["results"]["bindings"]:
         return 1, f"No error logs for train {train_id} found."
     # TODO ?
-    message = f"🚫 Error logs for train {train_id}: "
+    message = f"🚫 Error logs for train {train_id}: \n"
     for current in response["results"]["bindings"]:
         station = current["station"]["value"]
         error = current["error"]["value"]
