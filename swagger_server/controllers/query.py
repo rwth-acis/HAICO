@@ -1460,7 +1460,7 @@ def get_train_average(train_id: str, piece: str = None) -> Tuple[int, str]:
             elapsed_seconds = delta.total_seconds()
             elapsed.append(elapsed_seconds)
         total_stations = len(elapsed)
-        avg_time = f"{datetime.timedelta(sum(elapsed)/total_stations):.2f}"
+        avg_time = f"{datetime.timedelta(sum(elapsed)/total_stations)}"
         message += f"The train visited {total_stations} stations in total and spend {avg_time} per station."
         if response_route and response_route["results"]["bindings"]:
             planned_stations = []
