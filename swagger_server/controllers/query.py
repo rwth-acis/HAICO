@@ -1167,7 +1167,7 @@ def get_future_route(train_id: str, piece: str = None) -> Tuple[int, str]:
             ?plan pht:stepNumber ?step .
             FILTER NOT EXISTS {{
                 ?exec pht:event ?ev .
-                ?ev a pht:FinishedRunningAtStationEvent.
+                ?ev a pht:StartedRunningAtStationEvent.
                 ?ev pht:station ?station .
             }}
         }}
