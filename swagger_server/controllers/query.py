@@ -297,23 +297,23 @@ def get_comp_env(station_id: str,  piece: str = None) -> Tuple[int, str]:
         return 1, f"""No information about the computational environment of station {station_id} found"""
 
     body = response["results"]["bindings"][0]
-    message = f"🖥️ Computational environment for station {station_id}:\n"
+    message = f"💾 Computational environment for station {station_id}:\n"
     flag = False
     if "gflop" in body:
         flag = True
-        message += f" GFLOPS: {body['gflop']['value']}.\n"
+        message += f"🖥 GFLOPS: {body['gflop']['value']}.\n"
     if "OCI" in body:
         flag = True
-        message += f" Has OCI support: {body['OCI']['value']}.\n"
+        message += f"🖥 Has OCI support: {body['OCI']['value']}.\n"
     if "CUDA" in body:
         flag = True
-        message += f" Has CUDA support: {body['CUDA']['value']}.\n"
+        message += f"🖥 Has CUDA support: {body['CUDA']['value']}.\n"
     if "maxModels" in body:
         flag = True
-        message += f" Maximum number of models that are supported: {body['maxModels']['value']}.\n"
+        message += f"🖥 Maximum number of models that are supported: {body['maxModels']['value']}.\n"
     if "maxSize" in body:
         flag = True
-        message += f" Maximum supported model size: {body['maxSize']['value']} KB.\n"
+        message += f"🖥 Maximum supported model size: {body['maxSize']['value']} KB.\n"
     if "language" in body:
         # no maxCount, station can support multiple languages
         flag = True
@@ -962,30 +962,30 @@ def get_train_model(train_id: str, piece: str = None) -> Tuple[int, str]:
         return 1, f"No model information for train {train_id} found."
     result = response["results"]["bindings"][0]
     message = f"⚙️ Model information for train {train_id}: "
-    message += f"Identifier: {result['id']['value']}. \n"
-    message += f"Creator: {result['creator']['value']}. \n"
+    message += f"🗂 Identifier: {result['id']['value']}. \n"
+    message += f"🗂 Creator: {result['creator']['value']}. \n"
     if "right" in result:
-        message += f"Rights: {result['right']['value']}. \n"
+        message += f"🗂 Rights: {result['right']['value']}. \n"
     if "description" in result:
-        message += f"Description: {result['description']['value']}. \n"
-    message += f"Model size: {result['size']['value']}. \n"
+        message += f"🗂 Description: {result['description']['value']}. \n"
+    message += f"🗂 Model size: {result['size']['value']}. \n"
     if "license" in result:
         message += f"License: {result['license']['value']}. \n"
     if "char" in result:
-        message += f"Model characteristic: {result['char']['value']}. \n"
+        message += f"🗂 Model characteristic: {result['char']['value']}. \n"
     if "preAlgo" in result:
-        message += f"Prepocessing algorithm: {result['preAlgo']['value']}. \n"
+        message += f"🗂 Prepocessing algorithm: {result['preAlgo']['value']}. \n"
     if "algo" in result:
-        message += f"Algorithm: {result['algo']['value']}. \n"
-    message += f"Reads data: {result['read']['value']}. \n"
-    message += f"Writes data: {result['write']['value']}.\n"
-    message += f"Deletes data: {result['delete']['value']}. \n"
+        message += f"🗂 Algorithm: {result['algo']['value']}. \n"
+    message += f"🗂 Reads data: {result['read']['value']}. \n"
+    message += f"🗂 Writes data: {result['write']['value']}.\n"
+    message += f"🗂 Deletes data: {result['delete']['value']}. \n"
     if "proto" in result:
-        message += f"Used access protocol: {result['proto']['value']}. \n"
+        message += f"🗂 Used access protocol: {result['proto']['value']}. \n"
     if "gflops" in result:
-        message += f"Minimum GFLOPS needed: {result['gflops']['value']}. \n"
+        message += f"🗂 Minimum GFLOPS needed: {result['gflops']['value']}. \n"
     if "cuda" in result:
-        message += f"Needs CUDA support: {result['CUDA']['value']}. \n"
+        message += f"🗂 Needs CUDA support: {result['CUDA']['value']}. \n"
 
     query_data = f"""
         SELECT * WHERE {{
@@ -1016,13 +1016,13 @@ def get_train_model(train_id: str, piece: str = None) -> Tuple[int, str]:
             """
             response_data_file = blazegraph_query(query_data_file)
             if not response_data_file or not response_data_file["results"]["bindings"]:
-                message += f"Train {train_id} expects the data set format File Data Set.\n"
+                message += f"🗂 Train {train_id} expects the data set format File Data Set.\n"
             if "type" in response_data["results"]["bindings"][0]:
                 file_type = response_data["results"]["bindings"][0]["type"]["value"]
-                message += f"Train {train_id} expects the data set format File Data Set with the expected file type {file_type}.\n"  # pylint: disable=line-too-long
+                message += f"🗂 Train {train_id} expects the data set format File Data Set with the expected file type {file_type}.\n"  # pylint: disable=line-too-long
 
         if result_data == "tabular":
-            message += f"Train {train_id} expects the data set format Tabular Data Set.\n"
+            message += f"🗂 Train {train_id} expects the data set format Tabular Data Set.\n"
     return 2, message[:-2]
 
 

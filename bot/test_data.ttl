@@ -1,0 +1,3318 @@
+@prefix pht: <http://www.personalhealthtrainmetadata.org/#>. 
+@prefix mock: <http://phtmetadatamock.org#>.  
+@prefix dmop: <http://www.e-lico.eu/ontologies/dmo/DMOP/DMKB.owl>. 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>. 
+@prefix foaf: <http://xmlns.com/foaf/0.1/>. 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>. 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>. 
+@prefix ex: <http://www.example.org/pht_examples#>. 
+
+ex:train_breast_cancer
+    rdf:type pht:Train ;
+    pht:creator ex:u2 ;
+    pht:publisher ex:u1 ;
+    pht:identifier ex:train_breast_cancer ;
+    pht:title "Breast Cancer Detection Train" ;
+    pht:version "1.0" ;
+    pht:published "2022-03-30"^^xsd:date ;
+    pht:execution [
+        pht:identifier "1a0b9c08-a075-11ec-b909-0242ac120002" ;
+        rdf:type pht:TrainExecution ;
+        pht:trainId ex:train_breast_cancer ;
+        pht:description "First execution run" ;
+        pht:creator ex:u1 ;
+        pht:event [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:48:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:03:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:08:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:53:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:36:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:02:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:48:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:34:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:52:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:44:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:16:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.8e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:13:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:05:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:08:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:37:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:20:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:23:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:38:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:01:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:46:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:15:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:50:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:33:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:44:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:37:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:20:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:31:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:49:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:02:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:42:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:45:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:16:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:15:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:39:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:14:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:58:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:13:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:09:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:03:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:12:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:10:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:00:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:17:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:57:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:43:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:07:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:06:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:08:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:56:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:11:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:22:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:19:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:56:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:22:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:34:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:29:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:12:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:11:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:10:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:15:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:02:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:05:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:01:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:31:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:04:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:53:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:36:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.8e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:51:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:04:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:49:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:35:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:16:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:10:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:13:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:18:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:09:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:02:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:24:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.8e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:55:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:47:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:15:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:41:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:12:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:38:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:24:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:13:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:47:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:54:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:46:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:06:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:25:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:57:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:21:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:58:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:09:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:18:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:59:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:06:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:09:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:45:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:03:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:27:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:40:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:06:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:28:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:29:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:04:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:28:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:26:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:05:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:14:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:40:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:32:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:33:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.8e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:07:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:04:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:11:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:41:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:08:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:07:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:05:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:23:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:30:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:07:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:03:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:16:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:50:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:12:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:00:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:54:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:55:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:21:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:52:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:17:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:32:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:11:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:10:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:25:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:35:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:30:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:19:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:42:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:59:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.3e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:14:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.4e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:39:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:51:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:26:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.2e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:27:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:43:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:CPUUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:14:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:48:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:03:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:08:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:53:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:36:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:02:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:48:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:34:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:52:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:44:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:16:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.8e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:13:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:05:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:08:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:37:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:20:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:23:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:38:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:01:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:46:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:15:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:50:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:33:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:44:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:37:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.3e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:20:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:31:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:49:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:02:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:42:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:45:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:16:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:15:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:39:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:14:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:58:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:13:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:09:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:03:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:12:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:10:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:00:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:17:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:57:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:43:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:07:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:06:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:08:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:56:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:11:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:22:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:19:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:56:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:22:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:34:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:29:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:12:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:11:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:10:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:15:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:02:06.103985+00:00"^^xsd:datetime ;
+            pht:value 2.1e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:05:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:01:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:31:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:04:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:53:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:36:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.8e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:51:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:04:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:49:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:35:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:16:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:10:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:13:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:18:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:09:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:02:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.4e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:24:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.8e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:55:06.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:47:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.7e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:15:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:41:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.9e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T11:12:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.6e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:38:36.103985+00:00"^^xsd:datetime ;
+            pht:value 2.5e-01 ],
+        [ a pht:MemoryUsageReportEvent ;
+            pht:station <http://www.example.org/pht_examples#station_aachen> ;
+            pht:timestamp "2022-05-31T10:24:36.103985+00:00"^^xsd:datetime ;
+            pht:value 1.1e-01 ] ,
+        #%state
+        [ a pht:StartedRunningAtStationEvent ;
+            pht:station ex:station_aachen;
+            pht:timestamp "2022-05-31T10:01:06.103985+00:00"^^xsd:datetime ;
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_aachen;
+            pht:message "22/05/31-09:40:45 - Ready to run on station_aachen" ;
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_aachen;
+            pht:message "22/05/31-10:01:06 - Started run on station_aachen" ;
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_aachen;
+            pht:message "22/05/31-11:17:56 - Error: failed to read file /var/lib/docker/tmp/img/im_148z3281.png" ;
+        ] ,
+        [ a pht:StationErrorEvent ;
+            pht:station ex:station_aachen;
+            pht:message "22/05/31-11:17:56 - Error: failed to read file /var/lib/docker/tmp/img/im_148z3281.png. Waiting for restart ...";
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station_aachen ;
+            pht:stepNumber "1"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station_leipzig ;
+            pht:stepNumber "2"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station_cologne ;
+            pht:stepNumber "3"^^xsd:integer ;
+        ] ;
+        pht:dispatchingPattern pht:trainDispatchingPatternLinear ;
+        pht:public "true"^^xsd:boolean ;
+
+    ] ;
+    pht:model [
+        pht:identifier "modelBreastCancer" ;
+        rdf:type pht:Model ;
+        pht:identifier ex:model2 ;
+        pht:creator ex:u3 ;
+        pht:size "100"^^xsd:integer ;
+        pht:description "Detects if the patient suffers from Breast Cancer" ;
+        pht:dataInteractionRead "true"^^xsd:boolean ;
+        pht:dataInteractionWrite "true"^^xsd:boolean ;
+        pht:dataInteractionDelete "true"^^xsd:boolean ;
+        pht:minimumEstimatedGFLOPS "1.0"^^xsd:float ;
+    ] .
+
+ex:train_melanoma
+    rdf:type pht:Train ;
+    pht:creator ex:u3 ;
+    pht:publisher ex:u5 ;
+    pht:identifier ex:train_melanoma ;
+    pht:title "Melanoma Detection Train" ;
+    pht:version "1.0" ;
+    pht:published "2022-02-24"^^xsd:date ;
+    pht:execution [
+        pht:identifier "1a0b9c08-a075-11ec-b909-0242ac120002" ;
+        rdf:type pht:TrainExecution ;
+        pht:trainId ex:train_melanoma ;
+        pht:description "First execution run" ;
+        pht:creator ex:u4 ;
+        pht:event 
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:48:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:03:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:08:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:53:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:36:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:02:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:48:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:34:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:52:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:44:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:16:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:13:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:05:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:08:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:37:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:20:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:23:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:38:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:01:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:46:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:15:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:50:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:33:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:44:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:37:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:20:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:31:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:49:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:02:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:42:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:45:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:16:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:15:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:39:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:14:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:58:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:13:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:09:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:03:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:12:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:22:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:00:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:17:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:57:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:43:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:07:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:06:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:08:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:56:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:23:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:22:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:19:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:56:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:22:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:34:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:29:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:12:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:23:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:22:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:15:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:02:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:05:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:01:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:31:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:04:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:53:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:36:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:51:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:04:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:49:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:35:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:16:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:22:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:13:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:18:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:09:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:02:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:24:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:55:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:47:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:15:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:41:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:12:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:38:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:24:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:13:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:47:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:54:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:46:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:06:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:25:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:57:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:21:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:58:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:09:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:18:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:59:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:06:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:09:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:45:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:03:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:27:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:40:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:06:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:28:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:29:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:04:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:28:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:26:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:05:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:14:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:40:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:32:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:33:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:07:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:04:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:23:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:41:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:08:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:07:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:05:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:23:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:30:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:07:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:03:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:16:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:50:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:12:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:00:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:54:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:55:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:21:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:52:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:17:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:32:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:23:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:22:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:25:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:35:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:30:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:19:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:42:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:59:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:14:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:39:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:51:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:26:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:27:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:43:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:14:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:48:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:03:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:08:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:53:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:36:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:02:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:48:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:34:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:52:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:44:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:16:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:13:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:05:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:08:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:37:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:20:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:23:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:38:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:01:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:46:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:15:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:50:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:33:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:44:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:37:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.3e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:20:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:31:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:49:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:02:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:42:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:45:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:16:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:15:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:39:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:14:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:58:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:13:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:09:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:03:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:12:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:22:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:00:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:17:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:57:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:43:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:07:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:06:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:08:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:56:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:23:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:22:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:19:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:56:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:22:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:34:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:29:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:12:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:23:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:22:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:15:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:02:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:05:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:01:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:31:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:04:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:53:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:36:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:51:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:04:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:49:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:35:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:16:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:22:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:13:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:18:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:09:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:02:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.4e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:24:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:55:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:47:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:15:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:41:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T23:12:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:38:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_leipzig_imise> ;
+                pht:timestamp "2022-05-30T22:24:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ] ,
+                    [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:48:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:03:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:08:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:53:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:36:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:02:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:48:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:34:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:52:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:44:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:16:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:13:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:05:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:08:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:37:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:20:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:23:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:38:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:01:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:46:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:15:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:50:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:33:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:44:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:37:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:20:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:31:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:49:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:02:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:42:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:45:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:16:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:15:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:39:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:14:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:58:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:13:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:09:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:03:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:12:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:00:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:00:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:17:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:57:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:43:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:07:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:06:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:08:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:56:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:01:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:22:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:19:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:56:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:22:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:34:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:29:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:12:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:01:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:00:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:15:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:02:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:05:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:01:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:31:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:04:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:53:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:36:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:51:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:04:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:49:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:35:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:16:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:00:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:13:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:18:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:09:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:02:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:24:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:55:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:47:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:15:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:41:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:12:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:38:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:24:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:13:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:47:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:54:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:46:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:06:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:25:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:57:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:21:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:58:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:09:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:18:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:59:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:06:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:09:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:45:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:03:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:27:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:40:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:06:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:28:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:29:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:04:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:28:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:26:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:05:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:14:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:40:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:32:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:33:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:07:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:04:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:01:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:41:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:08:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:07:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:05:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:23:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:30:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:07:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:03:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:16:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:50:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:12:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:00:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:54:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:55:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:21:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:52:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:17:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:32:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:01:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:00:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:25:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:35:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:30:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:19:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:42:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:59:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:14:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.4e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:39:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:51:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:26:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:27:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:43:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:CPUUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:14:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:48:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:03:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:08:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:53:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:36:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:02:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:48:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:34:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:52:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:44:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:16:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:13:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:05:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:08:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:37:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:20:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:23:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:38:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:01:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:46:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:15:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:50:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:33:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:44:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:37:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:20:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:31:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:49:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:02:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:42:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:45:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:16:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:15:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:39:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:14:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:58:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:13:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:09:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:03:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:12:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:00:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:00:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:17:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:57:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:43:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:07:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:06:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:08:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:56:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:01:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:22:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:19:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:56:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:22:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:34:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:29:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:12:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:01:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:00:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:15:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:02:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:05:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:01:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:31:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:04:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:53:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:36:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:51:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:04:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:49:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:35:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:16:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:00:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:13:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:18:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:09:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:02:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.8e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:24:06.103985+00:00"^^xsd:datetime ;
+                pht:value 2.3e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:55:06.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:47:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.7e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:15:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:41:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.9e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T01:12:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.6e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:38:36.103985+00:00"^^xsd:datetime ;
+                pht:value 2.5e-01 ],
+            [ a pht:MemoryUsageReportEvent ;
+                pht:station <http://www.example.org/pht_examples#station_goettingen> ;
+                pht:timestamp "2022-05-31T00:24:36.103985+00:00"^^xsd:datetime ;
+                pht:value 1.1e-01 ],
+        #%state
+        [ a pht:StartedRunningAtStationEvent ;
+            pht:station ex:station_leipzig_imise;
+            pht:timestamp "2022-05-30T22:02:00.103985+00:00"^^xsd:datetime ;
+        ], 
+        [ a  pht:FinishedRunningAtStationEvent ;
+            pht:station ex:station_leipzig_imise;
+            pht:timestamp "2022-05-30T22:24:36.103985+00:00"^^xsd:datetime ;
+        ],
+        [ a pht:StartedRunningAtStationEvent ;
+            pht:station ex:station_goettingen;
+            pht:timestamp "2022-05-31T23:01:06.103985+00:00"^^xsd:datetime ;
+        ],
+        [ a pht:FinishedRunningAtStationEvent ;
+            pht:station ex:station_goettingen;
+            pht:timestamp "2022-05-31T01:13:01.103985+00:00"^^xsd:datetime ;
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_leipzig_imise;
+            pht:message "22/05/30-21:40:20 - Ready to run on station_leipzig_imise" ;
+        ],
+        [ a  pht:StationLogEvent ;
+            pht:station ex:station_leipzig_imise;
+            pht:message "22/05/30-22:02:00 - Started run on station_leipzig_imise" ;
+        ],
+        [ a  pht:StationLogEvent ;
+            pht:station ex:station_leipzig_imise;
+            pht:message "22/05/30-22:04:00 - INFO: Only few files present." ;
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_leipzig_imise;
+            pht:message "22/05/30-22:24:36 - Finished run on station_leipzig_imise." ;
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_leipzig_imise;
+            pht:message "22/05/30-22:24:38 - Waiting for submission on station_leipzig_imise." ;
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_goettingen;
+            pht:message "22/05/30-22:35:22 - Ready to run on station_goettingen." ;
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_goettingen;
+            pht:message "22/05/30-23:01:06 - Started run on station_goettingen." ;
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_goettingen;
+            pht:message "22/05/31-01:13:01 - Finished run on station_goettingen.";
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_goettingen;
+            pht:message "22/05/31-01:13:04 - Waiting for submission on station_goettingen.";
+        ],
+        [ a pht:StationLogEvent ;
+            pht:station ex:station_goettingen;
+            pht:message "22/05/31-08:19:37 - Train submitted at last station. Train finished execution." ; 
+        ];
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station_leipzig_imise ;
+            pht:stepNumber "1"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station_goettingen ;
+            pht:stepNumber "2"^^xsd:integer ;
+        ] ;
+        pht:dispatchingPattern pht:trainDispatchingPatternLinear ;
+        pht:public "true"^^xsd:boolean ;
+    ] ;
+    pht:model [
+        pht:identifier "modelMelanoma" ;
+        rdf:type pht:Model ;
+        pht:identifier ex:model2 ;
+        pht:creator ex:u3 ;
+        pht:size "100"^^xsd:integer ;
+        pht:description "Detects if the patient suffers from Melanoma" ;
+        pht:dataInteractionRead "true"^^xsd:boolean ;
+        pht:dataInteractionWrite "true"^^xsd:boolean ;
+        pht:dataInteractionDelete "true"^^xsd:boolean ;
+        pht:minimumEstimatedGFLOPS "1.0"^^xsd:float ;
+    ] .
+
+ex:u1 a foaf:Agent ;    
+    foaf:name "Sascha” ;    
+    foaf:mbox "Sascha@email.example.org" .
+
+ex:u2 a foaf:Agent ;    
+    foaf:name "Sven" ;    
+    foaf:mbox "sven@email.example.org" .
+
+ex:u3 a foaf:Agent ;    
+    foaf:name "Mehrshad" ;    
+    foaf:mbox "mehrshad@email.example.org" .
+
+ex:u4 a foaf:Agent ;    
+    foaf:name "Lars” ;    
+    foaf:mbox “lars@email.example.org" .
+
+ex:u5 a foaf:Agent ;    
+    foaf:name "Maximilian” ;    
+    foaf:mbox “max@email.example.org" .
+
+ex:u6 a foaf:Agent ;    
+    foaf:name "Laurenz” ;    
+    foaf:mbox "Laurenz@email.example.org" .
+
+ex:u7 a foaf:Agent ;    
+    foaf:name "Kais" ;    
+    foaf:mbox "kais@email.example.org" .
+
+ex:u8 a foaf:Agent ;    
+    foaf:name "Adnan” ;    
+    foaf:mbox “adnan@email.example.org" .
+
+ex:u9 a foaf:Agent ;    
+    foaf:name "Sarah" ;    
+    foaf:mbox "sarah@email.example.org" .
+
+ex:u10 a foaf:Agent ;    
+    foaf:name "Sahra” ;    
+    foaf:mbox "sahra@email.example.org" .
+
+ex:u11 a foaf:Agent ;    
+    foaf:name "Ronny" ;    
+    foaf:mbox "ronny@email.example.org" .
+
+ex:u12 a foaf:Agent ;    
+    foaf:name "Yongli" ;    
+    foaf:mbox “yongli@email.example.org" .
+
+ex:u13 a foaf:Agent ;    
+    foaf:name "Hauke" ;    
+    foaf:mbox "hauke@email.example.org" .
+
+ex:station_aachen
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u9 ;
+    pht:stationOwner ex:u10 ;
+    pht:responsibleForStation ex:u10 ;
+    pht:responsibleForStation ex:u9 ;
+    pht:title "Station UKA" ;
+    pht:description "The PHT station at the UK Aachen" ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport true ;
+        pht:maximumNumberOfModelsSupported "25"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "1200"^^xsd:integer ;
+        pht:estimatedGFLOPS "1234"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:FileDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "application/fhir+json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:description "The dataset for the breast cancer use case in aachen" ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+
+ex:station_cologne
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u8 ;
+    pht:responsibleForStation ex:u8 ;
+    pht:title "Station Cologne" ;
+    pht:description "The PHT station at the UK Cologne" ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport false ;
+        pht:maximumNumberOfModelsSupported "10"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "750"^^xsd:integer ;
+        pht:estimatedGFLOPS "738"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:FileDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "application/fhir+json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:description "The dataset for the breast cancer use case in cologne" ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+
+ex:station_leipzig
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u4 ;
+    pht:responsibleForStation ex:u4 ;
+    pht:title "Station Leipzig" ;
+    pht:description "The PHT station at the UK Leipzig" ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport false ;
+        pht:maximumNumberOfModelsSupported "10"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "750"^^xsd:integer ;
+        pht:estimatedGFLOPS "738"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:FileDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "application/fhir+json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:description "The dataset for the breast cancer use case in UK Leipzig" ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+
+ex:station_mittweida
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u5 ;
+    pht:responsibleForStation ex:u5 ;
+    pht:title "Station Mittweida" ;
+    pht:description "The PHT station in Mittweida" ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport true ;
+        pht:maximumNumberOfModelsSupported "25"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "1200"^^xsd:integer ;
+        pht:estimatedGFLOPS "1234"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:FileDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "application/fhir+json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:description "The dataset for the breast cancer use case in Mittweida" ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+
+ex:station_goettingen
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u7 ;
+    pht:responsibleForStation ex:u7 ;
+    pht:title "Station Goettingen" ;
+    pht:description "The PHT station in Goettingen" ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport true ;
+        pht:maximumNumberOfModelsSupported "25"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "1200"^^xsd:integer ;
+        pht:estimatedGFLOPS "1234"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:FileDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "application/fhir+json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:description "The dataset for the melanoma use case in Goettingen" ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+
+ex:station_leipzig_imise
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u11 ;
+    pht:responsibleForStation ex:u11 ;
+    pht:title "Station Leipzig IMISE" ;
+    pht:description "The PHT station in Leipzig IMISE" ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport false ;
+        pht:maximumNumberOfModelsSupported "10"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "750"^^xsd:integer ;
+        pht:estimatedGFLOPS "738"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:FileDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "application/fhir+json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:description "The dataset for the melanoma use case in Leipzig IMISE" ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+
+ex:aachen_beeck
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u5 ;
+    pht:responsibleForStation ex:u5 ;
+    pht:title "Station Aachen Beeck" ;
+    pht:description "The PHT station Aachen Beeck" ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport false ;
+        pht:maximumNumberOfModelsSupported "12"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "860"^^xsd:integer ;
+        pht:estimatedGFLOPS "657"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:FileDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "application/fhir+json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:description "The dataset for the melanoma use case in Aachen Beeck. " ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+
+ex:aachen_menzel
+    rdf:type pht:Station ;
+    pht:stationOwner ex:u6 ;
+    pht:responsibleForStation ex:u6 ;
+    pht:title "Station Aachen Menzel" ;
+    pht:description "The PHT station Aachen Menzel - Mainly for testing" ;
+    pht:computationalEnvironment [
+        rdf:type pht:ExecutionEnvironment ;
+        pht:hasCudaSupport false ;
+        pht:maximumNumberOfModelsSupported "5"^^xsd:integer ;
+        pht:maximumNumberSizeKilobytesSupported "440"^^xsd:integer ;
+        pht:estimatedGFLOPS "620"^^xsd:integer ;
+    ] ;
+    pht:dataSet [
+        rdf:type pht:FileDataSet ;
+        rdf:type pht:DataSet ;
+        pht:fileType "application/fhir+json" ;
+        pht:usedDifferentialPrivacy [
+            rdf:type pht:DifferentialPrivacyKAnonymity ;
+            pht:minimumParameter "1"^^xsd:float ;
+        ] ;
+        pht:identifierToStation "1" ;
+        pht:description "This is a test dataset not for actual use." ;
+        pht:accessConstrain pht:accessConstrainRequestNeeded ;
+    ] .
+
+ex:train_hello_world
+    rdf:type pht:Train ;
+    pht:creator ex:u1 ;
+    pht:publisher ex:u1 ;
+    pht:identifier ex:train_hello_world ;
+    pht:title "Hello World Train" ;
+    pht:version "1.0" ;
+    pht:published "2022-01-09"^^xsd:date ;
+    pht:execution [
+        pht:identifier "1k0bgc00-a055-1uec-k909-0aadac18z002" ;
+        rdf:type pht:TrainExecution ;
+        pht:trainId ex:train_hello_world ;
+        pht:description "Test execution run" ;
+        pht:creator ex:u1 ;
+        
+        #%state
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station_cologne ;
+            pht:stepNumber "1"^^xsd:integer ;
+        ] ;
+        
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station_mittweida ;
+            pht:stepNumber "2"^^xsd:integer ;
+        ] ;
+        pht:plannedRouteStep [
+            rdf:type pht:ExecutionPlanStep;
+            pht:station ex:station_leipzig ;
+            pht:stepNumber "3"^^xsd:integer ;
+        ] ;
+        pht:event [ 
+        a pht:StationRejectedEvent ;
+            rdf:type pht:StationRejectedEvent;
+            pht:station ex:station_cologne;
+            pht:message "No test runs today."
+        ],
+        
+        [a pht:StationRejectedEvent ;
+            rdf:type pht:StationRejectedEvent;
+            pht:station ex:station_mittweida;
+            pht:message "No test runs on this station."
+        ],
+        [a pht:StationRejectedEvent ;
+            rdf:type pht:StationRejectedEvent;
+            pht:station ex:station_leipzig;
+            pht:message "No test runs without model."
+        ];
+        
+        pht:dispatchingPattern pht:trainDispatchingPatternLinear ;
+        pht:public "true"^^xsd:boolean ;
+
+    ] .
+
+
+
+
+
+
+
+
