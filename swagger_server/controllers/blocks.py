@@ -40,7 +40,7 @@ def hello_buttons() -> List[object]:
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": "Hello there! 👋 What would you like to do? I can retrieve information about stations and trains for you."
+                "text": "Hello there! 👋 What would you like to do? I can retrieve information about stations and trains for you. Remember: you can always simply type your question, too!⌨️"
             }
         },
         {
