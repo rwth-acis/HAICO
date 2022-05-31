@@ -641,7 +641,7 @@ def get_current_trains(station_id: str, piece: str = None) -> Tuple[int, str]:
             ?ev a pht:StartedRunningEvent . 
             ?ev pht:station {ont_pref}:{station_id}
             FILTER NOT EXISTS {{
-                ?ev a pht:FinishedRunningEvent .
+                ?ev a pht:FinishedRunningAtStationEvent .
                 ?ev pht:station {ont_pref}:{station_id}
             }}
         }}
@@ -708,7 +708,7 @@ def get_upcomming_trains(station_id: str, piece: str = None) -> Tuple[int, str]:
                 }}
                 FILTER NOT EXISTS {{
                             ?exec pht:event ?ev .
-                            ?ev a pht:FinishedRunningAtStationEvent . 
+                            ?ev a pht:StartedRunningAtStationEvent . 
                             ?ev pht:station {ont_pref}:{station_id} .
                 }}
                 
